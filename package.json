@@ -4,7 +4,7 @@
   "description": "Unofficial JavaScript driver for vk.com API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "karma start"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,19 @@
   "bugs": {
     "url": "https://github.com/vk-x/vk-api/issues"
   },
-  "homepage": "https://github.com/vk-x/vk-api#readme"
+  "homepage": "https://github.com/vk-x/vk-api#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coffee-script": "^1.10.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-coffee-preprocessor": "^0.3.0",
+    "karma-mocha": "^0.2.2",
+    "karma-sinon-chai": "^1.2.0",
+    "lolex": "^1.4.0",
+    "mocha": "^2.4.5",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0"
+  }
 }
