@@ -1,0 +1,26 @@
+{
+  "name": "vk-api",
+  "version": "0.0.0",
+  "description": "Unofficial JavaScript driver for vk.com API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vk-x/vk-api.git"
+  },
+  "keywords": [
+    "vk",
+    "vk.com",
+    "api",
+    "vk-api",
+    "vk-x"
+  ],
+  "author": "Nikita Litvin <n@deltaidea.com> (https://github.com/deltaidea)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vk-x/vk-api/issues"
+  },
+  "homepage": "https://github.com/vk-x/vk-api#readme"
+}
