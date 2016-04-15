@@ -15,6 +15,7 @@ module.exports = ( config ) ->
 
     # list of files / patterns to load in the browser
     files: [
+      "./test/pre-test.coffee"
       "./test/**/*.coffee"
     ]
 
