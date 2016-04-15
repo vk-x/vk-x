@@ -5,7 +5,7 @@ module.exports = ( config ) ->
   config.set
 
     # base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: ""
+    basePath: "./"
 
 
     # frameworks to use
@@ -15,7 +15,6 @@ module.exports = ( config ) ->
 
     # list of files / patterns to load in the browser
     files: [
-      "./src/**/*.coffee"
       "./test/**/*.coffee"
     ]
 
@@ -27,17 +26,21 @@ module.exports = ( config ) ->
     # preprocess matching files before serving them to the browser
     # available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors:
-      "**/*.coffee": [ "coffee" ]
+      "**/*.coffee": [ "webpack" ]
 
 
-    # options passed to the coffee compiler
-    coffeePreprocessor:
-      options:
-        bare: yes
-        sourceMap: no
+    webpack:
+        module:
+            loaders: [
+              test: /\.coffee$/
+              loader: "coffee"
+            ]
 
-      transformPath: ( path ) ->
-        path.replace /\.coffee$/, ".js"
+          resolve:
+            extensions: [
+              ""
+              ".coffee"
+            ]
 
 
     # test results reporter to use
