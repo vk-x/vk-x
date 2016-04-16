@@ -4,6 +4,7 @@
   "description": "Unofficial JavaScript driver for vk.com API",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "test": "karma start"
   },
   "repository": {

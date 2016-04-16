@@ -1,11 +1,15 @@
+webpack = require "webpack"
+
 module.exports =
 
   entry:
-    "index": "./src/index.coffee"
+    "index.js": "./src/index.coffee"
+    "index.min.js": "./src/index.coffee"
 
   output:
     path: "./"
-    filename: "[name].js"
+    filename: "[name]"
+    library: "vk"
 
   module:
     loaders: [
@@ -18,3 +22,8 @@ module.exports =
       ""
       ".coffee"
     ]
+
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin
+      test: /\.min\.js($|\?)/i
+  ]
