@@ -2,5 +2,6 @@ src/
 test/
 .gitignore
 .npmignore
+bower.json
 karma.conf.coffee
 webpack.config.coffee
