@@ -13,3 +13,8 @@ module.exports =
 
     "https://oauth.vk.com/authorize?client_id=#{appId}#{scope}&redirect_uri=#{REDIRECT_URI}&display=#{windowStyle}&" +
     "v=#{apiVersion}&response_type=token"
+
+
+  method: ( methodName, params, callback ) ->
+    @request "https://api.vk.com/method/#{methodName}", params, ({ error, response }) ->
+      callback error, response
