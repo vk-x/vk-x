@@ -10,6 +10,7 @@ module.exports =
     path: "./"
     filename: "[name]"
     library: "vk"
+    libraryTarget: "umd"
 
   module:
     loaders: [
