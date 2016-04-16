@@ -21,11 +21,11 @@ describe "authUrl", ->
     "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.50&response_type=token"
 
 
-fakeMethod = "fake-method"
-fakeUrl = "https://api.vk.com/method/fake-method"
-
-
 describe "method", ->
+
+  fakeMethod = "fake-method"
+  fakeUrl = "https://api.vk.com/method/fake-method"
+
   beforeEach ->
     vk.accessToken = "fake-token"
 
@@ -75,6 +75,8 @@ describe "method", ->
 
 
 describe "request", ->
+
+  fakeUrl = "https://api.vk.com/method/fake-method"
 
   fakeXhr = null
 
