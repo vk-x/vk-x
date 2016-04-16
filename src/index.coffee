@@ -15,6 +15,16 @@ module.exports =
     "v=#{apiVersion}&response_type=token"
 
 
+  request: ( url, params, callback ) ->
+    xhr = new XMLHttpRequest
+    xhr.onload = ->
+      callback JSON.parse @responseText
+
+    serializedParams = ( "#{encodeURIComponent(key)}=#{encodeURIComponent(val)}" for own key, val of params ).join "&"
+    xhr.open "POST", url
+    xhr.send serializedParams
+
+
   method: ( methodName, params, callback ) ->
     @request "https://api.vk.com/method/#{methodName}", params, ({ error, response }) ->
       callback error, response

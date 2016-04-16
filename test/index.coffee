@@ -21,25 +21,59 @@ describe "authUrl", ->
     "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.50&response_type=token"
 
 
+fakeMethod = "fake-method"
+
+fakeUrl = "https://api.vk.com/method/fake-method"
+
+fakeParams =
+  foo: "foo 2"
+  bar: "bar/2"
+
+fakeData =
+  error: "fake error"
+  response:
+    foo: "bar"
+
+
 describe "method", ->
 
   it "calls @request and calls callback(error, data)", ( done ) ->
-    fakeParams =
-      fake: "params"
-
-    fakeData =
-      error: "fake error"
-      response:
-        foo: "bar"
-
     vk.request = ( url, params, callback ) ->
-      url.should.equal "https://api.vk.com/method/fake-method"
+      url.should.equal fakeUrl
       params.should.equal fakeParams
 
       callback fakeData
 
-    vk.method "fake-method", fakeParams, ( error, response ) ->
+    vk.method fakeMethod, fakeParams, ( error, response ) ->
       expect( error ).to.equal fakeData.error
       response.should.equal fakeData.response
 
       done()
+
+
+describe "request", ->
+
+  fakeXhr = null
+
+  beforeEach ->
+    fakeXhr = sinon.useFakeXMLHttpRequest()
+    fakeXhr.requests = []
+    fakeXhr.onCreate = ( xhr ) ->
+      fakeXhr.requests.push xhr
+
+  afterEach ->
+    fakeXhr.restore()
+
+
+  it "makes a post xhr, calls callback with parsed json", ( done ) ->
+    vk.request fakeUrl, fakeParams, ( data ) ->
+      data.should.deep.equal fakeData
+
+      done()
+
+    fakeXhr.requests.length.should.equal 1
+    expect( fakeXhr.requests[ 0 ].url ).to.equal fakeUrl
+    expect( fakeXhr.requests[ 0 ].method ).to.equal "POST"
+    expect( fakeXhr.requests[ 0 ].requestBody ).to.equal "foo=foo%202&bar=bar%2F2"
+
+    fakeXhr.requests[ 0 ].respond 200, {}, JSON.stringify fakeData
