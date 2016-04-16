@@ -25,6 +25,11 @@ module.exports =
     xhr.send serializedParams
 
 
-  method: ( methodName, params, callback ) ->
-    @request "https://api.vk.com/method/#{methodName}", params, ({ error, response }) ->
-      callback error, response
+  method: ( methodName, params, callback = -> ) ->
+    new Promise ( resolve, reject ) =>
+      @request "https://api.vk.com/method/#{methodName}", params, ({ error, response }) ->
+        callback error, response
+        if error?
+          reject error
+        else
+          resolve response

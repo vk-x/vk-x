@@ -51,6 +51,32 @@ describe "method", ->
       done()
 
 
+  it "supports promises", ( done ) ->
+    vk.request = ( url, params, callback ) ->
+      callback response: "foo"
+
+    vk.method fakeMethod, fakeParams
+    .then ( response ) ->
+      response.should.equal "foo"
+      done()
+
+    , ( error ) ->
+      done "rejected!"
+
+
+  it "rejects the promise when data.error exists", ( done ) ->
+    vk.request = ( url, params, callback ) ->
+      callback response: "foo", error: "exists"
+
+    vk.method fakeMethod, fakeParams
+    .then ( response ) ->
+      done "resolved!"
+
+    , ( error ) ->
+      expect( error ).to.equal "exists"
+      done()
+
+
 describe "request", ->
 
   fakeXhr = null
