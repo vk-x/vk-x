@@ -35,6 +35,7 @@ describe "method", ->
 
   beforeEach ->
     vk.accessToken = "fake-token"
+    vk.version = "fake-version"
 
   it "calls @request and calls callback(error, data)", ( done ) ->
     fakeData =
@@ -44,7 +45,10 @@ describe "method", ->
 
     vk.request = ( url, params, callback ) ->
       url.should.equal fakeUrl
-      params.should.deep.equal foo: "bar", access_token: "fake-token"
+      params.should.deep.equal
+        foo: "bar"
+        access_token: "fake-token"
+        v: "fake-version"
 
       callback fakeData
 
