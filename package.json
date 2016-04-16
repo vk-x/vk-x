@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
+    "prepublish": "npm run build",
     "test": "karma start"
   },
   "repository": {

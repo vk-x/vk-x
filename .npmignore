@@ -1,0 +1,6 @@
+src/
+test/
+.gitignore
+.npmignore
+karma.conf.coffee
+webpack.config.coffee
