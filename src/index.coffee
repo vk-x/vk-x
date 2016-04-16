@@ -21,6 +21,8 @@ module.exports =
 
 
   method: ( methodName, params, callback = -> ) ->
+    params.access_token = @accessToken
+
     new Promise ( resolve, reject ) =>
       @request "https://api.vk.com/method/#{methodName}", params, ({ error, response }) ->
         callback error, response

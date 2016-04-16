@@ -22,29 +22,26 @@ describe "authUrl", ->
 
 
 fakeMethod = "fake-method"
-
 fakeUrl = "https://api.vk.com/method/fake-method"
-
-fakeParams =
-  foo: "foo 2"
-  bar: "bar/2"
-
-fakeData =
-  error: "fake error"
-  response:
-    foo: "bar"
 
 
 describe "method", ->
+  beforeEach ->
+    vk.accessToken = "fake-token"
 
   it "calls @request and calls callback(error, data)", ( done ) ->
+    fakeData =
+      error: "fake error"
+      response:
+        foo: "bar"
+
     vk.request = ( url, params, callback ) ->
       url.should.equal fakeUrl
-      params.should.equal fakeParams
+      params.should.deep.equal foo: "bar", access_token: "fake-token"
 
       callback fakeData
 
-    vk.method fakeMethod, fakeParams, ( error, response ) ->
+    vk.method fakeMethod, foo: "bar", ( error, response ) ->
       expect( error ).to.equal fakeData.error
       response.should.equal fakeData.response
 
@@ -55,7 +52,7 @@ describe "method", ->
     vk.request = ( url, params, callback ) ->
       callback response: "foo"
 
-    vk.method fakeMethod, fakeParams
+    vk.method fakeMethod, foo: "bar"
     .then ( response ) ->
       response.should.equal "foo"
       done()
@@ -68,7 +65,7 @@ describe "method", ->
     vk.request = ( url, params, callback ) ->
       callback response: "foo", error: "exists"
 
-    vk.method fakeMethod, fakeParams
+    vk.method fakeMethod, foo: "bar"
     .then ( response ) ->
       done "resolved!"
 
@@ -92,6 +89,15 @@ describe "request", ->
 
 
   it "makes a post xhr, calls callback with parsed json", ( done ) ->
+    fakeParams =
+      foo: "foo 2"
+      bar: "bar/2"
+
+    fakeData =
+      error: "fake error"
+      response:
+        foo: "bar"
+
     vk.request fakeUrl, fakeParams, ( data ) ->
       data.should.deep.equal fakeData
 
