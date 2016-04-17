@@ -20,6 +20,7 @@ module.exports =
 
     serializedParams = ( "#{encodeURIComponent(key)}=#{encodeURIComponent(val)}" for own key, val of params ).join "&"
     xhr.open "POST", url
+    xhr.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
     xhr.send serializedParams
 
 
