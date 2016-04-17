@@ -19,3 +19,6 @@ vk.method("users.get", {fields: "online"}).then(function(response) {
 
 - Driver API — not yet ready
 - [API Documentation (vk.com)](https://vk.com/dev/methods)
+
+
+## License — [MIT](LICENSE.md)
