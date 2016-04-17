@@ -1,6 +1,6 @@
 # vk-api — JavaScript Driver for vk.com API
 
-Unofficial library for interacting with vk.com API.
+An alternative library for interacting with vk.com with solid and exceptionally convenient API.
 
 ```JavaScript
 

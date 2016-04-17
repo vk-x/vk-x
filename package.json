@@ -1,7 +1,7 @@
 {
   "name": "vk-api",
   "version": "0.0.0",
-  "description": "Unofficial JavaScript driver for vk.com API",
+  "description": "JavaScript Driver for vk.com API",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
