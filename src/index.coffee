@@ -3,7 +3,7 @@ DEFAULT_WINDOW_STYLE = "popup"
 REDIRECT_URI = "https%3A%2F%2Foauth.vk.com%2Fblank.html"
 
 
-module.exports =
+module.exports = vk =
 
   version: DEFAULT_API_VERSION
 
@@ -35,3 +35,7 @@ module.exports =
           reject error
         else
           resolve response
+
+
+shortcuts = require "./shortcuts"
+shortcuts vk, vk.method

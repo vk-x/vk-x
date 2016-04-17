@@ -2,7 +2,7 @@ vk = null
 cleanVk = require "inject!../src/index"
 
 beforeEach ->
-  vk = cleanVk()
+  vk = cleanVk({})
 
 
 describe "authUrl", ->
@@ -128,3 +128,17 @@ describe "request", ->
     expect( fakeXhr.requests[ 0 ].requestBody ).to.equal "foo=foo%202&bar=bar%2F2"
 
     fakeXhr.requests[ 0 ].respond 200, {}, JSON.stringify fakeData
+
+
+describe "shortcuts", ->
+
+  it "applies shortcuts to vk", ->
+    base = baseMethod = null
+
+    vk = cleanVk
+      "./shortcuts": ( b, bm ) ->
+        base = b
+        baseMethod = bm
+
+    base.should.equal vk
+    baseMethod.should.equal vk.method

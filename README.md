@@ -9,8 +9,8 @@ window.open(url)
 // After the user authenticates your app, get `access_token` query parameter from that window.
 vk.accessToken = "obtained-access-token"
 
-vk.method("users.get", {fields: "online"}).then(function(response) {
-  console.log(response.online)
+vk.users.get().then(function(currentUser) {
+  // https://vk.com/dev/users.get
 })
 
 ```
