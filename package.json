@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
+    "gen-methods": "coffee gen-method-list.coffee",
     "prepublish": "npm run build",
     "test": "karma start"
   },
