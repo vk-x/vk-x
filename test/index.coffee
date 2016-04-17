@@ -123,6 +123,8 @@ describe "request", ->
     fakeXhr.requests.length.should.equal 1
     expect( fakeXhr.requests[ 0 ].url ).to.equal fakeUrl
     expect( fakeXhr.requests[ 0 ].method ).to.equal "POST"
+    expect( fakeXhr.requests[ 0 ].requestHeaders ).to.have.property "Content-Type"
+    expect( fakeXhr.requests[ 0 ].requestHeaders[ "Content-Type"] ).to.contain "application/x-www-form-urlencoded"
     expect( fakeXhr.requests[ 0 ].requestBody ).to.equal "foo=foo%202&bar=bar%2F2"
 
     fakeXhr.requests[ 0 ].respond 200, {}, JSON.stringify fakeData
