@@ -450,5 +450,43 @@ methodList =
     "addToAlbum"
   ]
 
+  ads: [
+    "getAccounts"
+    "getClients"
+    "createClients"
+    "updateClients"
+    "deleteClients"
+    "getCampaigns"
+    "createCampaigns"
+    "updateCampaigns"
+    "deleteCampaigns"
+    "getAds"
+    "getAdsLayout"
+    "getAdsTargeting"
+    "createAds"
+    "updateAds"
+    "deleteAds"
+    "checkLink"
+    "getStatistics"
+    "getDemographics"
+    "getAdsPostsReach"
+    "getBudget"
+    "getOfficeUsers"
+    "addOfficeUsers"
+    "removeOfficeUsers"
+    "getTargetingStats"
+    "getSuggestions"
+    "getCategories"
+    "getUploadURL"
+    "getVideoUploadURL"
+    "getFloodStats"
+    "getRejectionReason"
+    "createTargetGroup"
+    "updateTargetGroup"
+    "deleteTargetGroup"
+    "getTargetGroups"
+    "importTargetContacts"
+  ]
+
 
 module.exports = methodList
