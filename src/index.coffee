@@ -5,6 +5,9 @@ REDIRECT_URI = "https%3A%2F%2Foauth.vk.com%2Fblank.html"
 
 module.exports =
 
+  version: DEFAULT_API_VERSION
+
+
   authUrl: ( appId, permissions, @version = DEFAULT_API_VERSION, windowStyle = DEFAULT_WINDOW_STYLE ) ->
     "https://oauth.vk.com/authorize?client_id=#{appId}&scope=#{permissions.join ','}&redirect_uri=#{REDIRECT_URI}&" +
     "display=#{windowStyle}&v=#{@version}&response_type=token"

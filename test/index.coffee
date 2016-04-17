@@ -28,6 +28,10 @@ describe "authUrl", ->
     "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.50&response_type=token"
 
 
+  it "vk.version should be initially set to default", ->
+    expect( vk.version ).to.equal "5.50"
+
+
 describe "method", ->
 
   fakeMethod = "fake-method"
