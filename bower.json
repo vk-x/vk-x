@@ -1,6 +1,6 @@
 {
   "name": "vk-api",
-  "description": "Unofficial JavaScript driver for vk.com API",
+  "description": "JavaScript Driver for vk.com API",
   "main": "dist/vk-api.js",
   "authors": [
     "Nikita Litvin <n@deltaidea.com> (https://github.com/deltaidea)"
@@ -22,7 +22,7 @@
   "ignore": [
     "node_modules/",
     "bower_components/",
-    "src/"
+    "src/",
     "test/",
     ".gitignore",
     ".npmignore",
