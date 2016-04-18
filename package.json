@@ -2,7 +2,7 @@
   "name": "vk-api",
   "version": "0.0.0",
   "description": "JavaScript Driver for vk.com API",
-  "main": "index.js",
+  "main": "dist/vk-api.js",
   "scripts": {
     "build": "webpack",
     "gen-methods": "coffee gen-method-list.coffee",

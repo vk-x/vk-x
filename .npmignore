@@ -1,6 +1,8 @@
+docs/
 src/
 test/
 .gitignore
 .npmignore
+gen-method-list.coffee
 karma.conf.coffee
 webpack.config.coffee

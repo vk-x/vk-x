@@ -3,12 +3,14 @@ webpack = require "webpack"
 module.exports =
 
   entry:
-    "index.js": "./src/index.coffee"
-    "index.min.js": "./src/index.coffee"
+    "vk-api": "./src/index.coffee"
+    "vk-api.min": "./src/index.coffee"
+    "vk-api-no-shortcuts": "./src/vk.coffee"
+    "vk-api-no-shortcuts.min": "./src/vk.coffee"
 
   output:
-    path: "./"
-    filename: "[name]"
+    path: "./dist"
+    filename: "[name].js"
     library: "vk"
     libraryTarget: "umd"
 
