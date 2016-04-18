@@ -17,7 +17,7 @@ vk.users.get().then(function(currentUser) {
 
 ## Documentation
 
-- Driver API — not yet ready
+- [Driver API](docs/api.md)
 - [API Documentation (vk.com)](https://vk.com/dev/methods)
 
 
