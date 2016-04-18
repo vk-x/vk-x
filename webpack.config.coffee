@@ -1,5 +1,7 @@
 webpack = require "webpack"
 
+packageInfo = require "./package.json"
+
 module.exports =
 
   entry:
@@ -29,4 +31,6 @@ module.exports =
   plugins: [
     new webpack.optimize.UglifyJsPlugin
       test: /\.min\.js($|\?)/i
+
+    new webpack.BannerPlugin "vk-api v#{packageInfo.version} (c) Nikita Litvin, git.io/vwqn6"
   ]
