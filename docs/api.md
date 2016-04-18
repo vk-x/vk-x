@@ -55,7 +55,7 @@ This method uses `vk.request()` for performing actual network requests. Override
 
 ##### Returns
 
-*(Promise)*: Returns a promise that resolves whis the result from the API or rejects with the error if it exists.
+*(Promise)*: Returns a promise that resolves with the result from the API or rejects with the error if it exists.
 
 ##### Examples
 
@@ -90,7 +90,7 @@ For an exhaustive list of available aliases please refer to [`src/method-list.co
 
 ##### Returns
 
-*(Promise)*: Returns a promise that resolves whis the result from the API or rejects with the error if it exists.
+*(Promise)*: Returns a promise that resolves with a result from the API or rejects with an error if it exists.
 
 ##### Examples
 
