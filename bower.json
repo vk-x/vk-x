@@ -21,6 +21,7 @@
   ],
   "ignore": [
     "node_modules/",
+    "docs/",
     "bower_components/",
     "src/",
     "test/",
