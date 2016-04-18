@@ -15,6 +15,8 @@ This method uses `https://oauth.vk.com/blank.html` as `redirect_uri`.
 This method is an optional utility. Skip it if you use a different auth flow
 or prefer to create a custom auth URL.
 
+#### Since: 0.1.0
+
 ##### Arguments
 
 1. **`appId`** *(number|string)*: ID of your VK application. See [My Applications](https://new.vk.com/apps?act=manage).
@@ -46,6 +48,8 @@ Calls the specified API method and returns its result. See [API Requests](https:
 Supports both callbacks and promises.
 
 This method uses `vk.request()` for performing actual network requests. Override `vk.request` to change the behavior of this library.
+
+#### Since: 0.1.0
 
 ##### Arguments
 
@@ -82,6 +86,8 @@ vk.method("users.get", {fields: "online"}, function(error, result) {
 The `vk` object has built-in aliases for most API methods. Each alias is a transparent wrapper around `vk.method`.
 
 For an exhaustive list of available aliases please refer to [`src/method-list.coffee`](../src/method-list.coffee).
+
+#### Since: 0.1.0
 
 ##### Arguments
 
