@@ -1,4 +1,4 @@
-## Driver API
+# Driver API
 
 - [`vk.authUrl(appId, permissions, [version="5.50"], [windowStyle="popup"])`](#vkauthurlappid-permissions-version550-windowstylepopup)
 - [`vk.method(methodName, params, [callback=noop])`](#vkmethodmethodname-params-callbacknoop)

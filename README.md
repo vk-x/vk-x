@@ -26,7 +26,7 @@ vk.users.get().then(function(currentUser) {
 - [x] Basic `vk.method()` support with callbacks
 - [x] Promises
 - [x] Method aliases: `vk.users.get()` instead of `vk.method("users.get")`
-- [ ] Documentation
+- [x] Documentation
 - [ ] Release to npm, Bower, jsDelivr
 - [ ] Separate builds with and without method aliases
 - [ ] Throttling - no more than 3 requests per second
