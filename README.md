@@ -27,8 +27,8 @@ vk.users.get().then(function(currentUser) {
 - [x] Promises
 - [x] Method aliases: `vk.users.get()` instead of `vk.method("users.get")`
 - [x] Documentation
-- [ ] Release to npm, Bower, jsDelivr
-- [ ] Separate builds with and without method aliases
+- [x] Release to npm, Bower, jsDelivr
+- [x] Separate builds with and without method aliases
 - [ ] Throttling - no more than 3 requests per second
 - [ ] API error handling (meanwhile, here's [a list of error codes](https://vk.com/dev/errors))
 - [ ] Full-fledged server-side support, including `vk.authUrl()` and aliases for secure methods
