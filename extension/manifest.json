@@ -3,5 +3,11 @@
 
   "name": "vk-x",
   "description": "Extension for vk.com that makes life easier",
-  "version": "0.0.0"
+  "version": "0.0.0",
+
+  "content_scripts": [{
+    "run_at": "document_start",
+    "matches": ["https://new.vk.com/*"],
+    "css": ["css/content-script.css"]
+  }]
 }
