@@ -91,6 +91,30 @@ describe "vk", ->
         done()
 
 
+    it "should auto-retry on 'too many requests' error", ( done ) ->
+      clock = sinon.useFakeTimers()
+
+      ERROR_TOO_MANY_REQUESTS = 6
+      calls = 0
+      vk.request = ( url, params, callback ) ->
+        calls += 1
+        if calls < 3
+          callback error: error_code: ERROR_TOO_MANY_REQUESTS
+          clock.tick 310
+        else
+          callback response: "success"
+
+      vk.method fakeMethod, foo: "bar"
+      .then ( response ) ->
+        clock.restore()
+        response.should.equal "success"
+        done()
+
+      , ( error ) ->
+        clock.restore()
+        done "rejected!"
+
+
   describe "request", ->
 
     fakeUrl = "https://api.vk.com/method/fake-method"

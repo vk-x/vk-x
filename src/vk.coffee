@@ -2,6 +2,8 @@ DEFAULT_API_VERSION = "5.50"
 DEFAULT_WINDOW_STYLE = "popup"
 REDIRECT_URI = "https%3A%2F%2Foauth.vk.com%2Fblank.html"
 
+ERROR_TOO_MANY_REQUESTS = 6
+
 
 module.exports =
 
@@ -29,9 +31,14 @@ module.exports =
     params.v = @version
 
     new Promise ( resolve, reject ) =>
-      @request "https://api.vk.com/method/#{methodName}", params, ({ error, response }) ->
-        callback error, response
-        if error?
-          reject error
-        else
-          resolve response
+      do retry = =>
+        @request "https://api.vk.com/method/#{methodName}", params, ({ error, response }) ->
+          if error?
+            if error.error_code is ERROR_TOO_MANY_REQUESTS
+              setTimeout retry, 300
+            else
+              callback error, response
+              reject error
+          else
+            callback error, response
+            resolve response
