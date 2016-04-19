@@ -3,7 +3,7 @@
 
   "name": "vk-x",
   "description": "Extension for vk.com that makes life easier",
-  "version": "1.0.0",
+  "version": "1.0.1",
 
   "content_scripts": [{
     "run_at": "document_start",
