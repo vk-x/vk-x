@@ -4,7 +4,7 @@ describe "vk", ->
   cleanVk = require "inject!../src/vk"
 
   beforeEach ->
-    vk = cleanVk({})
+    vk = cleanVk {}
 
 
   describe "authUrl", ->
@@ -43,7 +43,7 @@ describe "vk", ->
       vk.accessToken = "fake-token"
       vk.version = "fake-version"
 
-    it "calls @request and calls callback(error, data)", ( done ) ->
+    it "should call @request and then callback(error, data)", ( done ) ->
       fakeData =
         error: "fake error"
         response:
@@ -65,7 +65,7 @@ describe "vk", ->
         done()
 
 
-    it "supports promises", ( done ) ->
+    it "should support promises", ( done ) ->
       vk.request = ( url, params, callback ) ->
         callback response: "foo"
 
@@ -78,7 +78,7 @@ describe "vk", ->
         done "rejected!"
 
 
-    it "rejects the promise when data.error exists", ( done ) ->
+    it "should reject promise when data.error exists", ( done ) ->
       vk.request = ( url, params, callback ) ->
         callback response: "foo", error: "exists"
 
@@ -107,7 +107,7 @@ describe "vk", ->
       fakeXhr.restore()
 
 
-    it "makes a post xhr, calls callback with parsed json", ( done ) ->
+    it "should make a post xhr and call back with parsed json", ( done ) ->
       fakeParams =
         foo: "foo 2"
         bar: "bar/2"

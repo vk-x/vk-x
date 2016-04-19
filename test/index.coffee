@@ -2,7 +2,7 @@ describe "index", ->
 
   cleanIndex = require "inject!../src/index"
 
-  it "applies shortcuts to vk", ->
+  it "should apply shortcuts to vk", ->
     base = baseMethod = null
 
     vk = cleanIndex
