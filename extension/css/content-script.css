@@ -1,3 +1,6 @@
-.im-mess_unread {
+.im-mess_unread, .im-mess_unread:before,
+.im-mess_selected, .im-mess_selected:before,
+.im-mess_selected+.im-mess:before,
+.im-mess_unread+.im-mess:before {
   background-color: #d0dae8 !important;
 }
