@@ -1,0 +1,7 @@
+{
+  "manifest_version": 2,
+
+  "name": "vk-x",
+  "description": "Extension for vk.com that makes life easier",
+  "version": "0.0.0"
+}
