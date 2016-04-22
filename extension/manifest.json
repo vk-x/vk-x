@@ -9,5 +9,10 @@
     "run_at": "document_start",
     "matches": ["https://new.vk.com/*"],
     "css": ["css/content-script.css"]
+  }, {
+
+    "run_at": "document_end",
+    "matches": ["https://new.vk.com/*"],
+    "js": ["content-script.js"]
   }]
 }
