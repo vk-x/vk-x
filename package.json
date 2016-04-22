@@ -1,0 +1,23 @@
+{
+  "name": "@vk-x/inject",
+  "version": "1.0.0",
+  "description": "Inject a script into a page from a browser extension",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "coffee --compile --bare index.coffee"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vk-x/inject.git"
+  },
+  "author": "Nikita Litvin <n@deltaidea.com> (https://github.com/deltaidea)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vk-x/inject/issues"
+  },
+  "homepage": "https://github.com/vk-x/inject#readme",
+  "devDependencies": {
+    "coffee-script": "^1.10.0"
+  }
+}
