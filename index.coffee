@@ -1,7 +1,8 @@
 module.exports =
 
   decode = ( str ) ->
-    str.replace /%[\d\w]{2}/gi, ( code ) -> charsByCode[ code ] ? code
+    str = str.replace /%[\d\w]{2}/gi, ( code ) -> charsByCode[ code ] ? code
+    window.decodeURIComponent str
 
 # https://encoding.spec.whatwg.org/index-windows-1251.txt
 charsByCode =
