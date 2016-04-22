@@ -1,6 +1,6 @@
 module.exports =
 
-  decode = ( str ) ->
+  decode: ( str ) ->
     str = str.replace /%[\d\w]{2}/gi, ( code ) -> charsByCode[ code ] ? code
     window.decodeURIComponent str
 
