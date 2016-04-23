@@ -1,2 +1,3 @@
 node_modules/
 extension/content-script.js
+extension/styles.css
