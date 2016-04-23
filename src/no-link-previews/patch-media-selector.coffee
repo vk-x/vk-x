@@ -30,6 +30,6 @@ module.exports = ->
         if data[ 0 ] is ATTACHMENT_TYPE_PAGE
           window.onUploadFail "Unknown error"
         else
-          newDone.call window, data
+          newDone.apply window, [].slice.call arguments
 
       return
