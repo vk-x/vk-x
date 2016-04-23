@@ -4,7 +4,8 @@
   "description": "Extension for vk.com that makes life easier",
   "private": true,
   "scripts": {
-    "build": "webpack && stylus --out extension/styles.css src/index.styl"
+    "build": "webpack && stylus --out extension/styles.css src/index.styl",
+    "watch": "parallelshell \"webpack --watch\" \"stylus --watch --out extension/styles.css src/index.styl\""
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
     "@vk-x/inject": "^1.0.0",
     "coffee-loader": "^0.7.2",
     "coffee-script": "^1.10.0",
+    "parallelshell": "^2.0.0",
     "stylus": "^0.54.2",
     "webpack": "^1.13.0"
   }
