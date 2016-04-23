@@ -25,5 +25,5 @@ module.exports =
     ]
 
   plugins: [
-    new webpack.BannerPlugin "vk-x v#{packageInfo.version} (c) Nikita Litvin, git.io/vwqn6"
+    new webpack.BannerPlugin "vk-x v#{packageInfo.version} (c) Nikita Litvin, git.io/vwRaE"
   ]
