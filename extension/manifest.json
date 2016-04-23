@@ -8,7 +8,7 @@
   "content_scripts": [{
     "run_at": "document_start",
     "matches": ["https://new.vk.com/*"],
-    "css": ["css/content-script.css"]
+    "css": ["styles.css"]
   }, {
 
     "run_at": "document_end",
