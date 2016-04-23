@@ -15,5 +15,4 @@ window.document.addEventListener "mousedown", ( event ) ->
   if event.target.matches "a[href^='/away.php']"
     href = event.target.href.match( /to=(.*)/ )[ 1 ]
     decodedHref = cp1251.decode href
-    console.log href, decodedHref
     event.target.href = decodedHref
