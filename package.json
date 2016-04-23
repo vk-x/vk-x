@@ -1,6 +1,6 @@
 {
   "name": "@vk-x/cp1251",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Methods related to windows-12512 encoding",
   "main": "index.js",
   "scripts": {
