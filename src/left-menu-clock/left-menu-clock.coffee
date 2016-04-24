@@ -3,26 +3,17 @@ settings =
   showTime: true
   showDate: true
   format:
-    time: 'HH:mm:ss'
-    date: 'DD.MM.YYYY'
-  useNtp: false
-  ntp:
-    url: 'ntp2.stratum2.ru'
-    reSyncInterval: 600
+    time: "HH:mm:ss"
+    date: "DD.MM.YYYY"
 
 if settings.show
-  timeProvider = {}
-  if settings.useNtp
-    timeProvider = require './provider-server'
-    timeProvider.init settings.ntp
-  else
-    timeProvider = require './provider-local'
-    timeProvider.init()
+  timeProvider = require "./provider-local"
+  timeProvider.init()
 
-  timeFormatter = require './formatter-moment'
+  timeFormatter = require "./formatter-moment"
   timeFormatter.init settings.format
 
-  timeRenderer = require './renderer-digital'
+  timeRenderer = require "./renderer-digital"
   timeRenderer.init settings
 
   updateClock = ->
