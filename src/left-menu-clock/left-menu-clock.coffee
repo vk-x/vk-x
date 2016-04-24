@@ -5,10 +5,19 @@ settings =
   format:
     time: "HH:mm:ss"
     date: "DD.MM.YYYY"
+  useNtp: false
+  ntp:
+    url: "ntp2.stratum2.ru"
+    reSyncInterval: 600
 
 if settings.show
-  timeProvider = require "./provider-local"
-  timeProvider.init()
+  timeProvider = {}
+  if settings.useNtp
+    timeProvider = require "./provider-server"
+    timeProvider.init settings.ntp
+  else
+    timeProvider = require "./provider-local"
+    timeProvider.init()
 
   timeFormatter = require "./formatter-moment"
   timeFormatter.init settings.format
