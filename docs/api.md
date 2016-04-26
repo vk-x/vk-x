@@ -1,11 +1,11 @@
 # Driver API
 
-- [`vk.authUrl(appId, permissions, [version="5.50"], [windowStyle="popup"])`](#vkauthurlappid-permissions-version550-windowstylepopup)
+- [`vk.getAuthUrl(appId, permissions, [version="5.50"], [windowStyle="popup"])`](#vkauthurlappid-permissions-version550-windowstylepopup)
 - [`vk.method(methodName, params, [callback=noop])`](#vkmethodmethodname-params-callbacknoop)
 - [Aliases](#aliases)
 
 
-## `vk.authUrl(appId, permissions, [version="5.50"], [windowStyle="popup"])`
+## `vk.getAuthUrl(appId, permissions, [version="5.50"], [windowStyle="popup"])`
 
 Suggests a URL for app authentication.
 See [Client Application Authorization](https://new.vk.com/dev/auth_mobile).
@@ -32,10 +32,10 @@ or prefer to create a custom auth URL.
 
 ```JavaScript
 
-vk.authUrl("12345", ["audio", "photos"], "4.10")
+vk.getAuthUrl("12345", ["audio", "photos"], "4.10")
 // "https://oauth.vk.com/authorize?client_id=12345&scope=audio,photos&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=4.10&response_type=token"
 
-vk.authUrl("12345", ["friends"], vk.version, "page")
+vk.getAuthUrl("12345", ["friends"], vk.version, "page")
 // "https://oauth.vk.com/authorize?client_id=12345&scope=friends&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=page&v=5.50&response_type=token"
 
 ```

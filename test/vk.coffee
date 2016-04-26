@@ -7,10 +7,10 @@ describe "vk", ->
     vk = cleanVk {}
 
 
-  describe "authUrl", ->
+  describe "getAuthUrl", ->
 
     it "should use passed app id, permissions and options", ->
-      url = vk.authUrl "12345", [ "audio", "photos" ],
+      url = vk.getAuthUrl "12345", [ "audio", "photos" ],
         version: "5.10"
         windowStyle: "popup"
         appType: "site"
@@ -20,7 +20,7 @@ describe "vk", ->
 
 
     it "should use correct redirect url for standalone apps", ->
-      url = vk.authUrl "12345", [ "audio", "photos" ],
+      url = vk.getAuthUrl "12345", [ "audio", "photos" ],
         version: "5.10"
         windowStyle: "popup"
         appType: "standalone"
@@ -30,7 +30,7 @@ describe "vk", ->
 
 
     it "should set vk.version", ->
-      url = vk.authUrl "12345", [ "audio", "photos" ],
+      url = vk.getAuthUrl "12345", [ "audio", "photos" ],
         version: "4.4"
         windowStyle: "popup"
         appType: "site"
@@ -39,7 +39,7 @@ describe "vk", ->
 
 
     it "should use sensible defaults", ->
-      url = vk.authUrl "12345", [ "audio", "photos" ]
+      url = vk.getAuthUrl "12345", [ "audio", "photos" ]
 
       expect( vk.version ).to.equal "5.50"
       url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=audio,photos&" +

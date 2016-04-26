@@ -4,7 +4,7 @@ An alternative library for interacting with vk.com with solid and exceptionally 
 
 ```JavaScript
 
-url = vk.authUrl("app-id", ["permissions"])
+url = vk.getAuthUrl("app-id", ["permissions"])
 window.open(url)
 // After the user authenticates your app, get `access_token` query parameter from that window.
 vk.accessToken = "obtained-access-token"
@@ -32,7 +32,7 @@ vk.users.get().then(function(currentUser) {
 - [x] Auto-retry on 'too many requests' error
 - [ ] Queue requests to avoid spamming retries
 - [ ] API error handling (meanwhile, here's [a list of error codes](https://vk.com/dev/errors))
-- [ ] Full-fledged server-side support, including `vk.authUrl()` and aliases for secure methods
+- [ ] Full-fledged server-side support, including `vk.getAuthUrl()` and aliases for secure methods
 - [ ] Better website-type apps support, including automated authentication
 - [ ] Build size optimization
 

@@ -9,7 +9,7 @@ module.exports =
   version: DEFAULT_API_VERSION
 
 
-  authUrl: ( appId, permissions, { @version = DEFAULT_API_VERSION, windowStyle = DEFAULT_WINDOW_STYLE, appType = "site" } = {}) ->
+  getAuthUrl: ( appId, permissions, { @version = DEFAULT_API_VERSION, windowStyle = DEFAULT_WINDOW_STYLE, appType = "site" } = {}) ->
     redirectUrl = switch appType
       when "site" then "close.html"
       when "standalone" then "https%3A%2F%2Foauth.vk.com%2Fblank.html"
