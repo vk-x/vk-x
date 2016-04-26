@@ -1,16 +1,13 @@
 # Driver API
 
-- [`vk.getAuthUrl(appId, permissions, [version="5.50"], [windowStyle="popup"])`](#vkauthurlappid-permissions-version550-windowstylepopup)
+- [`vk.getAuthUrl(appId, permissions, [options={}])`](#vkgetauthurlappid-permissions-options)
 - [`vk.method(methodName, params, [callback=noop])`](#vkmethodmethodname-params-callbacknoop)
 - [Aliases](#aliases)
 
-
-## `vk.getAuthUrl(appId, permissions, [version="5.50"], [windowStyle="popup"])`
+## `vk.getAuthUrl(appId, permissions, [options={}])`
 
 Suggests a URL for app authentication.
 See [Client Application Authorization](https://new.vk.com/dev/auth_mobile).
-
-This method uses `https://oauth.vk.com/blank.html` as `redirect_uri`.
 
 This method is an optional utility. Skip it if you use a different auth flow
 or prefer to create a custom auth URL.
@@ -21,8 +18,9 @@ or prefer to create a custom auth URL.
 
 1. **`appId`** *(number|string)*: ID of your VK application. See [My Applications](https://new.vk.com/apps?act=manage).
 1. **`permissions`** *(Array)*: Permissions for your VK application. See [My Applications](https://new.vk.com/apps?act=manage).
-1. **`[version="5.50"]`** *(string)*: API version to use when calling api.vk.com. `vk.version` is set to this value and used in other methods.
-1. **`[windowStyle="popup"]`** *(string)*: Auth window style. See [OAuth Authorization Dialog](https://new.vk.com/dev/oauth_dialog).
+1. **`[options.version="5.50"]`** *(string)*: API version to use when calling api.vk.com. `vk.version` is set to this value and used in other methods.
+1. **`[options.redirectUrl="https://oauth.vk.com/blank.html"]`** *(string)*: URL to which the auth window will be redirected after authentication.
+1. **`[options.windowStyle="popup"]`** *(string)*: Auth window style. See [OAuth Authorization Dialog](https://new.vk.com/dev/oauth_dialog).
 
 ##### Returns
 

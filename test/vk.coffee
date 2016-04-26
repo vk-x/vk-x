@@ -13,7 +13,7 @@ describe "vk", ->
       url = vk.getAuthUrl "12345", [ "audio", "photos" ],
         version: "5.10"
         windowStyle: "popup"
-        appType: "site"
+        redirectUrl: "close.html"
 
       url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=audio,photos&" +
       "redirect_uri=close.html&display=popup&v=5.10&response_type=token"
@@ -23,7 +23,7 @@ describe "vk", ->
       url = vk.getAuthUrl "12345", [ "audio", "photos" ],
         version: "5.10"
         windowStyle: "popup"
-        appType: "standalone"
+        redirectUrl: "https://oauth.vk.com/blank.html"
 
       url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=audio,photos&" +
       "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.10&response_type=token"
@@ -33,7 +33,7 @@ describe "vk", ->
       url = vk.getAuthUrl "12345", [ "audio", "photos" ],
         version: "4.4"
         windowStyle: "popup"
-        appType: "site"
+        redirectUrl: "close.html"
 
       expect( vk.version ).to.equal "4.4"
 
@@ -43,7 +43,7 @@ describe "vk", ->
 
       expect( vk.version ).to.equal "5.50"
       url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=audio,photos&" +
-      "redirect_uri=close.html&display=popup&v=5.50&response_type=token"
+      "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.50&response_type=token"
 
 
     it "vk.version should be initially set to default", ->

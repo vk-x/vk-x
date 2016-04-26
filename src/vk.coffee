@@ -9,12 +9,12 @@ module.exports =
   version: DEFAULT_API_VERSION
 
 
-  getAuthUrl: ( appId, permissions, { @version = DEFAULT_API_VERSION, windowStyle = DEFAULT_WINDOW_STYLE, appType = "site" } = {}) ->
-    redirectUrl = switch appType
-      when "site" then "close.html"
-      when "standalone" then "https%3A%2F%2Foauth.vk.com%2Fblank.html"
-
-    "https://oauth.vk.com/authorize?client_id=#{appId}&scope=#{permissions.join ','}&redirect_uri=#{redirectUrl}&" +
+  getAuthUrl: ( appId, permissions, {
+    @version = DEFAULT_API_VERSION
+    windowStyle = DEFAULT_WINDOW_STYLE
+    redirectUrl = "https://oauth.vk.com/blank.html"
+  } = {}) ->
+    "https://oauth.vk.com/authorize?client_id=#{appId}&scope=#{permissions.join ','}&redirect_uri=#{encodeURIComponent redirectUrl}&" +
     "display=#{windowStyle}&v=#{@version}&response_type=token"
 
 
