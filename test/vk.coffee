@@ -9,15 +9,31 @@ describe "vk", ->
 
   describe "authUrl", ->
 
-    it "should use passed app id, permissions, api version, and window style", ->
-      url = vk.authUrl "12345", [ "audio", "photos" ], version: "5.10", windowStyle: "popup"
+    it "should use passed app id, permissions and options", ->
+      url = vk.authUrl "12345", [ "audio", "photos" ],
+        version: "5.10"
+        windowStyle: "popup"
+        appType: "site"
+
+      url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=audio,photos&" +
+      "redirect_uri=close.html&display=popup&v=5.10&response_type=token"
+
+
+    it "should use correct redirect url for standalone apps", ->
+      url = vk.authUrl "12345", [ "audio", "photos" ],
+        version: "5.10"
+        windowStyle: "popup"
+        appType: "standalone"
 
       url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=audio,photos&" +
       "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.10&response_type=token"
 
 
     it "should set vk.version", ->
-      url = vk.authUrl "12345", [ "audio", "photos" ], version: "4.4", windowStyle: "popup"
+      url = vk.authUrl "12345", [ "audio", "photos" ],
+        version: "4.4"
+        windowStyle: "popup"
+        appType: "site"
 
       expect( vk.version ).to.equal "4.4"
 
@@ -27,7 +43,7 @@ describe "vk", ->
 
       expect( vk.version ).to.equal "5.50"
       url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=audio,photos&" +
-      "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.50&response_type=token"
+      "redirect_uri=close.html&display=popup&v=5.50&response_type=token"
 
 
     it "vk.version should be initially set to default", ->

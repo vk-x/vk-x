@@ -1,6 +1,5 @@
 DEFAULT_API_VERSION = "5.50"
 DEFAULT_WINDOW_STYLE = "popup"
-REDIRECT_URI = "https%3A%2F%2Foauth.vk.com%2Fblank.html"
 
 ERROR_TOO_MANY_REQUESTS = 6
 
@@ -10,8 +9,12 @@ module.exports =
   version: DEFAULT_API_VERSION
 
 
-  authUrl: ( appId, permissions, { @version = DEFAULT_API_VERSION, windowStyle = DEFAULT_WINDOW_STYLE } = {}) ->
-    "https://oauth.vk.com/authorize?client_id=#{appId}&scope=#{permissions.join ','}&redirect_uri=#{REDIRECT_URI}&" +
+  authUrl: ( appId, permissions, { @version = DEFAULT_API_VERSION, windowStyle = DEFAULT_WINDOW_STYLE, appType = "site" } = {}) ->
+    redirectUrl = switch appType
+      when "site" then "close.html"
+      when "standalone" then "https%3A%2F%2Foauth.vk.com%2Fblank.html"
+
+    "https://oauth.vk.com/authorize?client_id=#{appId}&scope=#{permissions.join ','}&redirect_uri=#{redirectUrl}&" +
     "display=#{windowStyle}&v=#{@version}&response_type=token"
 
 
