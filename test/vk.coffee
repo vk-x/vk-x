@@ -10,14 +10,14 @@ describe "vk", ->
   describe "authUrl", ->
 
     it "should use passed app id, permissions, api version, and window style", ->
-      url = vk.authUrl "12345", [ "audio", "photos" ], "5.10", "popup"
+      url = vk.authUrl "12345", [ "audio", "photos" ], version: "5.10", windowStyle: "popup"
 
       url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=audio,photos&" +
       "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.10&response_type=token"
 
 
     it "should set vk.version", ->
-      url = vk.authUrl "12345", [ "audio", "photos" ], "4.4", "popup"
+      url = vk.authUrl "12345", [ "audio", "photos" ], version: "4.4", windowStyle: "popup"
 
       expect( vk.version ).to.equal "4.4"
 
