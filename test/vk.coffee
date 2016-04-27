@@ -74,9 +74,8 @@ describe "vk", ->
   describe "getAccessToken", ->
 
     fakeData =
-      status: "connected"
-      session:
-        sid: "fake-token"
+      auth: true
+      access_token: "fake-token"
 
 
     it "should get the access token from login.vk.com", ( done ) ->
@@ -106,9 +105,9 @@ describe "vk", ->
           done()
 
 
-    it "should return null if app is not connected", ( done ) ->
+    it "should return null if app is not authenticated", ( done ) ->
       vk.request = ( method, url, params, callback ) ->
-        callback status: "unknown"
+        callback auth: false
 
       vk.getAccessToken "12345", ->
         if vk.accessToken is null

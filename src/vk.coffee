@@ -23,8 +23,8 @@ module.exports =
         new: 1
         aid: @appId
         location: window.document.location.hostname
-      , ({ session, status }) =>
-        @accessToken = session?.sid ? null
+      , ({ access_token }) =>
+        @accessToken = access_token ? null
         callback @accessToken
         resolve @accessToken
 
