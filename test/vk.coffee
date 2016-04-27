@@ -217,10 +217,10 @@ describe "vk", ->
 
     it "should try to get access token first and only login if no luck", ( done ) ->
       vk.getAuthUrl = ->
-        done "tried to log in!"
+        done new Error "tried to log in!"
 
       sinon.stub window, "open", ->
-        done "tried to open a window!"
+        done new Error "tried to open a window!"
 
       vk.getAccessToken = ->
         Promise.resolve "fake-token"
@@ -273,7 +273,7 @@ describe "vk", ->
         done()
 
       , ( error ) ->
-        done "rejected!"
+        done new Error "rejected!"
 
 
     it "should default to {} when no params specified", ( done ) ->
@@ -295,7 +295,7 @@ describe "vk", ->
         done()
 
       , ( error ) ->
-        done "rejected!"
+        done new Error "rejected!"
 
 
     it "should reject promise when data.error exists", ( done ) ->
@@ -304,7 +304,7 @@ describe "vk", ->
 
       vk.method fakeMethod, foo: "bar"
       .then ( response ) ->
-        done "resolved!"
+        done new Error "resolved!"
 
       , ( error ) ->
         expect( error ).to.equal "exists"
@@ -332,7 +332,7 @@ describe "vk", ->
 
       , ( error ) ->
         clock.restore()
-        done "rejected!"
+        done new Error "rejected!"
 
 
   describe "request", ->
