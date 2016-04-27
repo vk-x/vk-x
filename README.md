@@ -4,11 +4,15 @@ An alternative library for interacting with vk.com with solid and exceptionally 
 
 ```JavaScript
 
-url = vk.getAuthUrl("app-id", ["permissions"])
-window.open(url)
-// After the user authenticates your app, get `access_token` query parameter from that window.
-vk.accessToken = "obtained-access-token"
+// Authenticate on your website.
+vk.authWebsite("app-id", ["permissions"]).then(function() {
+  vk.users.get()
+}).then(function(currentUser) {
+  // https://vk.com/dev/users.get
+})
 
+// Alternatively, obtain the access token yourself.
+vk.accessToken = "obtained-access-token"
 vk.users.get().then(function(currentUser) {
   // https://vk.com/dev/users.get
 })
