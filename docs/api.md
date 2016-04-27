@@ -1,9 +1,11 @@
 # Driver API
 
 - [`vk.getAuthUrl([appId=vk.appId], [permissions=[]], [options={}])`](#vkgetauthurlappidvkappid-permissions-options)
+- [`vk.authWebsite([appId=vk.appId], [permissions=[]], [windowStyle="popup"], [callback=noop])`](#vkauthwebsiteappidvkappid-permissions-windowstylepopup-callbacknoop)
 - [`vk.getAccessToken([appId=vk.appId], [callback=noop])`](#vkgetaccesstokenappidvkappid-callbacknoop)
 - [`vk.method(methodName, params, [callback=noop])`](#vkmethodmethodname-params-callbacknoop)
 - [Aliases](#aliases)
+
 
 ## `vk.getAuthUrl([appId=vk.appId], [permissions=[]], [options={}])`
 
@@ -38,6 +40,50 @@ vk.getAuthUrl("12345", ["friends"], vk.version, {windowStyle: "page"})
 vk.appId = "12345"
 vk.getAuthUrl()
 // "https://oauth.vk.com/authorize?client_id=12345&scope=&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.50&response_type=token"
+
+```
+
+
+## `vk.authWebsite([appId=vk.appId], [permissions=[]], [windowStyle="popup"], [callback=noop])`
+
+Authenticates an app on a website via a popup and obtains an access token.
+See [Client Application Authorization](https://new.vk.com/dev/auth_mobile) and [Open API](https://vk.com/dev/openapi).
+
+Doesn't open a popup if the app is already authenticated. You don't need to call `vk.getAccessToken()` before `vk.authWebsite()` to check this.
+
+This method is an optional utility. Skip it if you use a different auth flow or prefer to obtain an access token yourself.
+
+This method sets `vk.accessToken` automatically. If you skip this method, set `vk.accessToken` to your token before using the API.
+
+#### Since: 0.3.0
+
+##### Arguments
+
+1. **`[appId=vk.appId]`** *(number|string)*: ID of your VK application. See [My Applications](https://new.vk.com/apps?act=manage).
+1. **`[permissions=[]]`** *(Array)*: Permissions for your VK application. See [My Applications](https://new.vk.com/apps?act=manage).
+1. **`[options.windowStyle="popup"]`** *(string)*: Auth window style. See [OAuth Authorization Dialog](https://new.vk.com/dev/oauth_dialog).
+1. **`[callback=noop]`** *(Function|null)*: optional callback with signature `callback(accessToken)`.
+
+##### Returns
+
+*(string)*: Returns an access token to use when calling API.
+
+##### Examples
+
+```JavaScript
+
+vk.authWebsite("12345").then(function(token) {
+  console.log(token) // "6a7ccc59b984856dc1424ef..."
+})
+
+vk.authWebsite("12345", ["audio", "photos"], "page", function(token) {
+  console.log(token) // "6a7ccc59b984856dc1424ef..."
+})
+
+vk.appId = "12345"
+vk.authWebsite().then(function(token) {
+  console.log(token) // "6a7ccc59b984856dc1424ef..."
+})
 
 ```
 

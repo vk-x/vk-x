@@ -15,6 +15,32 @@ module.exports =
     "display=#{windowStyle}&v=#{@version}&response_type=token"
 
 
+  authWebsite: ( appId, permissions, windowStyle = "popup", callback = -> ) ->
+    new Promise ( resolve, reject ) =>
+      @getAccessToken appId
+      .then ( accessToken ) ->
+        if accessToken
+          callback accessToken
+          resolve accessToken
+
+        else
+          authUrl = @getAuthUrl appId, permissions,
+            windowStyle: windowStyle
+            redirectUrl: "close.html"
+
+          popup = window.open authUrl
+
+          intervalHandler = window.setInterval =>
+            if popup.closed
+              window.clearInterval intervalHandler
+
+              @getAccessToken appId
+              .then ( accessToken ) ->
+                callback accessToken
+                resolve accessToken
+
+          , 100
+
   getAccessToken: ( @appId = @appId, callback = -> ) ->
     new Promise ( resolve, reject ) =>
       @request "GET", "https://login.vk.com/",

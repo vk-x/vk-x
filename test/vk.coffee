@@ -143,6 +143,94 @@ describe "vk", ->
           done()
 
 
+  describe "authWebsite", ->
+
+    afterEach ->
+      window.open.restore()
+
+    it "should open a popup, wait for it to close, get access token", ( done ) ->
+      vk.getAuthUrl = ( appId, permissions, options ) ->
+        appId.should.equal "12345"
+        permissions.should.deep.equal [ "foo", "bar" ]
+        options.should.deep.equal
+          windowStyle: "popup"
+          redirectUrl: "close.html"
+
+        "fake-url"
+
+      sinon.stub window, "open", ( url ) ->
+        url.should.equal "fake-url"
+
+        fakeWindow =
+          closed: false
+
+        setTimeout ->
+          fakeWindow.closed = true
+        , 300
+
+        fakeWindow
+
+      vk.getAccessToken = ->
+        Promise.resolve "fake-token"
+
+      vk.authWebsite "12345", [ "foo", "bar" ], null, ( accessToken ) ->
+        accessToken.should.equal "fake-token"
+
+        done()
+
+
+    it "should pass windowStyle to vk.getAuthUrl()", ( done ) ->
+      vk.getAuthUrl = ( appId, permissions, options ) ->
+        options.should.deep.equal
+          windowStyle: "page"
+          redirectUrl: "close.html"
+
+        "fake-url"
+
+      sinon.stub window, "open", ->
+        closed: true
+
+      vk.getAccessToken = ->
+        Promise.resolve "fake-token"
+
+      vk.authWebsite "12345", [ "foo", "bar" ], "page", ( accessToken ) ->
+        accessToken.should.equal "fake-token"
+
+        done()
+
+
+    it "should support promises", ( done ) ->
+      vk.getAuthUrl = ->
+        "fake-url"
+
+      sinon.stub window, "open", ->
+        closed: true
+
+      vk.getAccessToken = ->
+        Promise.resolve "fake-token"
+
+      vk.authWebsite().then ( accessToken ) ->
+        accessToken.should.equal "fake-token"
+
+        done()
+
+
+    it "should try to get access token first and only login if no luck", ( done ) ->
+      vk.getAuthUrl = ->
+        done "tried to log in!"
+
+      sinon.stub window, "open", ->
+        done "tried to open a window!"
+
+      vk.getAccessToken = ->
+        Promise.resolve "fake-token"
+
+      vk.authWebsite().then ( accessToken ) ->
+        accessToken.should.equal "fake-token"
+
+        done()
+
+
   describe "method", ->
 
     fakeMethod = "fake-method"
