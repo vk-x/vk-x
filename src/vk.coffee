@@ -15,6 +15,20 @@ module.exports =
     "display=#{windowStyle}&v=#{@version}&response_type=token"
 
 
+  getAccessToken: ( @appId = @appId, callback = -> ) ->
+    new Promise ( resolve, reject ) =>
+      @request "GET", "https://login.vk.com/",
+        act: "openapi"
+        oauth: 1
+        new: 1
+        aid: @appId
+        location: window.document.location.hostname
+      , ({ session, status }) =>
+        @accessToken = session?.sid ? null
+        callback @accessToken
+        resolve @accessToken
+
+
   request: ( method, url, params, callback ) ->
     xhr = new XMLHttpRequest
     xhr.onload = ->

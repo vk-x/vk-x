@@ -1,16 +1,15 @@
 # Driver API
 
 - [`vk.getAuthUrl([appId=vk.appId], [permissions=[]], [options={}])`](#vkgetauthurlappidvkappid-permissions-options)
+- [`vk.getAccessToken([appId=vk.appId], [callback=noop])`](#vkgetaccesstokenappidvkappid-callbacknoop)
 - [`vk.method(methodName, params, [callback=noop])`](#vkmethodmethodname-params-callbacknoop)
 - [Aliases](#aliases)
 
 ## `vk.getAuthUrl([appId=vk.appId], [permissions=[]], [options={}])`
 
-Suggests a URL for app authentication.
-See [Client Application Authorization](https://new.vk.com/dev/auth_mobile).
+Suggests a URL for app authentication. See [Client Application Authorization](https://new.vk.com/dev/auth_mobile).
 
-This method is an optional utility. Skip it if you use a different auth flow
-or prefer to create a custom auth URL.
+This method is an optional utility. Skip it if you use a different auth flow or prefer to create a custom auth URL.
 
 #### Since: 0.1.0
 
@@ -24,7 +23,7 @@ or prefer to create a custom auth URL.
 
 ##### Returns
 
-*(string)*: Returns a URL to use in `window.open()`. Obtaining access token is out of the scope of this library.
+*(string)*: Returns a URL to use in `window.open()`.
 
 ##### Examples
 
@@ -39,6 +38,46 @@ vk.getAuthUrl("12345", ["friends"], vk.version, {windowStyle: "page"})
 vk.appId = "12345"
 vk.getAuthUrl()
 // "https://oauth.vk.com/authorize?client_id=12345&scope=&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.50&response_type=token"
+
+```
+
+
+## `vk.getAccessToken([appId=vk.appId], [callback=noop])`
+
+Obtains an access token from `https://login.vk.com/` after the app has been authenticated.
+See [Client Application Authorization](https://new.vk.com/dev/auth_mobile) and [Open API](https://vk.com/dev/openapi).
+
+This method is an optional utility. Skip it if you use a different auth flow or prefer to obtain an access token yourself.
+
+This method sets `vk.accessToken` automatically. If you skip this method, set `vk.accessToken` to your token before using the API.
+
+#### Since: 0.2.0
+
+##### Arguments
+
+1. **`[appId=vk.appId]`** *(number|string)*: ID of your VK application. See [My Applications](https://new.vk.com/apps?act=manage).
+1. **`[callback=noop]`** *(Function|null)*: optional callback with signature `callback(accessToken)`.
+
+##### Returns
+
+*(string)*: Returns an access token to use when calling API.
+
+##### Examples
+
+```JavaScript
+
+vk.getAccessToken("12345").then(function(token) {
+  console.log(token) // "6a7ccc59b984856dc1424ef..."
+})
+
+vk.getAccessToken("12345", function(token) {
+  console.log(token) // "6a7ccc59b984856dc1424ef..."
+})
+
+vk.appId = "12345"
+vk.getAccessToken().then(function(token) {
+  console.log(token) // "6a7ccc59b984856dc1424ef..."
+})
 
 ```
 

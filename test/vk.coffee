@@ -71,6 +71,79 @@ describe "vk", ->
       expect( vk.version ).to.equal "5.50"
 
 
+  describe "getAccessToken", ->
+
+    fakeData =
+      status: "connected"
+      session:
+        sid: "fake-token"
+
+
+    it "should get the access token from login.vk.com", ( done ) ->
+      vk.request = ( method, url, params, callback ) ->
+        method.should.equal "GET"
+        url.should.equal "https://login.vk.com/"
+        params.should.deep.equal
+          act: "openapi"
+          oauth: 1
+          new: 1
+          aid: "12345"
+          location: window.document.location.hostname
+
+        callback fakeData
+
+      vk.getAccessToken "12345", ( accessToken ) ->
+        if accessToken is "fake-token"
+          done()
+
+
+    it "should set vk.accessToken", ( done ) ->
+      vk.request = ( method, url, params, callback ) ->
+        callback fakeData
+
+      vk.getAccessToken "12345", ->
+        if vk.accessToken is "fake-token"
+          done()
+
+
+    it "should return null if app is not connected", ( done ) ->
+      vk.request = ( method, url, params, callback ) ->
+        callback status: "unknown"
+
+      vk.getAccessToken "12345", ->
+        if vk.accessToken is null
+          done()
+
+
+    it "should support promises", ( done ) ->
+      vk.request = ( method, url, params, callback ) ->
+        callback fakeData
+
+      vk.getAccessToken "12345"
+      .then ( accessToken ) ->
+        vk.accessToken
+        if ( vk.accessToken is "fake-token" ) and ( accessToken is "fake-token" )
+          done()
+
+
+    it "should set vk.appId", ->
+      vk.request = ->
+      vk.getAccessToken "12345"
+
+      expect( vk.appId ).to.equal "12345"
+
+
+    it "should default to vk.appId when appId is not specified", ( done ) ->
+      vk.request = ( method, url, params, callback ) ->
+        params.aid.should.equal "12345"
+        callback fakeData
+
+      vk.appId = "12345"
+      vk.getAccessToken().then ( accessToken ) ->
+        if accessToken is "fake-token"
+          done()
+
+
   describe "method", ->
 
     fakeMethod = "fake-method"
