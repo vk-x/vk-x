@@ -29,20 +29,41 @@ describe "vk", ->
       "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.10&response_type=token"
 
 
+    it "should use sensible defaults", ->
+      url = vk.getAuthUrl "12345"
+
+      expect( vk.version ).to.equal "5.50"
+      url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=&" +
+      "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.50&response_type=token"
+
+
     it "should set vk.version", ->
-      url = vk.getAuthUrl "12345", [ "audio", "photos" ],
+      vk.getAuthUrl "12345", [ "audio", "photos" ],
         version: "4.4"
-        windowStyle: "popup"
-        redirectUrl: "close.html"
 
       expect( vk.version ).to.equal "4.4"
 
 
-    it "should use sensible defaults", ->
-      url = vk.getAuthUrl "12345", [ "audio", "photos" ]
+    it "should default to vk.version when version is not specified", ->
+      vk.version = "1.2.3"
+      url = vk.getAuthUrl "12345"
 
-      expect( vk.version ).to.equal "5.50"
-      url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=audio,photos&" +
+      expect( vk.version ).to.equal "1.2.3"
+      url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=&" +
+      "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=1.2.3&response_type=token"
+
+
+    it "should set vk.appId", ->
+      vk.getAuthUrl "12345"
+
+      expect( vk.appId ).to.equal "12345"
+
+
+    it "should default to vk.appId when appId is not specified", ->
+      vk.appId = "12345"
+      url = vk.getAuthUrl()
+
+      url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=&" +
       "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.50&response_type=token"
 
 
