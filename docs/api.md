@@ -66,7 +66,7 @@ This method sets `vk.accessToken` automatically. If you skip this method, set `v
 
 ##### Returns
 
-*(string)*: Returns an access token to use when calling API.
+*(Promise)*: Resolves with an access token to use when calling API.
 
 ##### Examples
 
@@ -106,7 +106,7 @@ This method sets `vk.accessToken` automatically. If you skip this method, set `v
 
 ##### Returns
 
-*(string)*: Returns an access token to use when calling API.
+*(Promise)*: Resolves with an access token to use when calling API.
 
 ##### Examples
 
@@ -146,7 +146,7 @@ This method uses `vk.request()` for performing actual network requests. Override
 
 ##### Returns
 
-*(Promise)*: Returns a promise that resolves with the result from the API or rejects with the error if it exists.
+*(Promise)*: Resolves with the result from the API or rejects with the error if it exists.
 
 ##### Examples
 
