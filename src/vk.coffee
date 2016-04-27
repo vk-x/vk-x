@@ -18,15 +18,20 @@ module.exports =
     "display=#{windowStyle}&v=#{@version}&response_type=token"
 
 
-  request: ( url, params, callback ) ->
+  request: ( method, url, params, callback ) ->
     xhr = new XMLHttpRequest
     xhr.onload = ->
       callback JSON.parse @responseText
 
     serializedParams = ( "#{encodeURIComponent key}=#{encodeURIComponent val}" for own key, val of params ).join "&"
-    xhr.open "POST", url
-    xhr.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
-    xhr.send serializedParams
+    switch method
+      when "GET"
+        xhr.open method, "#{url}?#{serializedParams}"
+        xhr.send()
+      when "POST"
+        xhr.open method, url
+        xhr.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
+        xhr.send serializedParams
 
 
   method: ( methodName, params, callback = -> ) ->
@@ -35,7 +40,7 @@ module.exports =
 
     new Promise ( resolve, reject ) =>
       do retry = =>
-        @request "https://api.vk.com/method/#{methodName}", params, ({ error, response }) ->
+        @request "POST", "https://api.vk.com/method/#{methodName}", params, ({ error, response }) ->
           if error?
             if error.error_code is ERROR_TOO_MANY_REQUESTS
               setTimeout retry, 300

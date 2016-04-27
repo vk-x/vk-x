@@ -65,7 +65,8 @@ describe "vk", ->
         response:
           foo: "bar"
 
-      vk.request = ( url, params, callback ) ->
+      vk.request = ( method, url, params, callback ) ->
+        method.should.equal "POST"
         url.should.equal fakeUrl
         params.should.deep.equal
           foo: "bar"
@@ -82,7 +83,7 @@ describe "vk", ->
 
 
     it "should support promises", ( done ) ->
-      vk.request = ( url, params, callback ) ->
+      vk.request = ( method, url, params, callback ) ->
         callback response: "foo"
 
       vk.method fakeMethod, foo: "bar"
@@ -95,7 +96,7 @@ describe "vk", ->
 
 
     it "should reject promise when data.error exists", ( done ) ->
-      vk.request = ( url, params, callback ) ->
+      vk.request = ( method, url, params, callback ) ->
         callback response: "foo", error: "exists"
 
       vk.method fakeMethod, foo: "bar"
@@ -112,7 +113,7 @@ describe "vk", ->
 
       ERROR_TOO_MANY_REQUESTS = 6
       calls = 0
-      vk.request = ( url, params, callback ) ->
+      vk.request = ( method, url, params, callback ) ->
         calls += 1
         if calls < 3
           callback error: error_code: ERROR_TOO_MANY_REQUESTS
@@ -137,6 +138,15 @@ describe "vk", ->
 
     fakeXhr = null
 
+    fakeParams =
+      foo: "foo 2"
+      bar: "bar/2"
+
+    fakeData =
+      error: "fake error"
+      response:
+        foo: "bar"
+
     beforeEach ->
       fakeXhr = sinon.useFakeXMLHttpRequest()
       fakeXhr.requests = []
@@ -147,24 +157,28 @@ describe "vk", ->
       fakeXhr.restore()
 
 
-    it "should make a post xhr and call back with parsed json", ( done ) ->
-      fakeParams =
-        foo: "foo 2"
-        bar: "bar/2"
-
-      fakeData =
-        error: "fake error"
-        response:
-          foo: "bar"
-
-      vk.request fakeUrl, fakeParams, ( data ) ->
+    it "should make a get xhr and call back with parsed json", ( done ) ->
+      vk.request "GET", fakeUrl, fakeParams, ( data ) ->
         data.should.deep.equal fakeData
 
         done()
 
       fakeXhr.requests.length.should.equal 1
-      expect( fakeXhr.requests[ 0 ].url ).to.equal fakeUrl
+      expect( fakeXhr.requests[ 0 ].method ).to.equal "GET"
+      expect( fakeXhr.requests[ 0 ].url ).to.equal fakeUrl + "?foo=foo%202&bar=bar%2F2"
+
+      fakeXhr.requests[ 0 ].respond 200, {}, JSON.stringify fakeData
+
+
+    it "should make a post xhr and call back with parsed json", ( done ) ->
+      vk.request "POST", fakeUrl, fakeParams, ( data ) ->
+        data.should.deep.equal fakeData
+
+        done()
+
+      fakeXhr.requests.length.should.equal 1
       expect( fakeXhr.requests[ 0 ].method ).to.equal "POST"
+      expect( fakeXhr.requests[ 0 ].url ).to.equal fakeUrl
       expect( fakeXhr.requests[ 0 ].requestHeaders ).to.have.property "Content-Type"
       expect( fakeXhr.requests[ 0 ].requestHeaders[ "Content-Type"] ).to.contain "application/x-www-form-urlencoded"
       expect( fakeXhr.requests[ 0 ].requestBody ).to.equal "foo=foo%202&bar=bar%2F2"
