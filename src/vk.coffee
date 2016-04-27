@@ -31,6 +31,7 @@ module.exports =
 
   request: ( method, url, params, callback ) ->
     xhr = new XMLHttpRequest
+    xhr.withCredentials = yes
     xhr.onload = ->
       callback JSON.parse @responseText
 
