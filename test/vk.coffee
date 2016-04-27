@@ -116,6 +116,28 @@ describe "vk", ->
         done "rejected!"
 
 
+    it "should default to {} when no params specified", ( done ) ->
+      fakeData =
+        error: "fake error"
+        response:
+          foo: "bar"
+
+      vk.request = ( method, url, params, callback ) ->
+        params.should.deep.equal
+          access_token: "fake-token"
+          v: "fake-version"
+
+        callback response: "foo"
+
+      vk.method fakeMethod
+      .then ( response ) ->
+        response.should.equal "foo"
+        done()
+
+      , ( error ) ->
+        done "rejected!"
+
+
     it "should reject promise when data.error exists", ( done ) ->
       vk.request = ( method, url, params, callback ) ->
         callback response: "foo", error: "exists"

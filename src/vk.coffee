@@ -31,7 +31,7 @@ module.exports =
         xhr.send serializedParams
 
 
-  method: ( methodName, params, callback = -> ) ->
+  method: ( methodName, params = {}, callback = -> ) ->
     params.access_token = @accessToken
     params.v = @version
 

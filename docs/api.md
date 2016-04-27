@@ -43,7 +43,7 @@ vk.getAuthUrl()
 ```
 
 
-## `vk.method(methodName, params, [callback=noop])`
+## `vk.method(methodName, [params={}], [callback=noop])`
 
 Calls the specified API method and returns its result. See [API Requests](https://new.vk.com/dev/api_requests).
 
@@ -56,7 +56,7 @@ This method uses `vk.request()` for performing actual network requests. Override
 ##### Arguments
 
 1. **`methodName`** *(string)*: the name of the API method. See [API Methods](https://new.vk.com/dev/methods).
-1. **`params`** *(Object)*: Parameters to pass to the API.
+1. **`[params={}]`** *(Object)*: Parameters to pass to the API.
 1. **`[callback=noop]`** *(Function|null)*: optional callback with signature `callback(error, response)`.
 
 ##### Returns
