@@ -1,4 +1,8 @@
 module.exports = ( script, isSource ) ->
+  if typeof script is "function"
+    script = "(#{script.toString()})()"
+    isSource = yes
+
   tag = window.document.createElement "script"
 
   if isSource
