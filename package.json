@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "printf \"/* inject v1.0.1 (c) Nikita Litvin, git.io/vwPBs */\\n\\n\" > index.js && coffee --compile --bare --no-header --print index.coffee >> index.js"
+    "build": "printf \"/* inject v1.0.1 (c) Nikita Litvin, git.io/vwPBs */\\n\\n\" > index.js && coffee --compile --bare --no-header --print index.coffee >> index.js",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
