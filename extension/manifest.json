@@ -14,17 +14,14 @@
   },
 
   "permissions": [
+    "storage",
     "https://api.vk.com/"
   ],
 
   "content_scripts": [{
     "run_at": "document_start",
     "matches": ["https://new.vk.com/*"],
-    "css": ["styles.css"]
-  }, {
-
-    "run_at": "document_end",
-    "matches": ["https://new.vk.com/*"],
+    "css": ["styles.css"],
     "js": ["content-script.js"]
   }]
 }
