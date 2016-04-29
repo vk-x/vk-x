@@ -1,11 +1,11 @@
 {
   "name": "@vk-x/inject",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Inject a script into a page from a browser extension",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "printf \"/* inject v1.0.2 (c) Nikita Litvin, git.io/vwPBs */\\n\\n\" > index.js && coffee --compile --bare --no-header --print index.coffee >> index.js",
+    "build": "printf \"/* inject v1.1.0 (c) Nikita Litvin, git.io/vwPBs */\\n\\n\" > index.js && coffee --compile --bare --no-header --print index.coffee >> index.js",
     "prepublish": "npm run build"
   },
   "repository": {
