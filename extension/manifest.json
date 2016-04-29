@@ -13,6 +13,10 @@
     "128": "icons/vk-x-128.png"
   },
 
+  "permissions": [
+    "https://api.vk.com/"
+  ],
+
   "content_scripts": [{
     "run_at": "document_start",
     "matches": ["https://new.vk.com/*"],
