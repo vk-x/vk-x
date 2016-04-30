@@ -5,7 +5,8 @@ packageInfo = require "./package.json"
 module.exports =
 
   entry:
-    "content-script": "./src/index.coffee"
+    "content-script": "./src/content-script.coffee"
+    "injected": "./src/index.coffee"
 
   output:
     path: "extension"

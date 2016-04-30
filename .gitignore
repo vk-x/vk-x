@@ -1,3 +1,4 @@
 node_modules/
 extension/content-script.js
+extension/injected.js
 extension/styles.css
