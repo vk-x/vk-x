@@ -16,4 +16,4 @@ module.exports = ( script, isSource ) ->
       tag.parentNode.removeChild tag
 
   tag.charset = "UTF-8"
-  window.document.head.appendChild tag
+  ( window.document.head or window.document.documentElement).appendChild tag
