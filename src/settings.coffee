@@ -18,13 +18,13 @@ settings =
 
   fetchRemote: ->
     api.ready.then ->
-      api.storage.get "settings"
+      api.storage.get key: "settings"
     .then ( settings = {}) ->
       cache = settings
 
 
   saveRemote: ->
-    api.storage.set "settings": cache
+    api.storage.set key: "settings", value: cache
 
 
   get: ( key ) ->
