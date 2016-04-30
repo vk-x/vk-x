@@ -18,3 +18,5 @@ Promise.all [ settingsReady, domReady ]
   require "./fixed-left-menu/fixed-left-menu"
   require "./no-link-previews/no-link-previews"
   require "./menu-clock/menu-clock"
+  require "./settings/menu-item"
+  require "./settings/popup"
