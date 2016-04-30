@@ -7,9 +7,6 @@ domReady = new Promise ( resolve ) ->
 # Load local settings initially. This is enough to get rolling.
 settingsReady = settings.fetchLocal()
 
-# We'll still need to sync up with remote.
-settings.fetchRemote()
-
 
 Promise.all [ settingsReady, domReady ]
 .then ->
