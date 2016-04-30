@@ -1,8 +1,18 @@
 api = require "./api"
+pubsub = require "pubsub-js"
 
 cache = {}
 
 settings =
+
+  on: ( topic, listener ) ->
+    pubsub.subscribe "settings.#{topic}", ( msg, data ) ->
+      listener data
+
+
+  trigger: ( topic, data ) ->
+    pubsub.publish "settings.#{topic}", data
+
 
   fetchLocal: ->
     new Promise ( resolve ) ->
@@ -33,6 +43,8 @@ settings =
 
   set: ( key, value ) ->
     cache[ key ] = value
+    settings.trigger "set.#{key}", { key, value }
+
     Promise.all [ @saveLocal(), @saveRemote() ]
 
 

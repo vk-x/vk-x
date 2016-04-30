@@ -26,6 +26,7 @@
     "lodash": "^4.11.1",
     "moment": "^2.13.0",
     "parallelshell": "^2.0.0",
+    "pubsub-js": "^1.5.3",
     "stylus": "^0.54.2",
     "underscore-template-loader": "^0.7.3",
     "webpack": "^1.13.0"

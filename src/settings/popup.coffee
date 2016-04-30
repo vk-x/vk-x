@@ -1,4 +1,6 @@
+settings = require "../settings"
 inject = require "@vk-x/inject"
+
 
 inject ->
   box = MessageBox
@@ -16,10 +18,18 @@ inject ->
       stManager.add "settings.css", ->
         box.show()
 
+
 popupTemplate = require "./popup-template"
 popupElement = document.querySelector "#vkx-popup"
 popupElement.innerHTML = popupTemplate()
 
+
 popupElement.addEventListener "click", ( event ) ->
-    if event.target.matches ".checkbox"
-      console.log event.target.getAttribute "setting-id"
+  if event.target.matches ".checkbox"
+    key = event.target.getAttribute "setting-id"
+    settings.set key, not settings.get key
+
+
+settings.on "set", ({ key, value }) ->
+  settingElement = popupElement.querySelector "[setting-id='#{key}']"
+  settingElement.classList.toggle "on", value
