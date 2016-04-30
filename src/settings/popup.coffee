@@ -19,3 +19,7 @@ inject ->
 popupTemplate = require "./popup-template"
 popupElement = document.querySelector "#vkx-popup"
 popupElement.innerHTML = popupTemplate()
+
+popupElement.addEventListener "click", ( event ) ->
+    if event.target.matches ".checkbox"
+      console.log event.target.getAttribute "setting-id"
