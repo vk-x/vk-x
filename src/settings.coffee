@@ -45,7 +45,7 @@ settings =
     cache[ key ] = value
     settings.trigger "set.#{key}", { key, value }
 
-    Promise.all [ @saveLocal(), @saveRemote() ]
+    @saveLocal()
 
 
 module.exports = settings
