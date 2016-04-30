@@ -15,12 +15,19 @@ module.exports =
     loaders: [
       test: /\.coffee$/
       loader: "coffee"
+    ,
+      test: /\.html$/
+      loader: "underscore-template-loader"
+      query:
+        attributes: []
+        interpolate: "\\{\\{(.+?)\\}\\}"
     ]
 
   resolve:
     extensions: [
       ""
       ".coffee"
+      ".html"
       ".js"
     ]
 

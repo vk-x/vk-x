@@ -4,13 +4,18 @@ inject ->
   box = MessageBox
     title: "vk-x"
     grey: true
-    width: 600
+    width: 700
     hideButtons: true
     selfDestruct: false
-  .content "<div id='vkx-popup'></div>"
+
+  box.bodyNode.id = "vkx-popup"
 
   document.addEventListener "click", ( event ) ->
     if event.target.matches ".vkx-popup-link"
       TopMenu.toggle off
       stManager.add "settings.css", ->
         box.show()
+
+popupTemplate = require "./popup-template"
+popupElement = document.querySelector "#vkx-popup"
+popupElement.innerHTML = popupTemplate()

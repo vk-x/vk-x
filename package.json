@@ -23,9 +23,11 @@
     "@vk-x/vk-api": "^0.3.0",
     "coffee-loader": "^0.7.2",
     "coffee-script": "^1.10.0",
+    "lodash": "^4.11.1",
     "moment": "^2.13.0",
     "parallelshell": "^2.0.0",
     "stylus": "^0.54.2",
+    "underscore-template-loader": "^0.7.3",
     "webpack": "^1.13.0"
   }
 }
