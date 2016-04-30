@@ -1,7 +1,14 @@
 api = require "./api"
 pubsub = require "pubsub-js"
 
-cache = {}
+cache =
+  "common.awayPhp": true
+  "messages.darkerUnread": true
+  "messages.noPagePreviews": true
+  "sideMenu.fixPosition": true
+  "sideMenu.showTime": true
+  "friends.noPeopleYouMightKnow": true
+  "photos.noLikeOverlay": true
 
 settings =
 
@@ -16,7 +23,12 @@ settings =
 
   fetchLocal: ->
     new Promise ( resolve ) ->
-      cache = JSON.parse ( window.localStorage[ "vkx-settings" ] ? "{}" )
+      parsed = JSON.parse ( window.localStorage[ "vkx-settings" ] ? "{}" )
+      for own key, value of parsed
+        if cache[ key ] isnt value
+          cache[ key ] = value
+          settings.trigger "set.#{key}", { key, value }
+
       resolve cache
 
 
@@ -39,6 +51,10 @@ settings =
 
   get: ( key ) ->
     cache[ key ]
+
+
+  getAll: ->
+    cache
 
 
   set: ( key, value ) ->

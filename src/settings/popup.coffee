@@ -20,6 +20,10 @@ document.addEventListener "click", ( event ) ->
 popupTemplate = require "./popup-template"
 box.bodyNode.innerHTML = popupTemplate()
 
+for own key, value of settings.getAll()
+  settingElement = box.bodyNode.querySelector "[setting-id='#{key}']"
+  settingElement.classList.toggle "on", value
+
 
 box.bodyNode.addEventListener "click", ( event ) ->
   if event.target.matches ".checkbox"
