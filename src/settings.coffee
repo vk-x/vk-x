@@ -16,14 +16,14 @@ settings =
 
   fetchLocal: ->
     new Promise ( resolve ) ->
-      chrome.storage.local.get "settings", ({ settings = {}}) ->
-        cache = settings
-        resolve()
+      cache = JSON.parse ( window.localStorage[ "vkx-settings" ] ? "{}" )
+      resolve cache
 
 
   saveLocal: ->
     new Promise ( resolve ) ->
-      chrome.storage.local.set "settings": cache, resolve
+      window.localStorage[ "vkx-settings" ] = JSON.stringify cache
+      resolve cache
 
 
   fetchRemote: ->
