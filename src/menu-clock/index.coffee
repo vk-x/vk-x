@@ -9,7 +9,7 @@ module.exports =
 
 
   runBeforeDom: ->
-    styles = require "./menu-clock-styles"
+    styles = require "./styles"
 
     styles.use()
 

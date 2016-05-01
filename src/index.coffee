@@ -2,13 +2,13 @@ settings = require "./settings"
 
 
 modules = [
-  require "./away-php/away-php"
-  require "./fixed-left-menu/fixed-left-menu"
-  require "./hide-people-you-might-know/hide-people-you-might-know"
-  require "./no-link-previews/no-link-previews"
-  require "./remove-photo-like/remove-photo-like"
-  require "./menu-clock/menu-clock"
-  require "./message-background/message-background"
+  require "./away-php"
+  require "./fixed-left-menu"
+  require "./hide-people-you-might-know"
+  require "./no-link-previews"
+  require "./remove-photo-like"
+  require "./menu-clock"
+  require "./message-background"
   require "./settings/menu-item"
   require "./settings/popup"
 ]

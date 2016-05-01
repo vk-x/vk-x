@@ -7,6 +7,6 @@ module.exports =
 
 
   runBeforeDom: ->
-    styles = require "./message-background-styles"
+    styles = require "./styles"
 
     styles.use()

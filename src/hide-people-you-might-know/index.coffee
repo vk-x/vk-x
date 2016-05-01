@@ -7,6 +7,6 @@ module.exports =
 
 
   runBeforeDom: ->
-    styles = require "./hide-people-you-might-know-styles"
+    styles = require "./styles"
 
     styles.use()

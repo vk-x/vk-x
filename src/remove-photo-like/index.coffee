@@ -7,6 +7,6 @@ module.exports =
 
 
   runBeforeDom: ->
-    styles = require "./remove-photo-like-styles"
+    styles = require "./styles"
 
     styles.use()
