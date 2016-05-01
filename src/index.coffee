@@ -2,7 +2,7 @@ settings = require "./settings"
 
 
 modules = [
-  require "./away-php"
+  require "./away-php/away-php"
   require "./fixed-left-menu/fixed-left-menu"
   require "./hide-people-you-might-know/hide-people-you-might-know"
   require "./no-link-previews/no-link-previews"
