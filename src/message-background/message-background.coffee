@@ -1,7 +1,9 @@
 module.exports =
 
-  defaultSettings:
-    "messages.darkerUnread": true
+  defineSettings: ->
+    "messages.darkerUnread":
+      defaultValue: true
+      onChange: ->
 
 
   runBeforeDom: ->

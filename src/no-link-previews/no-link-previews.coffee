@@ -2,8 +2,10 @@
 
 module.exports =
 
-  defaultSettings:
-    "messages.noPagePreviews": true
+  defineSettings: ->
+    "messages.noPagePreviews":
+      defaultValue: on
+      onChange: ->
 
 
   run: ->

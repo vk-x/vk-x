@@ -2,8 +2,10 @@
 
 module.exports =
 
-  defaultSettings:
-    "sideMenu.showTime": true
+  defineSettings: ->
+    "sideMenu.showTime":
+      defaultValue: on
+      onChange: ->
 
 
   runBeforeDom: ->

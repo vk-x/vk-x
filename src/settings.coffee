@@ -15,8 +15,10 @@ settings =
 
 
   add: ( newSettings ) ->
-    for own key, defaultValue of newSettings
+    for own key, { defaultValue, onChange } of newSettings
       cache[ key ] ?= defaultValue
+      if onChange
+        @on "set.#{key}", onChange
 
     return
 

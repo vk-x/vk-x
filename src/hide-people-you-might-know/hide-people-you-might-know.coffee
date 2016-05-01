@@ -1,7 +1,9 @@
 module.exports =
 
-  defaultSettings:
-    "friends.noPeopleYouMightKnow": true
+  defineSettings: ->
+    "friends.noPeopleYouMightKnow":
+      defaultValue: on
+      onChange: ->
 
 
   runBeforeDom: ->

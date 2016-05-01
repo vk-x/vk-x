@@ -15,8 +15,8 @@ modules = [
 
 
 for m in modules
-  if m.defaultSettings
-    settings.add m.defaultSettings
+  if m.defineSettings
+    settings.add m.defineSettings()
 
   m.runBeforeDom?()
 

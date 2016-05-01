@@ -2,8 +2,10 @@
 
 module.exports =
 
-  defaultSettings:
-    "common.awayPhp": true
+  defineSettings: ->
+    "common.awayPhp":
+      defaultValue: on
+      onChange: ->
 
 
   run: ->

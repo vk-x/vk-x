@@ -2,8 +2,10 @@
 
 module.exports =
 
-  defaultSettings:
-    "sideMenu.fixPosition": true
+  defineSettings: ->
+    "sideMenu.fixPosition":
+      defaultValue: on
+      onChange: ->
 
 
   runBeforeDom: ->

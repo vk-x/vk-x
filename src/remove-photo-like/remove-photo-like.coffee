@@ -1,7 +1,9 @@
 module.exports =
 
-  defaultSettings:
-    "photos.noLikeOverlay": true
+  defineSettings: ->
+    "photos.noLikeOverlay":
+      defaultValue: on
+      onChange: ->
 
 
   runBeforeDom: ->
