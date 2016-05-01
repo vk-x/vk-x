@@ -2,11 +2,7 @@ api = require "./api"
 pubsub = require "pubsub-js"
 
 cache =
-  "common.awayPhp": true
   "messages.darkerUnread": true
-  "messages.noPagePreviews": true
-  "sideMenu.fixPosition": true
-  "sideMenu.showTime": true
   "friends.noPeopleYouMightKnow": true
   "photos.noLikeOverlay": true
 
@@ -19,6 +15,13 @@ settings =
 
   trigger: ( topic, data ) ->
     pubsub.publish "settings.#{topic}", data
+
+
+  add: ( newSettings ) ->
+    for own key, defaultValue of newSettings
+      cache[ key ] ?= defaultValue
+
+    return
 
 
   fetchLocal: ->
