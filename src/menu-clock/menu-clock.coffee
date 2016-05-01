@@ -8,6 +8,9 @@ module.exports =
 
   run: ->
     moment = require "moment"
+    styles = require "./menu-clock-styles"
+
+    styles.use()
 
     leftMenu = document.querySelector "#side_bar_inner"
     leftMenu.insertAdjacentHTML "beforeend", "

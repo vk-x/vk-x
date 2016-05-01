@@ -7,6 +7,10 @@ module.exports =
 
 
   run: ->
+    styles = require "./fixed-left-menu-styles"
+
+    styles.use()
+
     # `updateLeftMenu` function is responsible for changing inline styles of
     # the left menu. Overwrite it with an empty function so when the event handler
     # calls it, nothing happens.

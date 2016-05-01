@@ -1,10 +1,7 @@
 api = require "./api"
 pubsub = require "pubsub-js"
 
-cache =
-  "messages.darkerUnread": true
-  "friends.noPeopleYouMightKnow": true
-  "photos.noLikeOverlay": true
+cache = {}
 
 settings =
 

@@ -18,10 +18,13 @@ module.exports =
       loader: "coffee"
     ,
       test: /\.html$/
-      loader: "underscore-template-loader"
+      loader: "underscore-template"
       query:
         attributes: []
         interpolate: "\\{\\{(.+?)\\}\\}"
+    ,
+      test: /\.styl$/,
+      loader: "style/useable!raw!stylus"
     ]
 
   resolve:
@@ -29,6 +32,7 @@ module.exports =
       ""
       ".coffee"
       ".html"
+      ".styl"
       ".js"
     ]
 
