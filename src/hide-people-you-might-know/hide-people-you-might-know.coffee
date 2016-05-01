@@ -4,7 +4,7 @@ module.exports =
     "friends.noPeopleYouMightKnow": true
 
 
-  run: ->
+  runBeforeDom: ->
     styles = require "./hide-people-you-might-know-styles"
 
     styles.use()

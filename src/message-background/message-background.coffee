@@ -4,7 +4,7 @@ module.exports =
     "messages.darkerUnread": true
 
 
-  run: ->
+  runBeforeDom: ->
     styles = require "./message-background-styles"
 
     styles.use()

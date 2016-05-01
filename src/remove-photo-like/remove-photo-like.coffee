@@ -4,7 +4,7 @@ module.exports =
     "photos.noLikeOverlay": true
 
 
-  run: ->
+  runBeforeDom: ->
     styles = require "./remove-photo-like-styles"
 
     styles.use()

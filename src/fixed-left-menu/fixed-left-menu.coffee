@@ -6,11 +6,13 @@ module.exports =
     "sideMenu.fixPosition": true
 
 
-  run: ->
+  runBeforeDom: ->
     styles = require "./fixed-left-menu-styles"
 
     styles.use()
 
+
+  run: ->
     # `updateLeftMenu` function is responsible for changing inline styles of
     # the left menu. Overwrite it with an empty function so when the event handler
     # calls it, nothing happens.

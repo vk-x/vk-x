@@ -6,11 +6,14 @@ module.exports =
     "sideMenu.showTime": true
 
 
-  run: ->
-    moment = require "moment"
+  runBeforeDom: ->
     styles = require "./menu-clock-styles"
 
     styles.use()
+
+
+  run: ->
+    moment = require "moment"
 
     leftMenu = document.querySelector "#side_bar_inner"
     leftMenu.insertAdjacentHTML "beforeend", "

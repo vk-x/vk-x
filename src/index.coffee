@@ -18,6 +18,8 @@ for m in modules
   if m.defaultSettings
     settings.add m.defaultSettings
 
+  m.runBeforeDom?()
+
 
 domReady = new Promise ( resolve ) ->
   window.document.addEventListener "DOMContentLoaded", resolve
@@ -30,4 +32,4 @@ Promise.all [ settingsReady, domReady ]
 .then ->
 
   for m in modules
-    m.run()
+    m.run?()
