@@ -19,8 +19,7 @@ settings =
       cache[ key ] ?= defaultValue
       if onChange
         @on "set.#{key}", onChange
-
-    return
+      key
 
 
   fetchLocal: ->
@@ -51,8 +50,15 @@ settings =
     api.storage.set key: "settings", value: cache
 
 
-  get: ( key ) ->
-    cache[ key ]
+  get: ( keysOrKey ) ->
+    if Array.isArray keysOrKey
+      result = {}
+      for key in keysOrKey
+        result[ key ] = cache[ key ]
+      result
+
+    else
+      cache[ keysOrKey ]
 
 
   getAll: ->

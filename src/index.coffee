@@ -16,9 +16,9 @@ modules = [
 
 for m in modules
   if m.defineSettings
-    settings.add m.defineSettings()
+    m._definedKeys = settings.add m.defineSettings()
 
-  m.runBeforeDom?()
+  m.runBeforeDom? settings.get m._definedKeys
 
 
 domReady = new Promise ( resolve ) ->
@@ -32,4 +32,4 @@ Promise.all [ settingsReady, domReady ]
 .then ->
 
   for m in modules
-    m.run?()
+    m.run? settings.get m._definedKeys
