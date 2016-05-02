@@ -25,10 +25,13 @@ settingsReady = settings.fetchLocal()
 
     m.runBeforeDom? settings.get m._definedKeys
 
-  # Defer this to not do too much at the same time and freeze the browser.
+
+# Defer this to not do too much at the same time and freeze the browser.
+i18nReady = new Promise ( resolve ) ->
   setTimeout ->
     require "./i18n/en"
     require "./i18n/ru"
+    resolve()
 
 
 domReady = new Promise ( resolve ) ->
@@ -37,7 +40,8 @@ domReady = new Promise ( resolve ) ->
 # Local settings are fetched faster than the DOM with a high level of certainty,
 # but it's still not guaranteed that they'll be ready before the DOM.
 # So we need to wait for both here to be sure, not only for DOM.
-Promise.all [ settingsReady, domReady ]
+# i18n messages are generally ready long before DOM, but not always. See #32.
+Promise.all [ settingsReady, domReady, i18nReady ]
 .then ->
 
   i18n.setLanguage if window.vk.lang is 0 then "ru" else "en"
