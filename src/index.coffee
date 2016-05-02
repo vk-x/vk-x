@@ -14,10 +14,6 @@ modules = [
 ]
 
 
-domReady = new Promise ( resolve ) ->
-  window.document.addEventListener "DOMContentLoaded", resolve
-
-
 settingsReady = settings.fetchLocal()
 .then ->
   for m in modules
@@ -27,6 +23,12 @@ settingsReady = settings.fetchLocal()
     m.runBeforeDom? settings.get m._definedKeys
 
 
+domReady = new Promise ( resolve ) ->
+  window.document.addEventListener "DOMContentLoaded", resolve
+
+# Local settings are fetched faster than the DOM with a high level of certainty,
+# but it's still not guaranteed that they'll be ready before the DOM.
+# So we need to wait for both here to be sure, not only for DOM.
 Promise.all [ settingsReady, domReady ]
 .then ->
 
