@@ -43,21 +43,25 @@ module.exports =
 
   getAccessToken: ( @appId = @appId, callback = -> ) ->
     new Promise ( resolve, reject ) =>
-      @request "GET", "https://login.vk.com/",
-        act: "openapi"
-        oauth: 1
-        new: 1
-        aid: @appId
-        location: window.document.location.hostname
-      , ({ access_token }) =>
-        @accessToken = access_token ? null
-        callback @accessToken
-        resolve @accessToken
+      @request
+        method: "GET"
+        url: "https://login.vk.com/"
+        params:
+          act: "openapi"
+          oauth: 1
+          new: 1
+          aid: @appId
+          location: window.document.location.hostname
+        callback: ({ access_token }) =>
+          @accessToken = access_token ? null
+          callback @accessToken
+          resolve @accessToken
+        withCredentials: yes
 
 
-  request: ( method, url, params, callback ) ->
+  request: ({ method, url, params, callback, withCredentials = no }) ->
     xhr = new XMLHttpRequest
-    xhr.withCredentials = yes
+    xhr.withCredentials = withCredentials
     xhr.onload = ->
       callback JSON.parse @responseText
 
@@ -78,13 +82,17 @@ module.exports =
 
     new Promise ( resolve, reject ) =>
       do retry = =>
-        @request "POST", "https://api.vk.com/method/#{methodName}", params, ({ error, response }) ->
-          if error?
-            if error.error_code is ERROR_TOO_MANY_REQUESTS
-              setTimeout retry, 300
+        @request
+          method: "POST"
+          url: "https://api.vk.com/method/#{methodName}"
+          params: params
+          callback: ({ error, response }) ->
+            if error?
+              if error.error_code is ERROR_TOO_MANY_REQUESTS
+                setTimeout retry, 300
+              else
+                callback error, response
+                reject error
             else
               callback error, response
-              reject error
-          else
-            callback error, response
-            resolve response
+              resolve response
