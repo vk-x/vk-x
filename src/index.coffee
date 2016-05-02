@@ -35,10 +35,8 @@ Promise.all [ settingsReady, domReady ]
   for m in modules
     m.run? settings.get m._definedKeys
 
-
-# Fetching remote settings is slower than local, but is also not guaranteed
-# to be that way.
-# TODO: ensure that this isn't overwritten by local settings.
-settings.fetchRemote()
-.then ->
-  settings.saveLocal()
+  # Start fetching remote settings after the DOM is ready so the page
+  # doesn't load slower.
+  settings.fetchRemote()
+  .then ->
+    settings.saveLocal()
