@@ -16,6 +16,9 @@ messages =
   "settings.photos": "Photos"
   "settings.photos.noLikeOverlay": "Remove the huge Like button on photos"
 
+  "settings.videos": "Videos"
+  "settings.videos.myVideosByDefault": "Open \"My videos\" by default"
+
 
 i18n = require "i18n"
 i18n.add messages, "en"

@@ -8,6 +8,7 @@ modules = [
   require "./hide-people-you-might-know"
   require "./menu-clock"
   require "./message-background"
+  require "./my-videos-by-default"
   require "./no-link-previews"
   require "./remove-photo-like"
   require "./settings/menu-item"

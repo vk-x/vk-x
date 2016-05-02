@@ -16,6 +16,9 @@ messages =
   "settings.photos": "Фотографии"
   "settings.photos.noLikeOverlay": "Убрать большую кнопку \"Мне нравится\" поверх фотографий"
 
+  "settings.videos": "Видеозаписи"
+  "settings.videos.myVideosByDefault": "Открывать \"Мои Видеозаписи\" по умолчанию"
+
 
 i18n = require "i18n"
 i18n.add messages, "ru"
