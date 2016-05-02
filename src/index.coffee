@@ -10,6 +10,7 @@ modules = [
   require "./message-background"
   require "./my-videos-by-default"
   require "./no-link-previews"
+  require "./online-friends-by-default"
   require "./remove-photo-like"
   require "./settings/menu-item"
   require "./settings/popup"

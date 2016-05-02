@@ -12,6 +12,7 @@ messages =
 
   "settings.friends": "Друзья"
   "settings.friends.noPeopleYouMightKnow": "Скрывать блок \"Возможные друзья\""
+  "settings.friends.onlineByDefault": "Открывать \"Друзья онлайн\" по умолчанию"
 
   "settings.photos": "Фотографии"
   "settings.photos.noLikeOverlay": "Убрать большую кнопку \"Мне нравится\" поверх фотографий"
