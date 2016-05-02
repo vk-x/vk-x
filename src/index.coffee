@@ -14,18 +14,17 @@ modules = [
 ]
 
 
-for m in modules
-  if m.defineSettings
-    m._definedKeys = settings.add m.defineSettings()
-
-  m.runBeforeDom? settings.get m._definedKeys
-
-
 domReady = new Promise ( resolve ) ->
   window.document.addEventListener "DOMContentLoaded", resolve
 
-# Load local settings initially. This is enough to get rolling.
+
 settingsReady = settings.fetchLocal()
+.then ->
+  for m in modules
+    if m.defineSettings
+      m._definedKeys = settings.add m.defineSettings()
+
+    m.runBeforeDom? settings.get m._definedKeys
 
 
 Promise.all [ settingsReady, domReady ]
