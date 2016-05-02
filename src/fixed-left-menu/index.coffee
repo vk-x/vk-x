@@ -19,3 +19,8 @@ module.exports =
     # calls it, nothing happens.
     utils.setConditional "sideMenu.fixPosition", window, "updateLeftMenu",
       true: ->
+
+    # Position the menu correctly when disabling this feature.
+    utils.runConditional "sideMenu.fixPosition",
+      false: ->
+        window.updateLeftMenu()
