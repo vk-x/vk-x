@@ -40,3 +40,5 @@ Promise.all [ settingsReady, domReady ]
 # to be that way.
 # TODO: ensure that this isn't overwritten by local settings.
 settings.fetchRemote()
+.then ->
+  settings.saveLocal()
