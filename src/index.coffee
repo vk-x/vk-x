@@ -5,10 +5,10 @@ modules = [
   require "./away-php"
   require "./fixed-left-menu"
   require "./hide-people-you-might-know"
-  require "./no-link-previews"
-  require "./remove-photo-like"
   require "./menu-clock"
   require "./message-background"
+  require "./no-link-previews"
+  require "./remove-photo-like"
   require "./settings/menu-item"
   require "./settings/popup"
 ]
