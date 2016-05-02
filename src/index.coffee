@@ -1,4 +1,5 @@
 settings = require "settings"
+i18n = require "i18n"
 
 
 modules = [
@@ -36,6 +37,8 @@ domReady = new Promise ( resolve ) ->
 # So we need to wait for both here to be sure, not only for DOM.
 Promise.all [ settingsReady, domReady ]
 .then ->
+
+  i18n.setLanguage if window.vk.lang is 0 then "ru" else "en"
 
   for m in modules
     m.run? settings.get m._definedKeys
