@@ -1,6 +1,6 @@
 # Fix menu on the page so it doesn't scroll out of view, see #6.
 
-utils = require "../module-utils"
+utils = require "utils"
 
 module.exports =
 

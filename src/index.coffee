@@ -1,4 +1,4 @@
-settings = require "./settings"
+settings = require "settings"
 
 
 modules = [

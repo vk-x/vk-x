@@ -1,7 +1,7 @@
 # Bypass away.php, see #3.
 
-utils = require "../module-utils"
-settings = require "../settings"
+utils = require "utils"
+settings = require "settings"
 
 module.exports =
 

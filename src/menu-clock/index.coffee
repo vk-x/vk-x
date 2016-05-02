@@ -1,6 +1,6 @@
 # Show digital clock in the left menu, see #22.
 
-utils = require "../module-utils"
+utils = require "utils"
 
 module.exports =
 

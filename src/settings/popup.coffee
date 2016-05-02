@@ -1,7 +1,7 @@
 module.exports =
 
   run: ->
-    settings = require "../settings"
+    settings = require "settings"
 
     box = MessageBox
       title: "vk-x"

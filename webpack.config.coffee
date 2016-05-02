@@ -32,6 +32,8 @@ module.exports =
     root: path.resolve __dirname
     alias:
       i18n: "src/i18n"
+      settings: "src/settings"
+      utils: "src/module-utils"
 
     extensions: [
       ""

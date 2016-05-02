@@ -21,7 +21,7 @@ module.exports =
     # by the server.
     # For all other types of media original `onUploadDone` is called.
 
-    settings = require "../settings"
+    settings = require "settings"
 
     ATTACHMENT_TYPE_PAGE = "share"
 

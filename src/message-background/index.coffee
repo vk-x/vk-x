@@ -6,5 +6,5 @@ module.exports =
 
 
   runBeforeDom: ->
-    utils = require "../module-utils"
+    utils = require "utils"
     utils.styleConditional "messages.darkerUnread", require "./styles"
