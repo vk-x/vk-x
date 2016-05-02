@@ -26,7 +26,7 @@ module.exports =
       if true is settings.get "common.awayPhp"
         if element.matches "a[href^='/away.php']"
           element.setAttribute "vkx-orig-href", element.href
-          href = element.href.match( /to=(.*)/ )[ 1 ]
+          href = element.href.match( /to=([^&]*)/ )[ 1 ]
           cp1251 = require "@vk-x/cp1251"
           decodedHref = cp1251.decode href
           element.href = decodedHref
