@@ -1,47 +1,49 @@
+<% var t = require("i18n").t %>
+
 <div class="settings_panel">
   <div class="settings_line">
-    <div class="settings_label">Common</div>
+    <div class="settings_label">{{t("settings.common")}}</div>
     <div class="settings_labeled_text">
       <div class="settings_narrow_row">
-        <div class="checkbox" setting-id="common.awayPhp">Bypass away.php</div>
+        <div class="checkbox" setting-id="common.awayPhp">{{t("settings.common.awayPhp")}}</div>
       </div>
     </div>
   </div>
   <div class="settings_line">
-    <div class="settings_label">Messages and posts</div>
+    <div class="settings_label">{{t("settings.messages")}}</div>
     <div class="settings_labeled_text">
       <div class="settings_narrow_row">
-        <div class="checkbox" setting-id="messages.darkerUnread">Darker background color of unread and selected messages</div>
+        <div class="checkbox" setting-id="messages.darkerUnread">{{t("settings.messages.darkerUnread")}}</div>
       </div>
       <div class="settings_narrow_row">
-        <div class="checkbox" setting-id="messages.noPagePreviews">Don't add previews for links when sending messages and posts</div>
+        <div class="checkbox" setting-id="messages.noPagePreviews">{{t("settings.messages.noPagePreviews")}}</div>
       </div>
     </div>
   </div>
   <div class="settings_line">
-    <div class="settings_label">Side menu</div>
+    <div class="settings_label">{{t("settings.sideMenu")}}</div>
     <div class="settings_labeled_text">
       <div class="settings_narrow_row">
-        <div class="checkbox" setting-id="sideMenu.fixPosition">Fix menu on the page so it doesn't scroll out of view</div>
+        <div class="checkbox" setting-id="sideMenu.fixPosition">{{t("settings.sideMenu.fixPosition")}}</div>
       </div>
       <div class="settings_narrow_row">
-        <div class="checkbox" setting-id="sideMenu.showTime">Show current time under the menu</div>
-      </div>
-    </div>
-  </div>
-  <div class="settings_line">
-    <div class="settings_label">Friends</div>
-    <div class="settings_labeled_text">
-      <div class="settings_narrow_row">
-        <div class="checkbox" setting-id="friends.noPeopleYouMightKnow">Hide "People you might know"</div>
+        <div class="checkbox" setting-id="sideMenu.showTime">{{t("settings.sideMenu.showTime")}}</div>
       </div>
     </div>
   </div>
   <div class="settings_line">
-    <div class="settings_label">Photos</div>
+    <div class="settings_label">{{t("settings.friends")}}</div>
     <div class="settings_labeled_text">
       <div class="settings_narrow_row">
-        <div class="checkbox" setting-id="photos.noLikeOverlay">Remove the huge Like button on photos</div>
+        <div class="checkbox" setting-id="friends.noPeopleYouMightKnow">{{t("settings.friends.noPeopleYouMightKnow")}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="settings_line">
+    <div class="settings_label">{{t("settings.photos")}}</div>
+    <div class="settings_labeled_text">
+      <div class="settings_narrow_row">
+        <div class="checkbox" setting-id="photos.noLikeOverlay">{{t("settings.photos.noLikeOverlay")}}</div>
       </div>
     </div>
   </div>

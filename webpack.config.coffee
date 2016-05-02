@@ -1,4 +1,5 @@
 webpack = require "webpack"
+path = require "path"
 
 packageInfo = require "./package.json"
 
@@ -28,6 +29,10 @@ module.exports =
     ]
 
   resolve:
+    root: path.resolve __dirname
+    alias:
+      i18n: "src/i18n"
+
     extensions: [
       ""
       ".coffee"

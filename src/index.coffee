@@ -22,6 +22,11 @@ settingsReady = settings.fetchLocal()
 
     m.runBeforeDom? settings.get m._definedKeys
 
+  # Defer this to not do too much at the same time and freeze the browser.
+  setTimeout ->
+    require "./i18n/en"
+    require "./i18n/ru"
+
 
 domReady = new Promise ( resolve ) ->
   window.document.addEventListener "DOMContentLoaded", resolve
