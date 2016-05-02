@@ -3,10 +3,8 @@ module.exports =
   defineSettings: ->
     "messages.darkerUnread":
       defaultValue: true
-      onChange: ->
 
 
   runBeforeDom: ->
-    styles = require "./styles"
-
-    styles.use()
+    utils = require "../module-utils"
+    utils.styleConditional "messages.darkerUnread", require "./styles"

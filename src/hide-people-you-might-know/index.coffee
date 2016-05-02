@@ -2,11 +2,9 @@ module.exports =
 
   defineSettings: ->
     "friends.noPeopleYouMightKnow":
-      defaultValue: on
-      onChange: ->
+      defaultValue: true
 
 
   runBeforeDom: ->
-    styles = require "./styles"
-
-    styles.use()
+    utils = require "../module-utils"
+    utils.styleConditional "friends.noPeopleYouMightKnow", require "./styles"

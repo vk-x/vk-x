@@ -1,32 +1,42 @@
 # Show digital clock in the left menu, see #22.
 
+utils = require "../module-utils"
+
 module.exports =
 
   defineSettings: ->
     "sideMenu.showTime":
-      defaultValue: on
-      onChange: ->
+      defaultValue: true
 
 
   runBeforeDom: ->
-    styles = require "./styles"
-
-    styles.use()
+    utils.styleConditional "sideMenu.showTime", require "./styles"
 
 
   run: ->
-    moment = require "moment"
+    intervalHandler = null
 
-    leftMenu = document.querySelector "#side_bar_inner"
-    leftMenu.insertAdjacentHTML "beforeend", "
-      <div class='vkx-clock'>
-        <div class='vkx-time'></div>
-        <div class='vkx-date'></div>
-      </div>"
+    utils.runConditional "sideMenu.showTime",
+      true: ->
+        moment = require "moment"
 
-    updateClock = ->
-      document.querySelector( ".vkx-time" ).innerHTML = moment().format "HH:mm:ss"
-      document.querySelector( ".vkx-date" ).innerHTML = moment().format "DD.MM.YYYY"
+        leftMenu = document.querySelector "#side_bar_inner"
+        leftMenu.insertAdjacentHTML "beforeend", "
+          <div class='vkx-clock'>
+            <div class='vkx-time'></div>
+            <div class='vkx-date'></div>
+          </div>"
 
-    updateClock()
-    window.setInterval updateClock, 1000
+        updateClock = ->
+          document.querySelector( ".vkx-time" ).innerHTML = moment().format "HH:mm:ss"
+          document.querySelector( ".vkx-date" ).innerHTML = moment().format "DD.MM.YYYY"
+
+        updateClock()
+        intervalHandler = window.setInterval updateClock, 1000
+
+      false: ->
+        clock = document.querySelector ".vkx-clock"
+        clock?.remove()
+
+        if intervalHandler
+          clearInterval intervalHandler

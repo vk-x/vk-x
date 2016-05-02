@@ -1,21 +1,21 @@
 # Fix menu on the page so it doesn't scroll out of view, see #6.
 
+utils = require "../module-utils"
+
 module.exports =
 
   defineSettings: ->
     "sideMenu.fixPosition":
-      defaultValue: on
-      onChange: ->
+      defaultValue: true
 
 
   runBeforeDom: ->
-    styles = require "./fixed-left-menu-styles"
-
-    styles.use()
+    utils.styleConditional "sideMenu.fixPosition", require "./styles"
 
 
   run: ->
     # `updateLeftMenu` function is responsible for changing inline styles of
     # the left menu. Overwrite it with an empty function so when the event handler
     # calls it, nothing happens.
-    window.updateLeftMenu = ->
+    utils.setConditional "sideMenu.fixPosition", window, "updateLeftMenu",
+      true: ->

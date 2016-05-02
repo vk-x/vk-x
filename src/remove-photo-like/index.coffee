@@ -2,11 +2,9 @@ module.exports =
 
   defineSettings: ->
     "photos.noLikeOverlay":
-      defaultValue: on
-      onChange: ->
+      defaultValue: true
 
 
   runBeforeDom: ->
-    styles = require "./styles"
-
-    styles.use()
+    utils = require "../module-utils"
+    utils.styleConditional "photos.noLikeOverlay", require "./styles"

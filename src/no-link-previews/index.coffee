@@ -4,8 +4,7 @@ module.exports =
 
   defineSettings: ->
     "messages.noPagePreviews":
-      defaultValue: on
-      onChange: ->
+      defaultValue: true
 
 
   run: ->
@@ -22,6 +21,8 @@ module.exports =
     # by the server.
     # For all other types of media original `onUploadDone` is called.
 
+    settings = require "../settings"
+
     ATTACHMENT_TYPE_PAGE = "share"
 
     done = null
@@ -36,7 +37,7 @@ module.exports =
       set: ( newDone ) ->
 
         done = ( data ) ->
-          if data[ 0 ] is ATTACHMENT_TYPE_PAGE
+          if data[ 0 ] is ATTACHMENT_TYPE_PAGE and settings.get "messages.noPagePreviews"
             window.onUploadFail "Unknown error"
           else
             newDone.apply window, [].slice.call arguments
