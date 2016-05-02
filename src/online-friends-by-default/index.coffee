@@ -8,6 +8,6 @@ module.exports =
   run: ->
     utils = require "utils"
 
-    friendsLink = document.querySelector "#l_fr > a"
+    friendsLink = window.document.querySelector "#l_fr > a"
     utils.setConditional "friends.onlineByDefault", friendsLink, "href",
       true: "/friends?section=online"

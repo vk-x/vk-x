@@ -8,6 +8,6 @@ module.exports =
   run: ->
     utils = require "utils"
 
-    videosLink = document.querySelector "#l_vid > a"
+    videosLink = window.document.querySelector "#l_vid > a"
     utils.setConditional "videos.myVideosByDefault", videosLink, "href",
       true: "/videos#{window.vk.id}"

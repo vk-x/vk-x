@@ -20,7 +20,7 @@ module.exports =
       true: ->
         moment = require "moment"
 
-        leftMenu = document.querySelector "#side_bar_inner"
+        leftMenu = window.document.querySelector "#side_bar_inner"
         leftMenu.insertAdjacentHTML "beforeend", "
           <div class='vkx-clock'>
             <div class='vkx-time'></div>
@@ -28,14 +28,14 @@ module.exports =
           </div>"
 
         updateClock = ->
-          document.querySelector( ".vkx-time" ).innerHTML = moment().format "HH:mm:ss"
-          document.querySelector( ".vkx-date" ).innerHTML = moment().format "DD.MM.YYYY"
+          window.document.querySelector( ".vkx-time" ).innerHTML = moment().format "HH:mm:ss"
+          window.document.querySelector( ".vkx-date" ).innerHTML = moment().format "DD.MM.YYYY"
 
         updateClock()
         intervalHandler = window.setInterval updateClock, 1000
 
       false: ->
-        clock = document.querySelector ".vkx-clock"
+        clock = window.document.querySelector ".vkx-clock"
         clock?.remove()
 
         if intervalHandler

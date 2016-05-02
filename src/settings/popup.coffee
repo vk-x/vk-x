@@ -3,7 +3,7 @@ module.exports =
   run: ->
     settings = require "settings"
 
-    box = MessageBox
+    box = window.MessageBox
       title: "vk-x"
       grey: true
       width: 700
@@ -13,7 +13,7 @@ module.exports =
         settings.saveRemote()
 
 
-    document.addEventListener "click", ( event ) ->
+    window.document.addEventListener "click", ( event ) ->
       if event.target.matches ".vkx-popup-link"
         TopMenu.toggle off
         stManager.add "settings.css", ->
