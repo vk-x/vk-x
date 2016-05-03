@@ -20,6 +20,10 @@ messages =
   "settings.videos": "Videos"
   "settings.videos.myVideosByDefault": "Open \"My videos\" by default"
 
+  "settings.help": "Help"
+  "settings.help.community": "Join vk-x community"
+  "settings.help.reportBug": "Report a bug"
+
 
 i18n = require "i18n"
 i18n.add messages, "en"

@@ -20,6 +20,10 @@ messages =
   "settings.videos": "Видеозаписи"
   "settings.videos.myVideosByDefault": "Открывать \"Мои Видеозаписи\" по умолчанию"
 
+  "settings.help": "Помощь"
+  "settings.help.community": "Сообщество vk-x"
+  "settings.help.reportBug": "Сообщить о проблеме"
+
 
 i18n = require "i18n"
 i18n.add messages, "ru"
