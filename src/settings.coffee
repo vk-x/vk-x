@@ -65,10 +65,6 @@ settings =
       cache[ keysOrKey ]
 
 
-  getAll: ->
-    cache
-
-
   set: ( key, value ) ->
     cache[ key ] = value
     settings.trigger "set.#{key}", { key, value }

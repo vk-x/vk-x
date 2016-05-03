@@ -13,27 +13,23 @@ module.exports =
         settings.saveRemote()
 
 
-    window.document.addEventListener "click", ( event ) ->
-      if event.target.matches ".vkx-popup-link"
-        TopMenu.toggle off
-        stManager.add "settings.css", ->
-          box.show()
+    $( document ).on "click", ".vkx-popup-link", ->
+      TopMenu.toggle off
+      stManager.add "settings.css", ->
+        box.show()
 
 
     popupTemplate = require "./popup-template"
-    box.bodyNode.innerHTML = popupTemplate()
+    $( box.bodyNode ).html popupTemplate()
 
-    for own key, value of settings.getAll()
-      settingElement = box.bodyNode.querySelector "[setting-id='#{key}']"
-      settingElement.classList.toggle "on", value
+    $( "[setting-id]", box.bodyNode ).each ->
+      $( @ ).toggleClass "on", settings.get $( @ ).attr "setting-id"
 
 
-    box.bodyNode.addEventListener "click", ( event ) ->
-      if event.target.matches ".checkbox"
-        key = event.target.getAttribute "setting-id"
-        settings.set key, not settings.get key
+    $( box.bodyNode ).on "click", ".checkbox", ->
+      key = $( @ ).attr "setting-id"
+      settings.set key, not settings.get key
 
 
     settings.on "set", ({ key, value }) ->
-      settingElement = box.bodyNode.querySelector "[setting-id='#{key}']"
-      settingElement.classList.toggle "on", value
+      $( "[setting-id='#{key}']", box.bodyNode ).toggleClass "on", value

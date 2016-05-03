@@ -19,24 +19,17 @@ module.exports =
     utils.runConditional "sideMenu.showTime",
       true: ->
         moment = require "moment"
+        clockTemplate = require "./clock-template"
 
-        leftMenu = window.document.querySelector "#side_bar_inner"
-        leftMenu.insertAdjacentHTML "beforeend", "
-          <div class='vkx-clock'>
-            <div class='vkx-time'></div>
-            <div class='vkx-date'></div>
-          </div>"
+        $( "#side_bar_inner" ).append clockTemplate()
 
         updateClock = ->
-          window.document.querySelector( ".vkx-time" ).innerHTML = moment().format "HH:mm:ss"
-          window.document.querySelector( ".vkx-date" ).innerHTML = moment().format "DD.MM.YYYY"
+          $( ".vkx-time" ).html moment().format "HH:mm:ss"
+          $( ".vkx-date" ).html moment().format "DD.MM.YYYY"
 
         updateClock()
         intervalHandler = window.setInterval updateClock, 1000
 
       false: ->
-        clock = window.document.querySelector ".vkx-clock"
-        clock?.remove()
-
-        if intervalHandler
-          clearInterval intervalHandler
+        $( ".vkx-clock" ).remove()
+        clearInterval intervalHandler

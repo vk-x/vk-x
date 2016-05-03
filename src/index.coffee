@@ -35,7 +35,7 @@ i18nReady = new Promise ( resolve ) ->
 
 
 domReady = new Promise ( resolve ) ->
-  window.document.addEventListener "DOMContentLoaded", resolve
+  $ resolve
 
 # Local settings are fetched faster than the DOM with a high level of certainty,
 # but it's still not guaranteed that they'll be ready before the DOM.
