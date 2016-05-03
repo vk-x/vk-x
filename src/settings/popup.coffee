@@ -7,7 +7,7 @@ module.exports =
     box = window.MessageBox
       title: "vk-x #{packageInfo.version}"
       grey: true
-      width: 700
+      width: 720
       hideButtons: true
       selfDestruct: false
       onHide: ->
@@ -31,6 +31,9 @@ module.exports =
       key = $( @ ).attr "setting-id"
       settings.set key, not settings.get key
 
+    $( "#vkx-reset-settings" ).on "click", ->
+      settings.reset().then ->
+        window.document.location.reload()
 
     settings.on "set", ({ key, value }) ->
       $( "[setting-id='#{key}']", box.bodyNode ).toggleClass "on", value

@@ -23,6 +23,7 @@ messages =
   "settings.help": "Помощь"
   "settings.help.community": "Сообщество vk-x"
   "settings.help.reportBug": "Сообщить о проблеме"
+  "settings.help.resetSettings": "Сбросить настройки"
 
 
 i18n = require "i18n"

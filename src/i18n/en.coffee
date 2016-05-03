@@ -23,6 +23,7 @@ messages =
   "settings.help": "Help"
   "settings.help.community": "Join vk-x community"
   "settings.help.reportBug": "Report a bug"
+  "settings.help.resetSettings": "Reset settings"
 
 
 i18n = require "i18n"

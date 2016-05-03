@@ -24,7 +24,7 @@ settings =
 
   fetchLocal: ->
     new Promise ( resolve ) ->
-      parsed = JSON.parse ( window.localStorage[ "vkx-settings" ] ? "{}" )
+      parsed = JSON.parse window.localStorage[ "vkx-settings" ] or "{}"
       for own key, value of parsed
         if cache[ key ] isnt value
           cache[ key ] = value
@@ -43,8 +43,8 @@ settings =
   fetchRemote: ->
     api.ready.then ->
       api.storage.get key: "settings"
-    .then ( raw = "{}" ) ->
-      parsed = JSON.parse raw
+    .then ( raw ) ->
+      parsed = JSON.parse raw or "{}"
       for own key, value of parsed
         if cache[ key ] isnt value
           cache[ key ] = value
@@ -55,6 +55,11 @@ settings =
 
   saveRemote: ->
     api.storage.set key: "settings", value: JSON.stringify cache
+
+
+  reset: ->
+    window.localStorage.removeItem "vkx-settings"
+    api.storage.set key: "settings", value: ""
 
 
   get: ( keysOrKey ) ->
