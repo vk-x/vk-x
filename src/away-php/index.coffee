@@ -2,6 +2,7 @@
 
 utils = require "utils"
 settings = require "settings"
+cp1251 = require "@vk-x/cp1251"
 
 module.exports =
 
@@ -20,17 +21,16 @@ module.exports =
 
     # <a> elements returned from server just have href: "away.php?to=url",
     # where url is uri-encoded.
-    window.document.addEventListener "mousedown", ( event ) ->
-      element = event.target
+    $( document ).on "mousedown", "[href^='/away.php']", ->
+      if settings.get "common.awayPhp"
+        # Save the original href to be able to revert when this feature
+        # is disabled in the extension settings.
+        $( @ ).attr "vkx-orig-href", $( @ ).attr "href"
+        url = $( @ ).attr( "href" ).match( /to=([^&]*)/ )[ 1 ]
+        decodedUrl = cp1251.decode url
+        $( @ ).attr "href", decodedUrl
 
-      if true is settings.get "common.awayPhp"
-        if element.matches "a[href^='/away.php']"
-          element.setAttribute "vkx-orig-href", element.href
-          href = element.href.match( /to=([^&]*)/ )[ 1 ]
-          cp1251 = require "@vk-x/cp1251"
-          decodedHref = cp1251.decode href
-          element.href = decodedHref
-
-      else
-        if element.getAttribute "vkx-orig-href"
-          element.href = element.getAttribute "vkx-orig-href"
+    $( document ).on "mousedown", "[vkx-orig-href]", ->
+      if not settings.get "common.awayPhp"
+        $( @ ).attr "href", $( @ ).attr "vkx-orig-href"
+        $( @ ).removeAttr "vkx-orig-href"

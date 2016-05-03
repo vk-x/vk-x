@@ -44,5 +44,8 @@ module.exports =
     ]
 
   plugins: [
+    new webpack.ProvidePlugin
+      $: "jquery"
+  ,
     new webpack.BannerPlugin "vk-x v#{packageInfo.version} (c) Nikita Litvin, git.io/vwRaE"
   ]
