@@ -18,7 +18,7 @@ module.exports =
   authWebsite: ( appId, permissions, windowStyle = "popup", callback = -> ) ->
     new Promise ( resolve, reject ) =>
       @getAccessToken appId
-      .then ( accessToken ) ->
+      .then ( accessToken ) =>
         if accessToken
           callback accessToken
           resolve accessToken
