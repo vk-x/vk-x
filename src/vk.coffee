@@ -28,7 +28,7 @@ module.exports =
             windowStyle: windowStyle
             redirectUrl: "close.html"
 
-          popup = window.open authUrl, "vk-api-auth", "width:700,height=600"
+          popup = window.open authUrl, "vk-api-auth", "width=700,height=600"
 
           intervalHandler = window.setInterval =>
             if popup.closed
