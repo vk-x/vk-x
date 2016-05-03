@@ -30,6 +30,7 @@ settings =
           cache[ key ] = value
           settings.trigger "set.#{key}", { key, value }
 
+      settings.trigger "fetch.local"
       resolve cache
 
 
@@ -48,6 +49,8 @@ settings =
         if cache[ key ] isnt value
           cache[ key ] = value
           settings.trigger "set.#{key}", { key, value }
+
+      settings.trigger "fetch.remote"
 
 
   saveRemote: ->
