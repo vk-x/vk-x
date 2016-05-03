@@ -6,7 +6,7 @@ module.exports =
 
   defineSettings: ->
     "sideMenu.showTime":
-      defaultValue: true
+      defaultValue: false
 
 
   runBeforeDom: ->
