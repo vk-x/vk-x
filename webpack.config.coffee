@@ -26,6 +26,9 @@ module.exports =
     ,
       test: /\.styl$/,
       loader: "style/useable!raw!stylus"
+    ,
+      test: /\.json$/,
+      loader: "json"
     ]
 
   resolve:
@@ -34,6 +37,7 @@ module.exports =
       i18n: "src/i18n"
       settings: "src/settings"
       utils: "src/module-utils"
+      "package.json": "package.json"
 
     extensions: [
       ""

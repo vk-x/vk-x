@@ -2,9 +2,10 @@ module.exports =
 
   run: ->
     settings = require "settings"
+    packageInfo = require "package.json"
 
     box = window.MessageBox
-      title: "vk-x"
+      title: "vk-x #{packageInfo.version}"
       grey: true
       width: 700
       hideButtons: true
