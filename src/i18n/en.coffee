@@ -29,6 +29,6 @@ messages =
 
 
 module.exports =
-  languageId: 1
+  languageId: 3
   locale: "en"
   messages: messages

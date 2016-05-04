@@ -34,7 +34,6 @@ module.exports =
   messages: messages
   # See src/i18n.coffee and https://github.com/vk-x/vk-x/wiki/Language-IDs
   aliases: [
-    1
     2
     8
     50

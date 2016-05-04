@@ -31,6 +31,7 @@ i18nReady = new Promise ( resolve ) ->
   setTimeout ->
     i18n.add require "./i18n/en"
     i18n.add require "./i18n/ru"
+    i18n.add require "./i18n/uk"
     resolve()
 
 

@@ -27,6 +27,11 @@ module.exports =
       $( @ ).toggleClass "on", settings.get $( @ ).attr "setting-id"
 
 
+    $( box.bodyNode ).addClass "vkx-popup"
+    popupStyles = require "./styles"
+    popupStyles.use()
+
+
     $( box.bodyNode ).on "click", ".checkbox", ->
       key = $( @ ).attr "setting-id"
       settings.set key, not settings.get key
