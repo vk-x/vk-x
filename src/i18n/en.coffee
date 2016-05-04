@@ -2,6 +2,7 @@ messages =
 
   "settings.common": "Common"
   "settings.common.awayPhp": "Open external links directly, without a redirect"
+  "settings.common.awayPhp.tooltip": "Disable redirecting via <strong>away.php</strong>"
 
   "settings.messages": "Messages and posts"
   "settings.messages.darkerUnread": "Darker background color of unread and selected messages"

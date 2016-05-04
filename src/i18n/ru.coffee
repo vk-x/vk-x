@@ -2,6 +2,7 @@ messages =
 
   "settings.common": "Общее"
   "settings.common.awayPhp": "Открывать внешние ссылки напрямую, без перенаправления"
+  "settings.common.awayPhp.tooltip": "Отключить перенаправление через <strong>away.php</strong>"
 
   "settings.messages": "Сообщения и записи"
   "settings.messages.darkerUnread": "Более тёмный фон у непрочитанных и выбранных сообщений"

@@ -31,6 +31,18 @@ module.exports =
       key = $( @ ).attr "setting-id"
       settings.set key, not settings.get key
 
+    $( box.bodyNode ).on "mouseover", ".checkbox", ->
+      i18n = require "i18n"
+      key = $( @ ).attr "setting-id"
+      tooltipMessage = i18n.t "settings.#{key}.tooltip"
+      if tooltipMessage
+        window.showTooltip @,
+          text: tooltipMessage
+          shift: [ -20, 8, 8 ]
+          dir: "auto"
+          slide: 15
+          hasover: 1
+
     $( "#vkx-reset-settings" ).on "click", ->
       settings.reset().then ->
         window.document.location.reload()
