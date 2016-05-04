@@ -32,3 +32,31 @@ module.exports =
   languageId: 0
   locale: "ru"
   messages: messages
+  # See src/i18n.coffee and https://github.com/vk-x/vk-x/wiki/Language-IDs
+  aliases: [
+    1
+    2
+    8
+    50
+    51
+    52
+    56
+    57
+    58
+    65
+    66
+    70
+    80
+    87
+    91
+    97
+    100
+    105
+    106
+    107
+    111
+    114
+    118
+    298
+    777
+  ]
