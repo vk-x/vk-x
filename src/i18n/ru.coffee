@@ -1,4 +1,5 @@
 messages =
+
   "settings.common": "Общее"
   "settings.common.awayPhp": "Открывать внешние ссылки напрямую, без перенаправления"
 
@@ -26,5 +27,7 @@ messages =
   "settings.help.resetSettings": "Сбросить настройки"
 
 
-i18n = require "i18n"
-i18n.add messages, "ru"
+module.exports =
+  languageId: 0
+  locale: "ru"
+  messages: messages

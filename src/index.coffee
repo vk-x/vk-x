@@ -29,8 +29,8 @@ settingsReady = settings.fetchLocal()
 # Defer this to not do too much at the same time and freeze the browser.
 i18nReady = new Promise ( resolve ) ->
   setTimeout ->
-    require "./i18n/en"
-    require "./i18n/ru"
+    i18n.add require "./i18n/en"
+    i18n.add require "./i18n/ru"
     resolve()
 
 
@@ -44,7 +44,7 @@ domReady = new Promise ( resolve ) ->
 Promise.all [ settingsReady, domReady, i18nReady ]
 .then ->
 
-  i18n.setLanguage if window.vk.lang is 0 then "ru" else "en"
+  i18n.setLanguage window.vk.lang
 
   for m in modules
     m.run? settings.get m._definedKeys

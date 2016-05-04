@@ -1,4 +1,5 @@
 messages =
+
   "settings.common": "Common"
   "settings.common.awayPhp": "Open external links directly, without a redirect"
 
@@ -26,5 +27,7 @@ messages =
   "settings.help.resetSettings": "Reset settings"
 
 
-i18n = require "i18n"
-i18n.add messages, "en"
+module.exports =
+  languageId: 1
+  locale: "en"
+  messages: messages

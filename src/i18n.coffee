@@ -1,19 +1,26 @@
 IntlMessageFormat = require "intl-messageformat"
 
 cache = {}
-language = "en"
+currentLanguageId = 3
 
 module.exports = i18n =
 
-  add: ( messages, language ) ->
+  add: ({ messages, languageId, locale }) ->
+    cache[ languageId ] ?=
+      languageId: languageId
+      locale: locale
+      messages: {}
+
     for own key, message of messages
-      cache[ language ] ?= {}
-      cache[ language ][ key ] ?= new IntlMessageFormat message, language
+      cache[ languageId ].messages[ key ] ?= new IntlMessageFormat message, locale
+
+    return
 
 
-  setLanguage: ( newLanguage ) ->
-    language = newLanguage
+  setLanguage: ( newLanguageId ) ->
+    if newLanguageId of cache
+      currentLanguageId = newLanguageId
 
 
   t: ( key, data ) ->
-    cache[ language ]?[ key ]?.format data
+    cache[ currentLanguageId ]?.messages[ key ]?.format data
