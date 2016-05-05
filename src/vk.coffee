@@ -41,6 +41,18 @@ module.exports =
 
           , 100
 
+
+  authFrame: ( callback = -> ) ->
+    new Promise ( resolve, reject ) =>
+      window.VK.init ->
+        callback()
+        resolve()
+      , ->
+        callback true
+        reject()
+      , @version
+
+
   getAccessToken: ( @appId = @appId, callback = -> ) ->
     new Promise ( resolve, reject ) =>
       @request

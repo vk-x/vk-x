@@ -4,6 +4,7 @@ describe "vk", ->
   cleanVk = require "inject!../src/vk"
 
   beforeEach ->
+    delete window.VK
     vk = cleanVk {}
 
 
@@ -231,13 +232,48 @@ describe "vk", ->
         done()
 
 
+  describe "authFrame", ->
+
+    it "should use VK.init", ( done ) ->
+      window.VK =
+        init: ( onSuccess, onFail, version ) ->
+          version.should.equal "5.50"
+          onSuccess()
+
+      vk.authFrame ( error ) ->
+        expect( error ).to.not.be.ok
+        done()
+
+
+    it "should pass error to callback when onFail is called", ( done ) ->
+      window.VK =
+        init: ( onSuccess, onFail, version ) ->
+          version.should.equal "5.50"
+          onFail()
+
+      vk.authFrame ( error ) ->
+        expect( error ).to.equal true
+        done()
+
+
+    it "should support promises", ( done ) ->
+      window.VK =
+        init: ( onSuccess, onFail, version ) ->
+          version.should.equal "5.50"
+          onSuccess()
+
+      vk.authFrame().then ->
+        done()
+      , ->
+        done new Error "rejected!"
+
+
   describe "method", ->
 
     fakeMethod = "fake-method"
     fakeUrl = "https://api.vk.com/method/fake-method"
 
     beforeEach ->
-      delete window.VK
       vk.accessToken = "fake-token"
       vk.version = "fake-version"
 
