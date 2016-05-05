@@ -113,3 +113,7 @@ module.exports =
             url: "https://api.vk.com/method/#{methodName}"
             params: params
             callback: wrappedCallback
+
+
+  clientMethod: ( args... ) ->
+    window.VK.callMethod.apply window.VK, args

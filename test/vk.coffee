@@ -477,3 +477,18 @@ describe "vk", ->
       expect( fakeXhr.requests[ 0 ].url ).to.equal fakeUrl + "?foo=foo%202&bar=bar%2F2"
 
       fakeXhr.requests[ 0 ].respond 200, {}, JSON.stringify fakeData
+
+
+  describe "clientMethod", ->
+
+    it "should proxy calls to VK.callMethod", ->
+      window.VK =
+        callMethod: ( method, one, two ) ->
+          method.should.equal "fake-method"
+          one.should.equal 1
+          two.should.equal 2
+
+          "fake-result"
+
+      result = vk.clientMethod "fake-method", 1, 2
+      result.should.equal "fake-result"
