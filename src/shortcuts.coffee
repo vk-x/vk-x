@@ -1,20 +1,18 @@
-shortcuts = ( base, baseMethod ) ->
+shortcuts = ( base, baseMethod, methodList ) ->
 
-  methodList = require "./method-list"
+  addShortcutMethod = ( target, name, fullName ) ->
+    target[ name ] = ( params, callback ) ->
+      baseMethod.call base, fullName, params, callback
 
-  addShortcutMethod = ( namespace, methodName ) ->
-    base[ namespace ][ methodName ] = ( params, callback ) ->
-      baseMethod.call base, "#{namespace}.#{methodName}", params, callback
 
   for own namespace, list of methodList
-    base[ namespace ] = {}
+    if list is true
+      addShortcutMethod base, namespace, namespace
 
-    for methodName in list
-      addShortcutMethod namespace, methodName
-
-  # Special case - api method without a namespace.
-  base[ "execute" ] = ( params, callback ) ->
-    baseMethod.call base, "execute", params, callback
+    else
+      base[ namespace ] = {}
+      for methodName in list
+        addShortcutMethod base[ namespace ], methodName, "#{namespace}.#{methodName}"
 
 
 module.exports = shortcuts
