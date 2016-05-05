@@ -9,11 +9,6 @@ describe "shortcuts", ->
     foo1: [ "bar1", "qux1" ]
     exec: true
 
-  fakeClientMethodList = [
-    "foo2"
-    "bar2"
-  ]
-
   beforeEach ->
     shortcuts = cleanShortcuts {}
 

@@ -1,8 +1,9 @@
 shortcuts = ( base, baseMethod, methodList ) ->
 
   addShortcutMethod = ( target, name, fullName ) ->
-    target[ name ] = ( params, callback ) ->
-      baseMethod.call base, fullName, params, callback
+    target[ name ] = ( args... ) ->
+      args.unshift fullName
+      baseMethod.apply base, args
 
 
   for own namespace, list of methodList
