@@ -33,9 +33,9 @@ describe "vk", ->
     it "should use sensible defaults", ->
       url = vk.getAuthUrl "12345"
 
-      expect( vk.version ).to.equal "5.50"
+      expect( vk.version ).to.equal "5.52"
       url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=&" +
-      "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.50&response_type=token"
+      "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.52&response_type=token"
 
 
     it "should set vk.version", ->
@@ -65,11 +65,11 @@ describe "vk", ->
       url = vk.getAuthUrl()
 
       url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=&" +
-      "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.50&response_type=token"
+      "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.52&response_type=token"
 
 
     it "vk.version should be initially set to default", ->
-      expect( vk.version ).to.equal "5.50"
+      expect( vk.version ).to.equal "5.52"
 
 
   describe "getAccessToken", ->
@@ -237,7 +237,7 @@ describe "vk", ->
     it "should use VK.init", ( done ) ->
       window.VK =
         init: ( onSuccess, onFail, version ) ->
-          version.should.equal "5.50"
+          version.should.equal "5.52"
           onSuccess()
 
       vk.authFrame ( error ) ->
@@ -248,7 +248,7 @@ describe "vk", ->
     it "should pass error to callback when onFail is called", ( done ) ->
       window.VK =
         init: ( onSuccess, onFail, version ) ->
-          version.should.equal "5.50"
+          version.should.equal "5.52"
           onFail()
 
       vk.authFrame ( error ) ->
@@ -259,7 +259,7 @@ describe "vk", ->
     it "should support promises", ( done ) ->
       window.VK =
         init: ( onSuccess, onFail, version ) ->
-          version.should.equal "5.50"
+          version.should.equal "5.52"
           onSuccess()
 
       vk.authFrame().then ->

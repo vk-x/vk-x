@@ -19,7 +19,7 @@ This method is an optional utility. Skip it if you use a different auth flow or 
 
 1. **`[appId=vk.appId]`** *(number|string)*: ID of your VK application. See [My Applications](https://new.vk.com/apps?act=manage).
 1. **`[permissions=[]]`** *(Array)*: Permissions for your VK application. See [My Applications](https://new.vk.com/apps?act=manage).
-1. **`[options.version="5.50"]`** *(string)*: API version to use when calling api.vk.com. `vk.version` is set to this value and used in other methods.
+1. **`[options.version="5.52"]`** *(string)*: API version to use when calling api.vk.com. `vk.version` is set to this value and used in other methods.
 1. **`[options.redirectUrl="https://oauth.vk.com/blank.html"]`** *(string)*: URL to which the auth window will be redirected after authentication.
 1. **`[options.windowStyle="popup"]`** *(string)*: Auth window style. See [OAuth Authorization Dialog](https://new.vk.com/dev/oauth_dialog).
 
@@ -35,11 +35,11 @@ vk.getAuthUrl("12345", ["audio", "photos"], {version: "4.10"})
 // "https://oauth.vk.com/authorize?client_id=12345&scope=audio,photos&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=4.10&response_type=token"
 
 vk.getAuthUrl("12345", ["friends"], vk.version, {windowStyle: "page"})
-// "https://oauth.vk.com/authorize?client_id=12345&scope=friends&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=page&v=5.50&response_type=token"
+// "https://oauth.vk.com/authorize?client_id=12345&scope=friends&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=page&v=5.52&response_type=token"
 
 vk.appId = "12345"
 vk.getAuthUrl()
-// "https://oauth.vk.com/authorize?client_id=12345&scope=&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.50&response_type=token"
+// "https://oauth.vk.com/authorize?client_id=12345&scope=&redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.52&response_type=token"
 
 ```
 
