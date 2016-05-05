@@ -79,7 +79,7 @@ describe "vk", ->
 
 
     it "should get the access token from login.vk.com", ( done ) ->
-      vk.request = ( method, url, params, callback ) ->
+      vk.request = ({ method, url, params, callback }) ->
         method.should.equal "GET"
         url.should.equal "https://login.vk.com/"
         params.should.deep.equal
@@ -97,7 +97,7 @@ describe "vk", ->
 
 
     it "should set vk.accessToken", ( done ) ->
-      vk.request = ( method, url, params, callback ) ->
+      vk.request = ({ method, url, params, callback }) ->
         callback fakeData
 
       vk.getAccessToken "12345", ->
@@ -106,7 +106,7 @@ describe "vk", ->
 
 
     it "should return null if app is not authenticated", ( done ) ->
-      vk.request = ( method, url, params, callback ) ->
+      vk.request = ({ method, url, params, callback }) ->
         callback auth: false
 
       vk.getAccessToken "12345", ->
@@ -115,7 +115,7 @@ describe "vk", ->
 
 
     it "should support promises", ( done ) ->
-      vk.request = ( method, url, params, callback ) ->
+      vk.request = ({ method, url, params, callback }) ->
         callback fakeData
 
       vk.getAccessToken "12345"
@@ -133,7 +133,7 @@ describe "vk", ->
 
 
     it "should default to vk.appId when appId is not specified", ( done ) ->
-      vk.request = ( method, url, params, callback ) ->
+      vk.request = ({ method, url, params, callback }) ->
         params.aid.should.equal "12345"
         callback fakeData
 
@@ -246,7 +246,7 @@ describe "vk", ->
         response:
           foo: "bar"
 
-      vk.request = ( method, url, params, callback ) ->
+      vk.request = ({ method, url, params, callback }) ->
         method.should.equal "POST"
         url.should.equal fakeUrl
         params.should.deep.equal
@@ -264,7 +264,7 @@ describe "vk", ->
 
 
     it "should support promises", ( done ) ->
-      vk.request = ( method, url, params, callback ) ->
+      vk.request = ({ method, url, params, callback }) ->
         callback response: "foo"
 
       vk.method fakeMethod, foo: "bar"
@@ -282,7 +282,7 @@ describe "vk", ->
         response:
           foo: "bar"
 
-      vk.request = ( method, url, params, callback ) ->
+      vk.request = ({ method, url, params, callback }) ->
         params.should.deep.equal
           access_token: "fake-token"
           v: "fake-version"
@@ -299,7 +299,7 @@ describe "vk", ->
 
 
     it "should reject promise when data.error exists", ( done ) ->
-      vk.request = ( method, url, params, callback ) ->
+      vk.request = ({ method, url, params, callback }) ->
         callback response: "foo", error: "exists"
 
       vk.method fakeMethod, foo: "bar"
@@ -316,7 +316,7 @@ describe "vk", ->
 
       ERROR_TOO_MANY_REQUESTS = 6
       calls = 0
-      vk.request = ( method, url, params, callback ) ->
+      vk.request = ({ method, url, params, callback }) ->
         calls += 1
         if calls < 3
           callback error: error_code: ERROR_TOO_MANY_REQUESTS
@@ -361,31 +361,58 @@ describe "vk", ->
 
 
     it "should make a get xhr and call back with parsed json", ( done ) ->
-      vk.request "GET", fakeUrl, fakeParams, ( data ) ->
-        data.should.deep.equal fakeData
+      vk.request
+        method: "GET"
+        url: fakeUrl
+        params: fakeParams
+        callback: ( data ) ->
+          data.should.deep.equal fakeData
 
-        done()
+          done()
 
       fakeXhr.requests.length.should.equal 1
       expect( fakeXhr.requests[ 0 ].method ).to.equal "GET"
-      expect( fakeXhr.requests[ 0 ].withCredentials ).to.equal true
+      expect( fakeXhr.requests[ 0 ].withCredentials ).to.equal false
       expect( fakeXhr.requests[ 0 ].url ).to.equal fakeUrl + "?foo=foo%202&bar=bar%2F2"
 
       fakeXhr.requests[ 0 ].respond 200, {}, JSON.stringify fakeData
 
 
     it "should make a post xhr and call back with parsed json", ( done ) ->
-      vk.request "POST", fakeUrl, fakeParams, ( data ) ->
-        data.should.deep.equal fakeData
+      vk.request
+        method: "POST"
+        url: fakeUrl
+        params: fakeParams
+        callback: ( data ) ->
+          data.should.deep.equal fakeData
 
-        done()
+          done()
 
       fakeXhr.requests.length.should.equal 1
       expect( fakeXhr.requests[ 0 ].method ).to.equal "POST"
-      expect( fakeXhr.requests[ 0 ].withCredentials ).to.equal true
+      expect( fakeXhr.requests[ 0 ].withCredentials ).to.equal false
       expect( fakeXhr.requests[ 0 ].url ).to.equal fakeUrl
       expect( fakeXhr.requests[ 0 ].requestHeaders ).to.have.property "Content-Type"
       expect( fakeXhr.requests[ 0 ].requestHeaders[ "Content-Type"] ).to.contain "application/x-www-form-urlencoded"
       expect( fakeXhr.requests[ 0 ].requestBody ).to.equal "foo=foo%202&bar=bar%2F2"
+
+      fakeXhr.requests[ 0 ].respond 200, {}, JSON.stringify fakeData
+
+
+    it "should use credentials when specified", ( done ) ->
+      vk.request
+        method: "GET"
+        url: fakeUrl
+        withCredentials: true
+        params: fakeParams
+        callback: ( data ) ->
+          data.should.deep.equal fakeData
+
+          done()
+
+      fakeXhr.requests.length.should.equal 1
+      expect( fakeXhr.requests[ 0 ].method ).to.equal "GET"
+      expect( fakeXhr.requests[ 0 ].withCredentials ).to.equal true
+      expect( fakeXhr.requests[ 0 ].url ).to.equal fakeUrl + "?foo=foo%202&bar=bar%2F2"
 
       fakeXhr.requests[ 0 ].respond 200, {}, JSON.stringify fakeData
