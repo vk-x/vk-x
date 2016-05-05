@@ -77,22 +77,27 @@ module.exports =
 
 
   method: ( methodName, params = {}, callback = -> ) ->
-    params.access_token = @accessToken
-    params.v = @version
-
     new Promise ( resolve, reject ) =>
       do retry = =>
-        @request
-          method: "POST"
-          url: "https://api.vk.com/method/#{methodName}"
-          params: params
-          callback: ({ error, response }) ->
-            if error?
-              if error.error_code is ERROR_TOO_MANY_REQUESTS
-                setTimeout retry, 300
-              else
-                callback error, response
-                reject error
+        wrappedCallback = ({ error, response }) ->
+          if error?
+            if error.error_code is ERROR_TOO_MANY_REQUESTS
+              setTimeout retry, 300
             else
               callback error, response
-              resolve response
+              reject error
+          else
+            callback error, response
+            resolve response
+
+        if window.VK?.api?
+          window.VK.api methodName, params, wrappedCallback
+
+        else
+          params.access_token = @accessToken
+          params.v = @version
+          @request
+            method: "POST"
+            url: "https://api.vk.com/method/#{methodName}"
+            params: params
+            callback: wrappedCallback

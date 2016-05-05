@@ -237,6 +237,7 @@ describe "vk", ->
     fakeUrl = "https://api.vk.com/method/fake-method"
 
     beforeEach ->
+      delete window.VK
       vk.accessToken = "fake-token"
       vk.version = "fake-version"
 
@@ -333,6 +334,30 @@ describe "vk", ->
       , ( error ) ->
         clock.restore()
         done new Error "rejected!"
+
+
+    it "should proxy calls to VK.api when possible", ( done ) ->
+      fakeData =
+        error: "fake error"
+        response:
+          foo: "bar"
+
+      window.VK =
+        api: ( method, params, callback ) ->
+          method.should.equal fakeMethod
+          params.should.deep.equal
+            foo: "bar"
+
+          callback fakeData
+
+      vk.request = ->
+        done new Error "called vk.request!"
+
+      vk.method fakeMethod, foo: "bar", ( error, response ) ->
+        expect( error ).to.equal fakeData.error
+        response.should.equal fakeData.response
+
+        done()
 
 
   describe "request", ->
