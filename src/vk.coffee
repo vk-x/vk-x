@@ -117,3 +117,11 @@ module.exports =
 
   clientMethod: ( args... ) ->
     window.VK.callMethod.apply window.VK, args
+
+
+  on: ( event, listener ) ->
+    window.VK.addCallback event, listener
+
+
+  off: ( event, listener ) ->
+    window.VK.removeCallback event, listener

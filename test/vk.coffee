@@ -492,3 +492,32 @@ describe "vk", ->
 
       result = vk.clientMethod "fake-method", 1, 2
       result.should.equal "fake-result"
+
+
+  describe "on", ->
+
+    it "should proxy calls to VK.addCallback", ( done ) ->
+      window.VK =
+        addCallback: ( event, listener ) ->
+          event.should.equal "onApplicationAdded"
+
+          listener "foo", "bar"
+
+      vk.on "onApplicationAdded", ( foo, bar ) ->
+        foo.should.equal "foo"
+        bar.should.equal "bar"
+        done()
+
+
+  describe "off", ->
+
+    it "should proxy calls to VK.removeCallback", ( done ) ->
+      fakeListener = ->
+
+      window.VK =
+        removeCallback: ( event, listener ) ->
+          event.should.equal "onApplicationAdded"
+          listener.should.equal fakeListener
+          done()
+
+      vk.off "onApplicationAdded", fakeListener
