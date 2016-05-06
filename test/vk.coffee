@@ -268,6 +268,13 @@ describe "vk", ->
         done new Error "rejected!"
 
 
+    it "should reject when window.VK is undefined", ( done ) ->
+      vk.authFrame().then ->
+        done new Error "resolved!"
+      , ->
+        done()
+
+
   describe "method", ->
 
     fakeMethod = "fake-method"
