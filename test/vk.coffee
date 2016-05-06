@@ -252,7 +252,7 @@ describe "vk", ->
           onFail()
 
       vk.authFrame ( error ) ->
-        expect( error ).to.equal true
+        expect( error ).to.be.instanceof Error
         done()
 
 
