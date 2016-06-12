@@ -32,6 +32,7 @@ i18nReady = new Promise ( resolve ) ->
     i18n.add require "./i18n/en"
     i18n.add require "./i18n/ru"
     i18n.add require "./i18n/uk"
+    i18n.add require "./i18n/soviet"
     resolve()
 
 
