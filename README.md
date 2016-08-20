@@ -1,6 +1,6 @@
 # vk-x — extension for vk.com that makes life easier
 
-**vk-x** (always lowercase) is a Chrome extension for [new.vk.com](http://new.vk.com).
+**vk-x** (always lowercase) is a Chrome extension for [vk.com](https://vk.com).
 
 ## Install
 
