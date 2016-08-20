@@ -15,12 +15,16 @@
 
   "permissions": [
     "storage",
+    "http://api.vk.com/",
     "https://api.vk.com/"
   ],
 
   "content_scripts": [{
     "run_at": "document_start",
-    "matches": ["https://vk.com/*"],
+    "matches": [
+      "http://vk.com/*",
+      "https://vk.com/*"
+    ],
     "js": ["content-script.js"]
   }],
 
