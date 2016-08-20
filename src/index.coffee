@@ -21,9 +21,9 @@ settingsReady = settings.fetchLocal()
 .then ->
   for m in modules
     if m.defineSettings
-      m._definedKeys = settings.add m.defineSettings()
+      settings.add m.defineSettings()
 
-    m.runBeforeDom? settings.get m._definedKeys
+    m.runBeforeDom?()
 
 
 # Defer this to not do too much at the same time and freeze the browser.
@@ -49,7 +49,7 @@ Promise.all [ settingsReady, domReady, i18nReady ]
   i18n.setLanguage window.vk.lang
 
   for m in modules
-    m.run? settings.get m._definedKeys
+    m.run?()
 
   # Start fetching remote settings after the DOM is ready so the page
   # doesn't load slower.
