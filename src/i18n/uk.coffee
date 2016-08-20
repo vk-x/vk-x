@@ -20,7 +20,7 @@ messages =
   "settings.photos.noLikeOverlay": "Прибрати велику кнопку \"Мені подобається\" поверх фотографій"
 
   "settings.videos": "Відеозаписи"
-  "settings.videos.myVideosByDefault": "Відкривати \"Мої відеозаписі\" без задання"
+  "settings.videos.myVideosByDefault": "Відкривати \"Мої відеозаписи\" без задання"
 
   "settings.help": "Допомога"
   "settings.help.community": "Спільнота vk-x"
