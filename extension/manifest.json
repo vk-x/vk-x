@@ -20,7 +20,7 @@
 
   "content_scripts": [{
     "run_at": "document_start",
-    "matches": ["https://new.vk.com/*"],
+    "matches": ["https://vk.com/*"],
     "js": ["content-script.js"]
   }],
 
