@@ -1,5 +1,6 @@
 .im-mess > .vkx-message-time
     float right
+    margin-top 3px
     margin-right -50px
     font-size 12px
     color rgba(120, 127, 140, 0.6)
@@ -7,9 +8,11 @@
     // the previous message.
     z-index 2
 
-.im-mess:not(.im-mess_fwd) > .vkx-message-time
-  margin-top 3px
+// Nested (forwarded) messages should be positioned consistently.
+.im-mess.im-mess_fwd > .vkx-message-time
+  margin-top 0
+  margin-right -70px
 
-// Hide the original time element.
-.im-mess-stack--tools *
-  display none !important
+// Forwarded messages in a popup shouldn't get out of the box.
+.box_body .im-mess > .vkx-message-time
+  margin-right -10px

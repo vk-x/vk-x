@@ -14,6 +14,8 @@ module.exports =
     utils.styleConditional "messages.showTimestamps", require "./styles"
 
     onNewMessage = ->
+      return if $( @ ).is ":first-child"
+
       rawTimestamp = $( @ ).data "ts"
       parsedTime = moment.unix rawTimestamp
       timeFormat = if i18n.getCurrentLocale() is "en" then "h:mm a" else "HH:mm"
