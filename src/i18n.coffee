@@ -25,6 +25,8 @@ module.exports = i18n =
     if newLanguageId of cache
       currentLanguageId = newLanguageId
 
+  getCurrentLocale: ->
+    $( "html" ).attr "lang"
 
   t: ( key, data ) ->
     cache[ currentLanguageId ]?.messages[ key ]?.format data

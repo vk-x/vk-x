@@ -7,6 +7,7 @@ messages =
   "settings.messages": "Телеграммы и материалы"
   "settings.messages.darkerUnread": "Новые телеграммы на более тёмной подложке"
   "settings.messages.noPagePreviews": "Не подшивать ссылки на страницы как материалы к телеграммам"
+  "settings.messages.showTimestamps": "Показывать время отправки каждой телеграммы"
 
   "settings.sideMenu": "Боковое меню"
   "settings.sideMenu.fixPosition": "Закрепить положение меню, не прокручивать из вида"

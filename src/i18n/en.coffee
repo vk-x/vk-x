@@ -7,6 +7,7 @@ messages =
   "settings.messages": "Messages and posts"
   "settings.messages.darkerUnread": "Darker background color of unread and selected messages"
   "settings.messages.noPagePreviews": "Don't add previews for links to webpages"
+  "settings.messages.showTimestamps": "Show sent time of each individual message"
 
   "settings.sideMenu": "Side menu"
   "settings.sideMenu.fixPosition": "Fix menu on the page so it doesn't scroll out of view"

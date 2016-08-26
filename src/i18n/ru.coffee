@@ -7,6 +7,7 @@ messages =
   "settings.messages": "Сообщения и записи"
   "settings.messages.darkerUnread": "Более тёмный фон у непрочитанных и выбранных сообщений"
   "settings.messages.noPagePreviews": "Не прикреплять превью для ссылок на веб-страницы"
+  "settings.messages.showTimestamps": "Показывать время отправки каждого сообщения"
 
   "settings.sideMenu": "Боковое меню"
   "settings.sideMenu.fixPosition": "Закрепить положение меню, не прокручивать из вида"
