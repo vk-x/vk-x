@@ -21,7 +21,7 @@ module.exports =
 
     # <a> elements returned from server just have href: "away.php?to=url",
     # where url is uri-encoded.
-    $( document ).on "mousedown", "[href^='/away.php']", ->
+    $( document ).on "mousedown", "[href^='/away.php'], [href^='away.php']", ->
       if settings.get "common.awayPhp"
         # Save the original href to be able to revert when this feature
         # is disabled in the extension settings.
