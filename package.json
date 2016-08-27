@@ -1,6 +1,6 @@
 {
   "name": "vk-x",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "Extension for vk.com that makes life easier",
   "private": true,
   "scripts": {
