@@ -3,6 +3,7 @@ messages =
   "settings.common": "Общее"
   "settings.common.awayPhp": "Выезжать в заграничные командировки без проверок КГБ"
   "settings.common.awayPhp.tooltip": "Переходить по внешним ссылкам в обход <strong>away.php</strong>"
+  "settings.common.previewMediaLinks": "Предварительный осмотр .webm, .mp4 и других вложений"
 
   "settings.messages": "Телеграммы и материалы"
   "settings.messages.darkerUnread": "Новые телеграммы на более тёмной подложке"

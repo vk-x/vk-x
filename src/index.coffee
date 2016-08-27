@@ -6,6 +6,7 @@ modules = [
   require "./away-php"
   require "./fixed-left-menu"
   require "./hide-people-you-might-know"
+  require "./media-preview"
   require "./menu-clock"
   require "./message-background"
   require "./message-timestamps"

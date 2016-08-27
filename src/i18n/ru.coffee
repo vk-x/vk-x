@@ -3,6 +3,7 @@ messages =
   "settings.common": "Общее"
   "settings.common.awayPhp": "Открывать внешние ссылки напрямую, без перенаправления"
   "settings.common.awayPhp.tooltip": "Отключить перенаправление через <strong>away.php</strong>"
+  "settings.common.previewMediaLinks": "Предпросмотр .webm, .mp4 и других ссылок"
 
   "settings.messages": "Сообщения и записи"
   "settings.messages.darkerUnread": "Более тёмный фон у непрочитанных и выбранных сообщений"
