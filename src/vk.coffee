@@ -3,7 +3,7 @@ ERROR_TOO_MANY_REQUESTS = 6
 
 module.exports =
 
-  version: "5.52"
+  version: "5.53"
 
 
   getAuthUrl: ( @appId = @appId, permissions = [], {
