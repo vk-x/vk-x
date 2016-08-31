@@ -1,3 +1,6 @@
+utils = require "../module-utils"
+
+
 module.exports =
 
   defineSettings: ->
@@ -6,16 +9,45 @@ module.exports =
 
 
   runBeforeDom: ->
-    utils = require "../module-utils"
     utils.styleConditional "common.previewMediaLinks", require "./styles"
 
 
   run: ->
-    $( document ).on "mousedown", "a[href$='.webm'], a[href$='.gifv'], a[href$='.mp4']", ->
-      if $( @ ).next().is "video"
-        $( @ ).next().remove()
+    handler = ( event ) ->
+      $( @ ).attr "vkx-media-link", ""
 
+      # Allow to open the link normally with Ctrl.
+      if event.ctrlKey
+        return $( @ ).removeAttr "onclick"
+
+      # Prevent bubbling otherwise.
+      $( @ ).attr "onclick", "return false"
+
+      if $( @ ).children().last().is "video"
+        $( @ )
+          .removeClass "vkx-expanded"
+          .children().last().remove()
       else
         $( @ )
-          .attr "onclick", "return false"
-          .after "<video src='#{@.href}' width='400' autoplay loop onclick='this.parentNode.removeChild(this)'>"
+          .addClass "vkx-expanded"
+          .append "<video
+            vkx-media-expanded
+            src='#{@.href}'
+            autoplay
+            loop
+            width='400'
+            onclick='if (!arguments[0].ctrlKey) this.parentNode.removeChild(this)'
+          >"
+
+    selector = "a[href$='.webm'], a[href$='.gifv'], a[href$='.mp4']"
+
+    utils.runConditional "common.previewMediaLinks",
+      true: ->
+        $( document ).on "mousedown", selector, handler
+      false: ->
+        $( document ).off "mousedown", selector, handler
+        $( "[vkx-media-link]" )
+          .removeAttr "onclick"
+          .removeAttr "vkx-media-link"
+          .removeClass "vkx-expanded"
+        $( "[vkx-media-expanded]" ).remove()
