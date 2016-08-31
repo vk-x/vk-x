@@ -1,15 +1,12 @@
 a[href$='.webm'], a[href$='.gifv'], a[href$='.mp4']
-  &:after
-    content "+"
-    color rgba(120, 127, 140, 0.8)
-    display inline-block
-    padding 0 5px
-    margin 0 5px
-    background-color rgba(80, 114, 153, 0.05)
+  &:not(.vkx-expanded)
+    &:after
+      content "+"
+      color rgba(120, 127, 140, 0.8)
+      display inline-block
+      padding 0 5px
+      margin 0 5px
+      background-color rgba(80, 114, 153, 0.05)
 
-  &:hover:after
-    background-color rgba(80, 114, 153, 0.15)
-
-  &:hover
-    cursor zoom-in
-    text-decoration none
+    &:hover:after
+      background-color rgba(80, 114, 153, 0.3)
