@@ -39,7 +39,7 @@ module.exports =
             onclick='if (!arguments[0].ctrlKey) this.parentNode.removeChild(this)'
           >"
 
-    selector = "a[href$='.webm'], a[href$='.gifv'], a[href$='.mp4']"
+    selector = "a[title$='.webm'], a[title$='.gifv'], a[title$='.mp4']"
 
     utils.runConditional "common.previewMediaLinks",
       true: ->
