@@ -1,4 +1,4 @@
-api = require "./api"
+api = require "../api"
 pubsub = require "pubsub-js"
 
 cache = {}
