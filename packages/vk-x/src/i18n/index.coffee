@@ -26,7 +26,7 @@ module.exports = i18n =
       currentLanguageId = newLanguageId
 
   getCurrentLocale: ->
-    $( "html" ).attr "lang"
+    cache[ currentLanguageId ]?.locale ? $( "html" ).attr "lang"
 
   t: ( key, data ) ->
     cache[ currentLanguageId ]?.messages[ key ]?.format data
