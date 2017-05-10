@@ -1,18 +1,24 @@
-.im-mess > .vkx-message-time
-    float right
+.im-mess
+  & > .vkx-message-time
+    float left
     margin-top 3px
-    margin-right -50px
+    margin-left 25px
     font-size 12px
     color rgba(120, 127, 140, 0.6)
     // Fixes weird bug with new unread messages overlapping time of
     // the previous message.
     z-index 2
 
-// Nested (forwarded) messages should be positioned consistently.
-.im-mess.im-mess_fwd > .vkx-message-time
-  margin-top 0
-  margin-right -70px
+  // Unread messages have smaller containers and don't need this margin.
+  &.im-mess_unread > .vkx-message-time
+    margin-left 0
 
-// Forwarded messages in a popup shouldn't get out of the box.
-.box_body .im-mess > .vkx-message-time
-  margin-right -10px
+  // Nested (forwarded) messages should be positioned consistently.
+  &.im-mess_fwd > .vkx-message-time
+    margin-top 0
+    position absolute
+    left -85px
+
+  // Forwarded messages in a popup shouldn't get out of the box.
+  .box_body & > .vkx-message-time
+    margin-right -10px
