@@ -1,0 +1,19 @@
+{
+  "name": "postmessage-request",
+  "version": "0.1.0",
+  "description": "Minimal two-way messaging between frames or contexts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vk-x/vk-x.git"
+  },
+  "author": "Nikita Litvin <n@deltaidea.com> (https://github.com/deltaidea)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vk-x/vk-x/issues"
+  },
+  "homepage": "https://github.com/vk-x/vk-x#readme"
+}
