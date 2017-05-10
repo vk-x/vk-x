@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vk-x/cp1251.git"
+    "url": "git+https://github.com/vk-x/vk-x.git"
   },
   "author": "Nikita Litvin <n@deltaidea.com> (https://github.com/deltaidea)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vk-x/cp1251/issues"
+    "url": "https://github.com/vk-x/vk-x/issues"
   },
-  "homepage": "https://github.com/vk-x/cp1251#readme",
+  "homepage": "https://github.com/vk-x/vk-x/tree/master/packages/cp1251#readme",
   "devDependencies": {
     "coffee-script": "^1.10.0"
   }

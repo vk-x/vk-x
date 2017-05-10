@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vk-x/vk-api.git"
+    "url": "git+https://github.com/vk-x/vk-x.git"
   },
   "keywords": [
     "vk",
@@ -23,9 +23,9 @@
   "author": "Nikita Litvin <n@deltaidea.com> (https://github.com/deltaidea)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vk-x/vk-api/issues"
+    "url": "https://github.com/vk-x/vk-x/issues"
   },
-  "homepage": "https://github.com/vk-x/vk-api#readme",
+  "homepage": "https://github.com/vk-x/vk-x/tree/master/packages/vk-api#readme",
   "devDependencies": {
     "chai": "^3.5.0",
     "coffee-loader": "^0.7.2",

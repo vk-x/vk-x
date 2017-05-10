@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vk-x/inject.git"
+    "url": "git+https://github.com/vk-x/vk-x.git"
   },
   "author": "Nikita Litvin <n@deltaidea.com> (https://github.com/deltaidea)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vk-x/inject/issues"
+    "url": "https://github.com/vk-x/vk-x/issues"
   },
-  "homepage": "https://github.com/vk-x/inject#readme",
+  "homepage": "https://github.com/vk-x/vk-x/tree/master/packages/inject#readme",
   "devDependencies": {
     "coffee-script": "^1.10.0"
   }
