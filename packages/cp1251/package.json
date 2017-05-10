@@ -1,7 +1,7 @@
 {
   "name": "@vk-x/cp1251",
   "version": "2.0.3",
-  "description": "Methods related to windows-12512 encoding",
+  "description": "Methods related to windows-1251 encoding",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
