@@ -15,6 +15,7 @@ module.exports =
 
     onNewMessage = ->
       return if $( @ ).is ":first-child"
+      return if $( @ ).find( ".vkx-message-time" ).length # Fixes #47
 
       rawTimestamp = $( @ ).data "ts"
       parsedTime = moment.unix rawTimestamp
