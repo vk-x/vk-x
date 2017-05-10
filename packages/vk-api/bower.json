@@ -1,0 +1,35 @@
+{
+  "name": "vk-api",
+  "description": "JavaScript Driver for vk.com API",
+  "main": "dist/vk-api.js",
+  "authors": [
+    "Nikita Litvin <n@deltaidea.com> (https://github.com/deltaidea)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "vk",
+    "vk.com",
+    "api",
+    "vk-api",
+    "vk-x"
+  ],
+  "homepage": "https://github.com/vk-x/vk-api",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "node_modules/",
+    "docs/",
+    "bower_components/",
+    "src/",
+    "test/",
+    ".gitignore",
+    ".npmignore",
+    "gen-method-list.coffee",
+    "karma.conf.coffee",
+    "package.json",
+    "webpack.config.coffee"
+  ]
+}
