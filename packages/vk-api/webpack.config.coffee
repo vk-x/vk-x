@@ -32,5 +32,5 @@ module.exports =
     new webpack.optimize.UglifyJsPlugin
       test: /\.min\.js($|\?)/i
 
-    new webpack.BannerPlugin "vk-api v#{packageInfo.version} (c) Nikita Litvin, git.io/vwqn6"
+    new webpack.BannerPlugin "vk-api v#{packageInfo.version} (c) vk-x contributors, git.io/vwqn6"
   ]

@@ -51,5 +51,5 @@ module.exports =
     new webpack.ProvidePlugin
       $: "jquery"
   ,
-    new webpack.BannerPlugin "vk-x v#{packageInfo.version} (c) Nikita Litvin, git.io/vwRaE"
+    new webpack.BannerPlugin "vk-x v#{packageInfo.version} (c) vk-x contributors, git.io/vwRaE"
   ]
