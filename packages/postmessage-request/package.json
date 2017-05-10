@@ -1,5 +1,5 @@
 {
-  "name": "postmessage-request",
+  "name": "@vk-x/postmessage-request",
   "version": "0.1.0",
   "description": "Minimal two-way messaging between frames or contexts",
   "main": "index.js",
