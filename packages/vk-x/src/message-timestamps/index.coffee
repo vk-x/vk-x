@@ -5,7 +5,7 @@ module.exports =
       defaultValue: true
 
 
-  runBeforeDom: ->
+  run: ->
     utils = require "utils"
     require "arrive"
     moment = require "moment"
