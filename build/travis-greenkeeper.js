@@ -12,7 +12,7 @@ if (!BRANCH.startsWith('greenkeeper/')) {
 
 syncAll()
 
-const run = command => childProcess.spawnSync(command)
+const run = command => console.log(childProcess.spawnSync(command).output.map(b => (b || '').toString()).join('\n'))
 
 run('git config --global user.email "travis@travis-ci.org"')
 run('git config --global user.name "Travis CI"')
