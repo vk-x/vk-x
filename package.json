@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "travis-greenkeeper": "node ./build/travis-greenkeeper.js",
     "postinstall": "lerna bootstrap"
   },
   "devDependencies": {
