@@ -1,5 +1,12 @@
 const childProcess = require('child_process')
 const { syncAll } = require('./update-nested-deps')
+const path = require('path')
+const git = require('simple-git')(path.resolve(__dirname, '..'))
+
+const gitOutputHandler = (command, stdout, stderr) => {
+  stdout.pipe(process.stdout)
+  stderr.pipe(process.stderr)
+}
 
 const BRANCH = process.env.TRAVIS_PULL_REQUEST_BRANCH || process.env.TRAVIS_BRANCH || ''
 const REPO = process.env.TRAVIS_REPO_SLUG
@@ -10,17 +17,20 @@ if (!BRANCH.startsWith('greenkeeper/')) {
   process.exit(0)
 }
 
-syncAll()
+const changedPackages = syncAll()
 
 const run = command => console.log(childProcess.spawnSync(command).output.map(b => (b || '').toString()).join('\n'))
 
-run('git config --global user.email "travis@travis-ci.org"')
-run('git config --global user.name "Travis CI"')
+git
+  .outputHandler(gitOutputHandler)
+  .addConfig('user.email', 'travis@travis-ci.org')
+  .addConfig('user.name', 'Travis CI')
+  .add(changedPackages.map(p => path.join(p.folder, 'package.json')))
+  .commit('chore(package): update nested deps')
 
-run('git add */package.json')
-run('git commit -m "chore(package): update nested deps"')
+  .outputHandler(() => {})
+  // Silence this line to avoid revealing the secret token.
+  .addRemote('gh-repo', `https://\${GH_TOKEN}@github.com/${REPO}.git`)
+  .outputHandler(gitOutputHandler)
 
-// eslint-disable-next-line no-template-curly-in-string
-// Silence this line to avoid revealing the secret token.
-run(`git remote add gh-repo https://\${GH_TOKEN}@github.com/${REPO}.git > /dev/null 2>&1`)
-run(`git push --set-upstream gh-repo ${BRANCH}`)
+  .push('gh-pages', BRANCH, ['--set-upstream'])

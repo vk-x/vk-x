@@ -27,6 +27,7 @@
     "pubsub-js": "^1.5.3",
     "raw-loader": "^0.5.1",
     "request": "^2.71.0",
+    "simple-git": "^1.72.0",
     "sinon": "^2.2.0",
     "sinon-chai": "^2.8.0",
     "style-loader": "^0.17.0",
