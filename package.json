@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "test": "lerna run test",
     "travis-greenkeeper": "node ./build/travis-greenkeeper.js",
     "postinstall": "lerna bootstrap"
   },
