@@ -1,7 +1,7 @@
 The MIT License (MIT)
 =====================
 
-Copyright © 2016 vk-x contributors
+Copyright © 2016-present vk-x contributors
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
