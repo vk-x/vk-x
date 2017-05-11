@@ -9,6 +9,8 @@ if (!BRANCH.startsWith('greenkeeper/')) {
   process.exit(0)
 }
 
+syncAll()
+
 const run = command => childProcess.spawnSync(command)
 
 run('git config --global user.email "travis@travis-ci.org"')
