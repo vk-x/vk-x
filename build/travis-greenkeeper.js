@@ -23,7 +23,7 @@ git
   .outputHandler(gitOutputHandler)
   .addConfig('user.email', 'travis@travis-ci.org')
   .addConfig('user.name', 'Travis CI')
-  .checkoutLocalBranch(`${BRANCH}-travis`)
+  .checkout(BRANCH)
   .add(changedPackages.map(p => path.join(p.folder, 'package.json')))
   .commit('chore(package): update nested deps')
   .addRemote('gh-repo', `https://${GH_TOKEN}@github.com/${REPO}.git`)
