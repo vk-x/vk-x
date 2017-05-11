@@ -4,6 +4,7 @@ const { syncAll } = require('./update-nested-deps')
 const BRANCH = process.env.TRAVIS_PULL_REQUEST_BRANCH || ''
 const REPO = process.env.TRAVIS_REPO_SLUG
 
+console.log('Current PR branch is:', BRANCH || '(empty)')
 if (!BRANCH.startsWith('greenkeeper/')) {
   console.log('Not a Greenkeeper PR, exiting.')
   process.exit(0)
