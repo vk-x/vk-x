@@ -1,4 +1,3 @@
-const childProcess = require('child_process')
 const { syncAll } = require('./update-nested-deps')
 const path = require('path')
 const git = require('simple-git')(path.resolve(__dirname, '..'))
@@ -18,8 +17,6 @@ if (!BRANCH.startsWith('greenkeeper/')) {
 }
 
 const changedPackages = syncAll()
-
-const run = command => console.log(childProcess.spawnSync(command).output.map(b => (b || '').toString()).join('\n'))
 
 git
   .outputHandler(gitOutputHandler)
