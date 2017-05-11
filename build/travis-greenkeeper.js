@@ -32,4 +32,4 @@ git
   .addRemote('gh-repo', `https://${GH_TOKEN}@github.com/${REPO}.git`)
   .outputHandler(gitOutputHandler)
 
-  .push('gh-pages', BRANCH, ['--set-upstream'])
+  .push('gh-repo', BRANCH, ['--set-upstream'])
