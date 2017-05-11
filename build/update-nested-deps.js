@@ -1,12 +1,14 @@
 const path = require('path')
 const fs = require('fs')
 
-const getFolders = () => fs.readdirSync('packages').map(f => path.join('packages', f)).filter(f => fs.statSync(f).isDirectory())
+const PACKAGES = path.join('..', 'packages')
+
+const getFolders = () => fs.readdirSync(PACKAGES).map(f => path.join(PACKAGES, f)).filter(f => fs.statSync(f).isDirectory())
 const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'))
 const getPackage = folder => ({ folder, config: readJson(path.join(folder, 'package.json')) })
 const getPackages = () => getFolders().map(folder => getPackage(folder))
 
-const getRootConfig = () => require('./package.json')
+const getRootConfig = () => require('../package.json')
 const rootDeps = Object.assign({}, getRootConfig().devDependencies || {}, getRootConfig().dependencies || {})
 
 const updateObjectDeps = (obj = {}) => {
