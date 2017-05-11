@@ -26,10 +26,5 @@ git
   .checkoutLocalBranch(`${BRANCH}-travis`)
   .add(changedPackages.map(p => path.join(p.folder, 'package.json')))
   .commit('chore(package): update nested deps')
-
-  .outputHandler(() => {})
-  // Silence this line to avoid revealing the secret token.
   .addRemote('gh-repo', `https://${GH_TOKEN}@github.com/${REPO}.git`)
-  .outputHandler(gitOutputHandler)
-
   .push('gh-repo', BRANCH, ['--set-upstream'])
