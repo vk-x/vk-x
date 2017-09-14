@@ -1,3 +1,4 @@
+path = require "path"
 webpack = require "webpack"
 
 packageInfo = require "./package.json"
@@ -11,7 +12,7 @@ module.exports =
     "vk-api-no-shortcuts.min": "./src/index-no-shortcuts.coffee"
 
   output:
-    path: "./dist"
+    path: path.resolve __dirname, "dist"
     filename: "[name].js"
     library: "vk"
     libraryTarget: "umd"
@@ -19,12 +20,11 @@ module.exports =
   module:
     loaders: [
       test: /\.coffee$/
-      loader: "coffee"
+      loader: "coffee-loader"
     ]
 
   resolve:
     extensions: [
-      ""
       ".coffee"
     ]
 

@@ -10,29 +10,33 @@ module.exports =
     "injected": "./src/index.coffee"
 
   output:
-    path: "extension"
+    path: path.resolve __dirname, "extension"
     filename: "[name].js"
 
   module:
     loaders: [
       test: /\.coffee$/
-      loader: "coffee"
+      loader: "coffee-loader"
     ,
       test: /\.html$/
-      loader: "underscore-template"
+      loader: "underscore-template-loader"
       query:
         attributes: []
         interpolate: "\\{\\{(.+?)\\}\\}"
     ,
       test: /\.styl$/,
-      loader: "style/useable!raw!stylus"
+      loader: "style-loader/useable!raw-loader!stylus-loader"
     ,
       test: /\.json$/,
-      loader: "json"
+      loader: "json-loader"
     ]
 
   resolve:
-    root: path.resolve __dirname
+    modules: [
+      path.resolve __dirname
+      "node_modules"
+    ]
+
     alias:
       i18n: "src/i18n"
       settings: "src/settings"
@@ -40,7 +44,6 @@ module.exports =
       "package.json": "package.json"
 
     extensions: [
-      ""
       ".coffee"
       ".html"
       ".styl"
