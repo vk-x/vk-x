@@ -4,9 +4,7 @@
   "description": "Inject a script into a page from a browser extension",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "printf \"/* inject v1.1.1 (c) vk-x contributors, git.io/vwPBs */\\n\\n\" > index.js && coffee --compile --bare --no-header --print index.coffee >> index.js",
-    "prepublish": "npm run build"
+    "test": "echo \"No tests specified\""
   },
   "repository": {
     "type": "git",
@@ -17,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/vk-x/vk-x/issues"
   },
-  "homepage": "https://github.com/vk-x/vk-x/tree/master/packages/inject#readme",
-  "devDependencies": {
-    "coffee-script": "^1.10.0"
-  }
+  "homepage": "https://github.com/vk-x/vk-x/tree/master/packages/inject#readme"
 }
