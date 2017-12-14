@@ -13,7 +13,7 @@ export const inject = (script, isSource) => {
 const linkToTag = link => {
   const tag = window.document.createElement('script')
   tag.charset = 'UTF-8'
-  tag.src = chrome.extension.getURL(script)
+  tag.src = chrome.extension.getURL(link)
   tag.onload = () => tag.parentNode.removeChild(tag)
 
   return tag
@@ -22,7 +22,7 @@ const linkToTag = link => {
 const sourceToTag = source => {
   const tag = window.document.createElement('script')
   tag.charset = 'UTF-8'
-  tag.textContent = script
+  tag.textContent = source
   setTimeout(() => tag.parentNode.removeChild(tag))
 
   return tag
