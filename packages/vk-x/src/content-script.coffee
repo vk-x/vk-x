@@ -1,4 +1,4 @@
-inject = require "@vk-x/inject"
+{ inject } = require "@vk-x/inject"
 vk = require "@vk-x/vk-api"
 
 # Compiled from src/index.coffee, see webpack.config.coffee
