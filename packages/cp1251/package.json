@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha --require babel-register test.js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vk-x/vk-x.git"

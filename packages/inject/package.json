@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"No tests specified\""
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vk-x/vk-x.git"

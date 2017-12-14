@@ -9,6 +9,9 @@
     "prepublish": "npm run build",
     "test": "karma start"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vk-x/vk-x.git"
