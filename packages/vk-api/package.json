@@ -1,6 +1,6 @@
 {
   "name": "@vk-x/vk-api",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "JavaScript Driver for vk.com API",
   "main": "dist/vk-api.js",
   "scripts": {
