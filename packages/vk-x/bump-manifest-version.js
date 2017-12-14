@@ -2,6 +2,8 @@ const path = require('path')
 const fs = require('fs')
 const { exec } = require('child_process')
 
+console.log('vk-x manifest updating...')
+
 const packageObj = require('./package.json')
 const manifestObj = require('./extension/manifest.json')
 
