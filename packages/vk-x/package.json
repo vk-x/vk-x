@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "postversion": "node bump-manifest-version.js"
   },
   "repository": {
     "type": "git",
