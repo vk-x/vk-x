@@ -1,6 +1,6 @@
 {
   "name": "@vk-x/vk-x",
-  "version": "1.7.5",
+  "version": "1.7.6",
   "description": "Extension for vk.com that makes life easier",
   "private": true,
   "scripts": {
