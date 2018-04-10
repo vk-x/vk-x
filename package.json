@@ -1,4 +1,6 @@
 {
+  "name": "vk-x",
+  "version": "0.0.0",
   "scripts": {
     "test": "lerna run test",
     "travis-greenkeeper": "node ./build/travis-greenkeeper.js",

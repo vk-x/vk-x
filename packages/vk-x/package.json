@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "watch": "webpack --watch"
+    "watch": "webpack --watch",
+    "test": "mocha --require babel-register \"src/**/*.test.js\""
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,12 @@
   "devDependencies": {
     "@vk-x/cp1251": "^2.0.4",
     "@vk-x/vk-api": "^0.5.3",
+    "babel-register": "^6.26.0",
     "webpack": "^2.5.1"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
   }
 }
