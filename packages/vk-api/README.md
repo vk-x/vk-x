@@ -1,13 +1,12 @@
 # vk-api — JavaScript Driver for vk.com API
 
-An alternative library for interacting with vk.com with solid and exceptionally convenient API.
+An alternative library for interacting with vk.com with exceptionally convenient API.
 
 ## Install
 
 The driver is packaged as an [UMD](https://github.com/umdjs/umd) and is published to:
 
 - [NPM](https://www.npmjs.com/package/@vk-x/vk-api): `npm install --save @vk-x/vk-api`
-- [Bower](http://bower.io/search/?q=vk-api): `bower install vk-api`
 - [jsDelivr CDN](http://www.jsdelivr.com/projects/vk-api): `https://cdn.jsdelivr.net/vk-api/latest/vk-api.min.js`
 - A smaller version without method shortcuts is also available: `https://cdn.jsdelivr.net/vk-api/latest/vk-api-no-shortcuts.min.js`
 
