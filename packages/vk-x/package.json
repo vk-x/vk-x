@@ -19,7 +19,6 @@
   "homepage": "https://github.com/vk-x/vk-x#readme",
   "devDependencies": {
     "@vk-x/cp1251": "^2.0.4",
-    "@vk-x/inject": "^2.0.0",
     "@vk-x/vk-api": "^0.5.3",
     "webpack": "^2.5.1"
   }
