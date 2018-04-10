@@ -9,7 +9,7 @@
 
 ## `vk.getAuthUrl([appId=vk.appId], [permissions=[]], [options={}])`
 
-Suggests a URL for app authentication. See [Client Application Authorization](https://new.vk.com/dev/auth_mobile).
+Suggests a URL for app authentication. See [Client Application Authorization](https://vk.com/dev/auth_mobile).
 
 This method is an optional utility. Skip it if you use a different auth flow or prefer to create a custom auth URL.
 
@@ -17,11 +17,11 @@ This method is an optional utility. Skip it if you use a different auth flow or 
 
 ##### Arguments
 
-1. **`[appId=vk.appId]`** *(number|string)*: ID of your VK application. See [My Applications](https://new.vk.com/apps?act=manage).
-1. **`[permissions=[]]`** *(Array)*: Permissions for your VK application. See [My Applications](https://new.vk.com/apps?act=manage).
+1. **`[appId=vk.appId]`** *(number|string)*: ID of your VK application. See [My Applications](https://vk.com/apps?act=manage).
+1. **`[permissions=[]]`** *(Array)*: Permissions for your VK application. See [My Applications](https://vk.com/apps?act=manage).
 1. **`[options.version="5.53"]`** *(string)*: API version to use when calling api.vk.com. `vk.version` is set to this value and used in other methods.
 1. **`[options.redirectUrl="https://oauth.vk.com/blank.html"]`** *(string)*: URL to which the auth window will be redirected after authentication.
-1. **`[options.windowStyle="popup"]`** *(string)*: Auth window style. See [OAuth Authorization Dialog](https://new.vk.com/dev/oauth_dialog).
+1. **`[options.windowStyle="popup"]`** *(string)*: Auth window style. See [OAuth Authorization Dialog](https://vk.com/dev/oauth_dialog).
 
 ##### Returns
 
@@ -47,7 +47,7 @@ vk.getAuthUrl()
 ## `vk.authWebsite([appId=vk.appId], [permissions=[]], [windowStyle="popup"], [callback=noop])`
 
 Authenticates an app on a website via a popup and obtains an access token.
-See [Client Application Authorization](https://new.vk.com/dev/auth_mobile) and [Open API](https://vk.com/dev/openapi).
+See [Client Application Authorization](https://vk.com/dev/auth_mobile) and [Open API](https://vk.com/dev/openapi).
 
 Doesn't open a popup if the app is already authenticated. You don't need to call `vk.getAccessToken()` before `vk.authWebsite()` to check this.
 
@@ -59,9 +59,9 @@ This method sets `vk.accessToken` automatically. If you skip this method, set `v
 
 ##### Arguments
 
-1. **`[appId=vk.appId]`** *(number|string)*: ID of your VK application. See [My Applications](https://new.vk.com/apps?act=manage).
-1. **`[permissions=[]]`** *(Array)*: Permissions for your VK application. See [My Applications](https://new.vk.com/apps?act=manage).
-1. **`[options.windowStyle="popup"]`** *(string)*: Auth window style. See [OAuth Authorization Dialog](https://new.vk.com/dev/oauth_dialog).
+1. **`[appId=vk.appId]`** *(number|string)*: ID of your VK application. See [My Applications](https://vk.com/apps?act=manage).
+1. **`[permissions=[]]`** *(Array)*: Permissions for your VK application. See [My Applications](https://vk.com/apps?act=manage).
+1. **`[options.windowStyle="popup"]`** *(string)*: Auth window style. See [OAuth Authorization Dialog](https://vk.com/dev/oauth_dialog).
 1. **`[callback=noop]`** *(Function|null)*: optional callback with signature `callback(accessToken)`.
 
 ##### Returns
@@ -91,7 +91,7 @@ vk.authWebsite().then(function(token) {
 ## `vk.getAccessToken([appId=vk.appId], [callback=noop])`
 
 Obtains an access token from `https://login.vk.com/` after the app has been authenticated.
-See [Client Application Authorization](https://new.vk.com/dev/auth_mobile) and [Open API](https://vk.com/dev/openapi).
+See [Client Application Authorization](https://vk.com/dev/auth_mobile) and [Open API](https://vk.com/dev/openapi).
 
 This method is an optional utility. Skip it if you use a different auth flow or prefer to obtain an access token yourself.
 
@@ -101,7 +101,7 @@ This method sets `vk.accessToken` automatically. If you skip this method, set `v
 
 ##### Arguments
 
-1. **`[appId=vk.appId]`** *(number|string)*: ID of your VK application. See [My Applications](https://new.vk.com/apps?act=manage).
+1. **`[appId=vk.appId]`** *(number|string)*: ID of your VK application. See [My Applications](https://vk.com/apps?act=manage).
 1. **`[callback=noop]`** *(Function|null)*: optional callback with signature `callback(accessToken)`.
 
 ##### Returns
@@ -130,7 +130,7 @@ vk.getAccessToken().then(function(token) {
 
 ## `vk.method(methodName, [params={}], [callback=noop])`
 
-Calls the specified API method and returns its result. See [API Requests](https://new.vk.com/dev/api_requests).
+Calls the specified API method and returns its result. See [API Requests](https://vk.com/dev/api_requests).
 
 Supports both callbacks and promises.
 
@@ -140,7 +140,7 @@ This method uses `vk.request()` for performing actual network requests. Override
 
 ##### Arguments
 
-1. **`methodName`** *(string)*: the name of the API method. See [API Methods](https://new.vk.com/dev/methods).
+1. **`methodName`** *(string)*: the name of the API method. See [API Methods](https://vk.com/dev/methods).
 1. **`[params={}]`** *(Object)*: Parameters to pass to the API.
 1. **`[callback=noop]`** *(Function|null)*: optional callback with signature `callback(error, response)`.
 
@@ -172,7 +172,8 @@ vk.method("users.get", {fields: "online"}, function(error, result) {
 
 The `vk` object has built-in aliases for most API methods. Each alias is a transparent wrapper around `vk.method`.
 
-For an exhaustive list of available aliases please refer to [`src/method-list.coffee`](../src/method-list.coffee).
+For an exhaustive list of available aliases please refer to [`src/method-list.json`](../src/method-list.json) and
+[`src/client-method-list.json`](../src/client-method-list.json).
 
 #### Since: 0.1.0
 

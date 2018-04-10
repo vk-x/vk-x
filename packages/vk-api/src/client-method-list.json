@@ -1,0 +1,19 @@
+{
+  "showInstallBox": true,
+  "showSettingsBox": true,
+  "showRequestBox": true,
+  "showInviteBox": true,
+  "showOrderBox": true,
+  "showProfilePhotoBox": true,
+  "resizeWindow": true,
+  "scrollWindow": true,
+  "setTitle": true,
+  "setLocation": true,
+  "scrollTop": true,
+  "scrollSubscribe": true,
+  "showInstallPushBox": true,
+  "showAllowMessagesFromCommunityBox": true,
+  "callUser": true,
+  "checkUnitySupport": true,
+  "checkFlashSupport": true
+}

@@ -5,7 +5,7 @@
   "main": "dist/vk-api.js",
   "scripts": {
     "build": "webpack",
-    "gen-methods": "coffee gen-method-list.coffee",
+    "gen-methods": "babel-node gen-method-list.js",
     "prepublish": "npm run build",
     "test": "karma start"
   },
@@ -30,8 +30,15 @@
   },
   "homepage": "https://github.com/vk-x/vk-x/tree/master/packages/vk-api#readme",
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "coffee-script": "^1.10.0",
     "karma": "^1.7.0",
+    "ramda": "^0.25.0",
     "webpack": "^2.5.1"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
   }
 }
