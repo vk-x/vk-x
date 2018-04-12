@@ -8,7 +8,6 @@ The driver is packaged as an [UMD](https://github.com/umdjs/umd) and is publishe
 
 - [NPM](https://www.npmjs.com/package/@vk-x/vk-api): `npm install --save @vk-x/vk-api`
 - [jsDelivr CDN](http://www.jsdelivr.com/projects/vk-api): `https://cdn.jsdelivr.net/vk-api/latest/vk-api.min.js`
-- A smaller version without method shortcuts is also available: `https://cdn.jsdelivr.net/vk-api/latest/vk-api-no-shortcuts.min.js`
 
 ## Use
 
@@ -17,17 +16,12 @@ After you've included and loaded the script, you can use it either with Promises
 ```JavaScript
 
 // Authenticate on your website.
-vk.authWebsite("app-id", ["permissions"]).then(function() {
-  vk.users.get()
-}).then(function(currentUser) {
-  // https://vk.com/dev/users.get
-})
+await vk.authWebsite("app-id", ["permissions"])
+const currentUser = await vk.users.get() // https://vk.com/dev/users.get
 
 // Alternatively, obtain the access token yourself.
 vk.accessToken = "obtained-access-token"
-vk.users.get().then(function(currentUser) {
-  // https://vk.com/dev/users.get
-})
+const currentUser = await vk.users.get() // https://vk.com/dev/users.get
 
 ```
 

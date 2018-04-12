@@ -1,6 +1,6 @@
 describe "index", ->
 
-  cleanIndex = require "inject!../src/index"
+  cleanIndex = require "inject-loader!../src/index"
 
   it "should apply shortcuts to vk", ->
     base = baseMethod = null

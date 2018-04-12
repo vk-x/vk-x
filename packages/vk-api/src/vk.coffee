@@ -45,8 +45,8 @@ module.exports =
   authFrame: ( callback = -> ) ->
     new Promise ( resolve, reject ) =>
       if not window.VK?.init?
-        callback new Error "VK SDK is not loaded! https://new.vk.com/dev/Javascript_SDK"
-        return reject new Error "VK SDK is not loaded! https://new.vk.com/dev/Javascript_SDK"
+        callback new Error "VK SDK is not loaded! https://vk.com/dev/Javascript_SDK"
+        return reject new Error "VK SDK is not loaded! https://vk.com/dev/Javascript_SDK"
 
       window.VK.init ->
         callback()

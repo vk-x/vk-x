@@ -8,8 +8,6 @@ module.exports =
   entry:
     "vk-api": "./src/index.coffee"
     "vk-api.min": "./src/index.coffee"
-    "vk-api-no-shortcuts": "./src/index-no-shortcuts.coffee"
-    "vk-api-no-shortcuts.min": "./src/index-no-shortcuts.coffee"
 
   output:
     path: path.resolve __dirname, "dist"

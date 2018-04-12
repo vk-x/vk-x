@@ -2,7 +2,7 @@ describe "shortcuts", ->
 
   base = null
   shortcuts = null
-  cleanShortcuts = require "inject!../src/shortcuts"
+  cleanShortcuts = require "inject-loader!../src/shortcuts"
 
   fakeApiMethodList =
     foo0: [ "bar0", "qux0" ]

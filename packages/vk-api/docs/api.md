@@ -170,7 +170,7 @@ vk.method("users.get", {fields: "online"}, function(error, result) {
 
 ## Aliases
 
-The `vk` object has built-in aliases for most API methods. Each alias is a transparent wrapper around `vk.method`.
+The `vk` object has built-in aliases for most of the API methods. Each alias is a transparent wrapper around `vk.method`.
 
 For an exhaustive list of available aliases please refer to [`src/method-list.json`](../src/method-list.json) and
 [`src/client-method-list.json`](../src/client-method-list.json).

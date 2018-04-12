@@ -1,7 +1,7 @@
 describe "vk", ->
 
   vk = null
-  cleanVk = require "inject!../src/vk"
+  cleanVk = require "inject-loader!../src/vk"
 
   beforeEach ->
     delete window.VK
@@ -33,9 +33,9 @@ describe "vk", ->
     it "should use sensible defaults", ->
       url = vk.getAuthUrl "12345"
 
-      expect( vk.version ).to.equal "5.53"
+      expect( vk.version ).to.equal "5.74"
       url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=&" +
-      "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.53&response_type=token"
+      "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.74&response_type=token"
 
 
     it "should set vk.version", ->
@@ -65,11 +65,11 @@ describe "vk", ->
       url = vk.getAuthUrl()
 
       url.should.equal "https://oauth.vk.com/authorize?client_id=12345&scope=&" +
-      "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.53&response_type=token"
+      "redirect_uri=https%3A%2F%2Foauth.vk.com%2Fblank.html&display=popup&v=5.74&response_type=token"
 
 
     it "vk.version should be initially set to default", ->
-      expect( vk.version ).to.equal "5.53"
+      expect( vk.version ).to.equal "5.74"
 
 
   describe "getAccessToken", ->
@@ -96,6 +96,8 @@ describe "vk", ->
         if accessToken is "fake-token"
           done()
 
+      return
+
 
     it "should set vk.accessToken", ( done ) ->
       vk.request = ({ method, url, params, callback }) ->
@@ -105,6 +107,8 @@ describe "vk", ->
         if vk.accessToken is "fake-token"
           done()
 
+      return
+
 
     it "should return null if app is not authenticated", ( done ) ->
       vk.request = ({ method, url, params, callback }) ->
@@ -113,6 +117,8 @@ describe "vk", ->
       vk.getAccessToken "12345", ->
         if vk.accessToken is null
           done()
+
+      return
 
 
     it "should support promises", ( done ) ->
@@ -124,6 +130,8 @@ describe "vk", ->
         vk.accessToken
         if ( vk.accessToken is "fake-token" ) and ( accessToken is "fake-token" )
           done()
+
+      return
 
 
     it "should set vk.appId", ->
@@ -143,6 +151,8 @@ describe "vk", ->
         if accessToken is "fake-token"
           done()
 
+      return
+
 
   describe "authWebsite", ->
 
@@ -159,7 +169,7 @@ describe "vk", ->
 
         "fake-url"
 
-      sinon.stub window, "open", ( url ) ->
+      sinon.stub( window, "open" ).callsFake ( url ) ->
         url.should.equal "fake-url"
 
         fakeWindow =
@@ -179,6 +189,8 @@ describe "vk", ->
 
         done()
 
+      return
+
 
     it "should pass windowStyle to vk.getAuthUrl()", ( done ) ->
       vk.getAuthUrl = ( appId, permissions, options ) ->
@@ -188,7 +200,7 @@ describe "vk", ->
 
         "fake-url"
 
-      sinon.stub window, "open", ->
+      sinon.stub( window, "open" ).callsFake ->
         closed: true
 
       vk.getAccessToken = ->
@@ -199,12 +211,14 @@ describe "vk", ->
 
         done()
 
+      return
+
 
     it "should support promises", ( done ) ->
       vk.getAuthUrl = ->
         "fake-url"
 
-      sinon.stub window, "open", ->
+      sinon.stub( window, "open" ).callsFake ->
         closed: true
 
       vk.getAccessToken = ->
@@ -215,12 +229,14 @@ describe "vk", ->
 
         done()
 
+      return
+
 
     it "should try to get access token first and only login if no luck", ( done ) ->
       vk.getAuthUrl = ->
         done new Error "tried to log in!"
 
-      sinon.stub window, "open", ->
+      sinon.stub( window, "open" ).callsFake ->
         done new Error "tried to open a window!"
 
       vk.getAccessToken = ->
@@ -231,35 +247,41 @@ describe "vk", ->
 
         done()
 
+      return
+
 
   describe "authFrame", ->
 
     it "should use VK.init", ( done ) ->
       window.VK =
         init: ( onSuccess, onFail, version ) ->
-          version.should.equal "5.53"
+          version.should.equal "5.74"
           onSuccess()
 
       vk.authFrame ( error ) ->
         expect( error ).to.not.be.ok
         done()
 
+      return
+
 
     it "should pass error to callback when onFail is called", ( done ) ->
       window.VK =
         init: ( onSuccess, onFail, version ) ->
-          version.should.equal "5.53"
+          version.should.equal "5.74"
           onFail()
 
       vk.authFrame ( error ) ->
         expect( error ).to.be.instanceof Error
         done()
 
+      return
+
 
     it "should support promises", ( done ) ->
       window.VK =
         init: ( onSuccess, onFail, version ) ->
-          version.should.equal "5.53"
+          version.should.equal "5.74"
           onSuccess()
 
       vk.authFrame().then ->
@@ -267,12 +289,16 @@ describe "vk", ->
       , ->
         done new Error "rejected!"
 
+      return
+
 
     it "should reject when window.VK is undefined", ( done ) ->
       vk.authFrame().then ->
         done new Error "resolved!"
       , ->
         done()
+
+      return
 
 
   describe "method", ->
@@ -319,6 +345,8 @@ describe "vk", ->
       , ( error ) ->
         done new Error "rejected!"
 
+      return
+
 
     it "should default to {} when no params specified", ( done ) ->
       fakeData =
@@ -341,6 +369,8 @@ describe "vk", ->
       , ( error ) ->
         done new Error "rejected!"
 
+      return
+
 
     it "should reject promise when data.error exists", ( done ) ->
       vk.request = ({ method, url, params, callback }) ->
@@ -353,6 +383,8 @@ describe "vk", ->
       , ( error ) ->
         expect( error ).to.equal "exists"
         done()
+
+      return
 
 
     it "should auto-retry on 'too many requests' error", ( done ) ->
@@ -378,6 +410,8 @@ describe "vk", ->
         clock.restore()
         done new Error "rejected!"
 
+      return
+
 
     it "should proxy calls to VK.api when possible", ( done ) ->
       fakeData =
@@ -393,6 +427,8 @@ describe "vk", ->
 
           callback fakeData
 
+          return
+
       vk.request = ->
         done new Error "called vk.request!"
 
@@ -401,6 +437,8 @@ describe "vk", ->
         response.should.equal fakeData.response
 
         done()
+
+        return
 
 
   describe "request", ->
@@ -423,9 +461,13 @@ describe "vk", ->
       fakeXhr.requests = []
       fakeXhr.onCreate = ( xhr ) ->
         fakeXhr.requests.push xhr
+        return
+
+      return
 
     afterEach ->
       fakeXhr.restore()
+      return
 
 
     it "should make a get xhr and call back with parsed json", ( done ) ->
@@ -437,6 +479,7 @@ describe "vk", ->
           data.should.deep.equal fakeData
 
           done()
+          return
 
       fakeXhr.requests.length.should.equal 1
       expect( fakeXhr.requests[ 0 ].method ).to.equal "GET"
@@ -444,6 +487,8 @@ describe "vk", ->
       expect( fakeXhr.requests[ 0 ].url ).to.equal fakeUrl + "?foo=foo%202&bar=bar%2F2"
 
       fakeXhr.requests[ 0 ].respond 200, {}, JSON.stringify fakeData
+
+      return
 
 
     it "should make a post xhr and call back with parsed json", ( done ) ->
@@ -455,6 +500,7 @@ describe "vk", ->
           data.should.deep.equal fakeData
 
           done()
+          return
 
       fakeXhr.requests.length.should.equal 1
       expect( fakeXhr.requests[ 0 ].method ).to.equal "POST"
@@ -465,6 +511,8 @@ describe "vk", ->
       expect( fakeXhr.requests[ 0 ].requestBody ).to.equal "foo=foo%202&bar=bar%2F2"
 
       fakeXhr.requests[ 0 ].respond 200, {}, JSON.stringify fakeData
+
+      return
 
 
     it "should use credentials when specified", ( done ) ->
@@ -477,6 +525,7 @@ describe "vk", ->
           data.should.deep.equal fakeData
 
           done()
+          return
 
       fakeXhr.requests.length.should.equal 1
       expect( fakeXhr.requests[ 0 ].method ).to.equal "GET"
@@ -484,6 +533,8 @@ describe "vk", ->
       expect( fakeXhr.requests[ 0 ].url ).to.equal fakeUrl + "?foo=foo%202&bar=bar%2F2"
 
       fakeXhr.requests[ 0 ].respond 200, {}, JSON.stringify fakeData
+
+      return
 
 
   describe "clientMethod", ->
@@ -500,6 +551,8 @@ describe "vk", ->
       result = vk.clientMethod "fake-method", 1, 2
       result.should.equal "fake-result"
 
+      return
+
 
   describe "on", ->
 
@@ -509,11 +562,15 @@ describe "vk", ->
           event.should.equal "onApplicationAdded"
 
           listener "foo", "bar"
+          return
 
       vk.on "onApplicationAdded", ( foo, bar ) ->
         foo.should.equal "foo"
         bar.should.equal "bar"
         done()
+        return
+
+      return
 
 
   describe "off", ->
@@ -526,5 +583,8 @@ describe "vk", ->
           event.should.equal "onApplicationAdded"
           listener.should.equal fakeListener
           done()
+          return
 
       vk.off "onApplicationAdded", fakeListener
+
+      return

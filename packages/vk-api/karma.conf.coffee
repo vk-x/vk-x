@@ -1,6 +1,8 @@
 # Karma configuration
 # Generated on Sat Apr 16 2016 02:05:28 GMT+0500 (Russia TZ 4 Standard Time)
 
+process.env.CHROME_BIN = require( "puppeteer" ).executablePath()
+
 module.exports = ( config ) ->
   config.set
 
@@ -33,12 +35,11 @@ module.exports = ( config ) ->
         module:
             loaders: [
               test: /\.coffee$/
-              loader: "coffee"
+              loader: "coffee-loader"
             ]
 
           resolve:
             extensions: [
-              ""
               ".coffee"
             ]
 
@@ -73,7 +74,12 @@ module.exports = ( config ) ->
 
     # start these browsers
     # available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: [ "Chrome" ]
+    browsers: [ "Chrome_headless" ]
+
+    customLaunchers:
+      Chrome_headless:
+        base: "ChromeHeadless"
+        flags: [ "--no-sandbox" ] # Hack for Linux on Windows
 
 
     # Continuous Integration mode
