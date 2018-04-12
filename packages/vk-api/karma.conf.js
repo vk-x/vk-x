@@ -14,7 +14,7 @@ module.exports = config => {
 
     // list of files / patterns to load in the browser
     files: [
-      './test/**/*.js'
+      './src/**/*.test.js'
     ],
 
     // list of files to exclude
@@ -23,7 +23,7 @@ module.exports = config => {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'test/*.js': [ 'webpack' ]
+      'src/**/*.test.js': [ 'webpack' ]
     },
 
     webpack: require('./webpack.config.js').commonConfig,

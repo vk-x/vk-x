@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 /* global expect, sinon */
 
-import cleanVk from 'inject-loader!../src/vk' // eslint-disable-line import/no-webpack-loader-syntax
+import cleanVk from 'inject-loader!./vk' // eslint-disable-line import/no-webpack-loader-syntax
 
 describe('vk', () => {
   let vk = null

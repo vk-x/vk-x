@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 /* global sinon */
 
-import cleanShortcuts from 'inject-loader!../src/shortcuts' // eslint-disable-line import/no-webpack-loader-syntax
+import cleanShortcuts from 'inject-loader!./shortcuts' // eslint-disable-line import/no-webpack-loader-syntax
 
 describe('shortcuts', () => {
   let base = null

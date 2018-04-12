@@ -1,6 +1,6 @@
 /* eslint-env mocha */
 
-import cleanIndex from 'inject-loader!../src/index' // eslint-disable-line import/no-webpack-loader-syntax
+import cleanIndex from 'inject-loader!./index' // eslint-disable-line import/no-webpack-loader-syntax
 
 describe('index', () => {
   it('should apply shortcuts to vk', () => {
