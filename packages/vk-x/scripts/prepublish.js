@@ -12,7 +12,7 @@ if (manifestObj.version !== packageObj.version) {
   fs.writeFileSync(path.resolve(__dirname, '../extension/manifest.json'), manifestJson, { encoding: 'utf8' })
 
   exec('git add extension/manifest.json')
-  exec(`git commit -m \"chore(vk-x): bump manifest version to ${packageObj.version}\"`)
+  exec(`git commit -m "chore(vk-x): bump manifest version to ${packageObj.version}"`)
 
   console.log(`vk-x manifest version bumped to ${packageObj.version}`)
 } else {

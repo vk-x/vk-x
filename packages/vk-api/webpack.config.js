@@ -11,8 +11,7 @@ const commonConfig = {
       use: {
         loader: 'babel-loader'
       }
-    }
-    ]
+    }]
   },
 
   resolve: {
@@ -23,8 +22,7 @@ const commonConfig = {
 }
 
 module.exports = {
-  ...commonConfig, // Use here,
-  commonConfig, // Export for Karma.
+  ...commonConfig,
 
   entry: {
     'vk-api': './src/index.js',
@@ -43,3 +41,11 @@ module.exports = {
     new webpack.BannerPlugin(`vk-api v${packageInfo.version} (c) vk-x contributors, git.io/vwqn6`)
   ]
 }
+
+// Adding exports.commonConfig for use in Karma config as non-enumerable,
+// otherwise Webpack complains about an unknown key.
+Object.defineProperty(module.exports, 'commonConfig', {
+  enumerable: false,
+  configurable: true,
+  get: () => commonConfig
+})
