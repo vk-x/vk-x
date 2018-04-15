@@ -24,7 +24,6 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
     "chai": "^3.5.0",
@@ -32,6 +31,7 @@
     "jquery": "^3.2.1",
     "mocha": "^3.3.0",
     "moment": "^2.22.0",
+    "post-robot": "^8.0.19",
     "pubsub-js": "^1.5.3",
     "raw-loader": "^0.5.1",
     "standard": "^11.0.1",
@@ -43,12 +43,14 @@
   },
   "babel": {
     "presets": [
-      "env"
+      ["env", {
+        "targets": {
+          "browsers": ["last 2 Chrome versions"]
+        }
+      }]
+    ],
+    "plugins": [
+      "babel-plugin-transform-object-rest-spread"
     ]
-  },
-  "eslintConfig": {
-    "env": {
-      "browser": true
-    }
   }
 }

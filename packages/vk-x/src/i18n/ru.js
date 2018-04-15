@@ -33,7 +33,7 @@ export default {
   languageId: 0,
   locale: 'ru',
   messages,
-  // See src/i18n.coffee and https://github.com/vk-x/vk-x/wiki/Language-IDs
+  // See src/i18n.js and https://github.com/vk-x/vk-x/wiki/Language-IDs
   aliases: [
     2,
     8,

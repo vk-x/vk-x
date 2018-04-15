@@ -4,8 +4,8 @@ const packageInfo = require('./package.json')
 
 module.exports = {
   entry: {
-    'content-script': ['babel-polyfill', './src/content-script.js'],
-    'injected': ['babel-polyfill', './src/index.js']
+    'content-script': './src/content-script.js',
+    'injected': './src/index.js'
   },
 
   output: {
@@ -54,7 +54,12 @@ module.exports = {
     ]
   },
 
-  plugins: [
+  devtool: 'source-map',
+
+  plugins: process.argv.includes('--watch') ? [
     new webpack.BannerPlugin(`vk-x v${packageInfo.version} (c) vk-x contributors, git.io/vwRaE`)
+  ] : [
+    new webpack.BannerPlugin(`vk-x v${packageInfo.version} (c) vk-x contributors, git.io/vwRaE`),
+    new webpack.optimize.UglifyJsPlugin({ sourceMap: true })
   ]
 }

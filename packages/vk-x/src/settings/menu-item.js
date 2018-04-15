@@ -14,14 +14,14 @@ export default {
     $('#top_support_link').after("<a class='top_profile_mrow vkx-popup-link'>vk-x</a>")
 
     // Wait for sync down. Otherwise isNew will be true on a new machine when it shouldn't be.
-    return settings.on('fetch.remote', function () {
+    settings.on('fetch.remote', () => {
       utils.runConditional('internal.isNew', {
-        true () { return window.TopMenu.show() }
+        true () { window.TopMenu.show() }
       })
 
       utils.styleConditional('internal.isNew', justInstalledStyles)
 
-      return $('.vkx-popup-link').on('click', () => settings.set('internal.isNew', false))
+      $('.vkx-popup-link').on('click', () => settings.set('internal.isNew', false))
     })
   }
 }

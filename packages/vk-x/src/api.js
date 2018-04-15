@@ -1,12 +1,14 @@
+import postRobot from 'post-robot'
 import vk from '@vk-x/vk-api'
 
-vk.ready = new Promise(resolve => {
-  window.addEventListener('message', ({ data } = {}) => {
-    if (data.vkxAccessToken) {
-      vk.accessToken = data.vkxAccessToken
-      resolve()
-    }
-  })
-})
+postRobot.CONFIG.LOG_LEVEL = 'warn'
+postRobot.CONFIG.ALLOW_SAME_WINDOW = true
+
+vk.ready = postRobot.send(window, 'vkxConfirmApiReady')
+
+vk.method = async (...args) => {
+  const result = await postRobot.send(window, 'vkxCallApiMethod', { args })
+  return result.data
+}
 
 export default vk
