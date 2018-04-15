@@ -1,8 +1,8 @@
 const shortcuts = (base, baseMethod, methodList) => {
   const addShortcutMethod = (target, name, fullName) => {
-    target[ name ] = (...args) => {
+    target[name] = (...args) => {
       args.unshift(fullName)
-      return baseMethod.apply(base, args)
+      return base[baseMethod].apply(base, args)
     }
   }
 

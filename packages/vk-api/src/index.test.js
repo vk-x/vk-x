@@ -5,7 +5,7 @@ import cleanIndex from 'inject-loader!./index' // eslint-disable-line import/no-
 describe('index', () => {
   it('should apply shortcuts to vk', () => {
     let baseMethod
-    let base = (baseMethod = null)
+    let base
 
     const vk = cleanIndex({
       './shortcuts' (b, bm) {
@@ -15,6 +15,6 @@ describe('index', () => {
     }).default
 
     base.should.equal(vk)
-    baseMethod.should.equal(vk.method)
+    baseMethod.should.equal('method')
   })
 })

@@ -4,6 +4,6 @@ test/
 .gitignore
 .npmignore
 bower.json
-gen-method-list.coffee
-karma.conf.coffee
-webpack.config.coffee
+gen-method-list.js
+karma.conf.js
+webpack.config.js

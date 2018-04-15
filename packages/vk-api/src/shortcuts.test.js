@@ -19,7 +19,7 @@ describe('shortcuts', () => {
   })
 
   it('should add shortcuts for methods in the list', () => {
-    shortcuts(base, base.baseMethod, fakeApiMethodList)
+    shortcuts(base, 'baseMethod', fakeApiMethodList)
 
     base.should.have.deep.property('foo0.bar0')
     base.should.have.deep.property('foo0.qux0')
@@ -29,7 +29,7 @@ describe('shortcuts', () => {
   })
 
   it('should delegate to the base method', () => {
-    shortcuts(base, base.baseMethod, fakeApiMethodList)
+    shortcuts(base, 'baseMethod', fakeApiMethodList)
 
     const params = {foo: 'bar'}
     const callback = () => {}
