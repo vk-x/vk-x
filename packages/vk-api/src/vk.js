@@ -17,8 +17,10 @@ export default {
       this.getAccessToken(appId).then(accessToken => {
         if (accessToken) {
           callback(accessToken)
-          return resolve(accessToken)
+          resolve(accessToken)
+          return
         }
+
         const authUrl = this.getAuthUrl(appId, permissions, {
           windowStyle,
           redirectUrl: 'close.html'
@@ -27,12 +29,22 @@ export default {
         const popup = window.open(authUrl, 'vk-api-auth', 'width=700,height=600')
 
         const intervalHandler = window.setInterval(() => {
-          if (popup.closed) {
-            window.clearInterval(intervalHandler)
+          try {
+            if (popup.closed) {
+              window.clearInterval(intervalHandler)
 
+              this.getAccessToken(appId).then(accessToken => {
+                callback(accessToken)
+                resolve(accessToken)
+              })
+            }
+          } catch (e) {
             this.getAccessToken(appId).then(accessToken => {
-              callback(accessToken)
-              resolve(accessToken)
+              if (accessToken) {
+                window.clearInterval(intervalHandler)
+                callback(accessToken)
+                resolve(accessToken)
+              }
             })
           }
         }, 100)
@@ -110,7 +122,7 @@ export default {
     }
   },
 
-  method (methodName, params = {}, callback = function () {}) {
+  method (methodName, params = {}, callback = () => {}) {
     return new Promise((resolve, reject) => {
       const retry = () => {
         const wrappedCallback = ({ error, response }) => {
