@@ -2,6 +2,51 @@ import $ from 'jquery'
 import utils from '../module-utils'
 import styles from './styles'
 
+const mediaLinksSelector =
+  'a[href$=".webm"], a[href^="/away.php"][href*=".webm&"], ' +
+  'a[href$=".mp4"], a[href^="/away.php"][href*=".mp4&"]'
+
+const scrollMediaIntoView = (mediaEl) => {
+  if (!document.querySelector('.im-page--chat-body').contains(mediaEl)) {
+    return
+  }
+
+  const scrollContainer = $('.im-page--chat-body .ui_scroll_outer')
+  const scrollContainerBottom = scrollContainer.offset().top + scrollContainer.innerHeight()
+  const mediaBottom = mediaEl.offset().top + mediaEl.outerHeight(true)
+
+  if (mediaBottom > scrollContainerBottom) {
+    scrollContainer.scrollTop(scrollContainer.scrollTop() + (mediaBottom - scrollContainerBottom) + 20)
+  }
+}
+
+const mediaLinkMouseDownHandler = function (event) {
+  $(this).attr('vkx-visited-media-link', '')
+
+  // Preserve normal behavior with right click or Ctrl/Alt.
+  if (event.ctrlKey || event.altKey || event.which !== 1) {
+    $(this).removeAttr('onclick')
+    return
+  }
+
+  // Prevent default behavior otherwise.
+  $(this).attr('onclick', 'return false')
+
+  if ($('[vkx-media-expanded]', this).length === 0) {
+    const media = $(`<video vkx-media-expanded loading src="${this.href}" autoplay loop />`)
+
+    media.one('play', () => {
+      media.removeAttr('loading')
+      scrollMediaIntoView(media)
+    })
+
+    $(this).append(media).addClass('vkx-expanded')
+  } else {
+    $('[vkx-media-expanded]', this).remove()
+    $(this).removeClass('vkx-expanded')
+  }
+}
+
 export default {
   defineSettings: () => ({
     'common.previewMediaLinks': {
@@ -9,50 +54,24 @@ export default {
     }
   }),
 
-  runBeforeDom () {
+  runBeforeDom: () => {
     utils.styleConditional('common.previewMediaLinks', styles)
   },
 
   run () {
-    const handler = function (event) {
-      $(this).attr('vkx-media-link', '')
-
-      // Allow to open the link normally with Ctrl.
-      if (event.ctrlKey) {
-        $(this).removeAttr('onclick')
-      }
-
-      // Prevent bubbling otherwise.
-      $(this).attr('onclick', 'return false')
-
-      if ($(this).children().last().is('video')) {
-        $(this)
-          .removeClass('vkx-expanded')
-          .children().last().remove()
-      } else {
-        $(this)
-          .addClass('vkx-expanded')
-          .append(
-            `<video vkx-media-expanded src="${this.href}" autoplay loop width="400"` +
-            'onclick="if (!arguments[0].ctrlKey) this.parentNode.removeChild(this)">'
-          )
-      }
-    }
-
-    const selector = 'a[href$=".webm"], a[href$=".gifv"], a[href$=".mp4"], ' +
-      'a[href^="/away.php"][href*=".webm&"], a[href^="/away.php"][href*=".gifv&"], ' +
-      'a[href^="/away.php"][href*=".mp4&"]'
-
     utils.runConditional('common.previewMediaLinks', {
-      true () {
-        $(document).on('mousedown', selector, handler)
+      true: () => {
+        $(document).on('mousedown', mediaLinksSelector, mediaLinkMouseDownHandler)
       },
-      false () {
-        $(document).off('mousedown', selector, handler)
-        $('[vkx-media-link]')
+
+      false: () => {
+        $(document).off('mousedown', mediaLinksSelector, mediaLinkMouseDownHandler)
+
+        $('[vkx-visited-media-link]')
           .removeAttr('onclick')
-          .removeAttr('vkx-media-link')
           .removeClass('vkx-expanded')
+          .removeAttr('vkx-visited-media-link')
+
         $('[vkx-media-expanded]').remove()
       }
     })
