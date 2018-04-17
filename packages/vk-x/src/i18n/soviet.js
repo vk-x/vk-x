@@ -6,6 +6,7 @@ const messages = {
 
   'settings.messages': 'Телеграммы и материалы',
   'settings.messages.darkerUnread': 'Новые телеграммы на более тёмной подложке',
+  'settings.messages.collapseList': 'Свернуть перечень переписок, чтобы открыть телеграммы шире',
   'settings.messages.noPagePreviews': 'Не подшивать ссылки на страницы как материалы к телеграммам',
   'settings.messages.showTimestamps': 'Показывать время отправки каждой телеграммы',
 

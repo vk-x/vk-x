@@ -6,6 +6,7 @@ const messages = {
 
   'settings.messages': 'Повідомлення та записи',
   'settings.messages.darkerUnread': 'Більш темний фон у непрочитаних та вибраних повідомленнях',
+  'settings.messages.collapseList': 'Згорнути список діалогів, щоб збільшити область листування',
   'settings.messages.noPagePreviews': 'Не прикріплювати превью для посилань на веб-сторінки',
   'settings.messages.showTimestamps': 'Показувати час відправлення кожного повідомлення',
 

@@ -3,6 +3,7 @@ import settings from 'settings'
 import i18n from 'i18n'
 
 import awayPhp from './away-php'
+import collapseConversationList from './collapse-conversation-list'
 import fixedLeftMenu from './fixed-left-menu'
 import hidePeopleYouMightKnow from './hide-people-you-might-know'
 import mediaPreview from './media-preview'
@@ -23,6 +24,7 @@ import languageSoviet from './i18n/soviet'
 
 const modules = [
   awayPhp,
+  collapseConversationList,
   fixedLeftMenu,
   hidePeopleYouMightKnow,
   mediaPreview,

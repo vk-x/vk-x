@@ -13,14 +13,14 @@ export default {
   wrapStyle (style) {
     style.isUsed = false
 
-    style.use = function () {
+    style.use = () => {
       if (!style.isUsed) {
         style.ref()
         style.isUsed = true
       }
     }
 
-    style.unuse = function () {
+    style.unuse = () => {
       if (style.isUsed) {
         style.unref()
         style.isUsed = false
@@ -34,8 +34,8 @@ export default {
     const wrapped = this.wrapStyle(style)
 
     this.runConditional(settingKey, {
-      true () { wrapped.use(settingKey) },
-      false () { wrapped.unuse(settingKey) }
+      true: () => { wrapped.use() },
+      false: () => { wrapped.unuse() }
     })
   },
 
