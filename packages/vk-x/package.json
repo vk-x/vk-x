@@ -31,23 +31,29 @@
     "jquery": "^3.2.1",
     "mocha": "^3.3.0",
     "moment": "^2.22.0",
-    "post-robot": "^8.0.19",
+    "post-robot": "github:deltaidea/post-robot#allow-same-window-builds",
     "pubsub-js": "^1.5.3",
     "raw-loader": "^0.5.1",
     "standard": "^11.0.1",
     "style-loader": "^0.17.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
+    "uglifyjs-webpack-plugin": "^1.2.4",
     "underscore-template-loader": "^0.7.3",
     "webpack": "^2.5.1"
   },
   "babel": {
     "presets": [
-      ["env", {
-        "targets": {
-          "browsers": ["last 2 Chrome versions"]
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "last 2 Chrome versions"
+            ]
+          }
         }
-      }]
+      ]
     ],
     "plugins": [
       "babel-plugin-transform-object-rest-spread"

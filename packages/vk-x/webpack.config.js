@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const path = require('path')
+const UglifyPlugin = require('uglifyjs-webpack-plugin')
 const packageInfo = require('./package.json')
 
 module.exports = {
@@ -54,12 +55,29 @@ module.exports = {
     ]
   },
 
-  devtool: 'source-map',
+  devtool: process.argv.includes('--watch') ? undefined : 'source-map',
 
   plugins: process.argv.includes('--watch') ? [
     new webpack.BannerPlugin(`vk-x v${packageInfo.version} (c) vk-x contributors, git.io/vwRaE`)
   ] : [
     new webpack.BannerPlugin(`vk-x v${packageInfo.version} (c) vk-x contributors, git.io/vwRaE`),
-    new webpack.optimize.UglifyJsPlugin({ sourceMap: true })
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new UglifyPlugin({
+      cache: true,
+      sourceMap: true,
+      uglifyOptions: {
+        compress: {
+          ecma: 8,
+          passes: 2,
+          pure_getters: 'strict',
+          unsafe: true,
+          unsafe_comps: true,
+          unsafe_math: true,
+          unsafe_methods: true,
+          unsafe_proto: true,
+          unsafe_regexp: true
+        }
+      }
+    })
   ]
 }
