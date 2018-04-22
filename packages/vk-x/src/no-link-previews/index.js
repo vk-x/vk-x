@@ -25,22 +25,20 @@ export default {
 
     const ATTACHMENT_TYPE_PAGE = 'share'
 
-    let done
+    let onUploadDone
 
     Object.defineProperty(window, 'onUploadDone', {
       enumerable: true,
       configurable: true,
 
-      get () {
-        return done
-      },
+      get: () => onUploadDone,
 
-      set (newDone) {
-        done = data => {
+      set: newDone => {
+        onUploadDone = data => {
           if ((data[0] === ATTACHMENT_TYPE_PAGE) && settings.get('messages.noPagePreviews')) {
             window.onUploadFail('Unknown error')
           } else {
-            newDone.apply(window, [].slice.call(arguments))
+            newDone.call(window, data)
           }
         }
       }
