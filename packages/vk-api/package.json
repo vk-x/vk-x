@@ -8,7 +8,7 @@
     "watch": "webpack --watch",
     "gen-methods": "babel-node gen-method-list.js",
     "prepublish": "npm run build",
-    "test": "karma start"
+    "test": "karma start --single-run"
   },
   "publishConfig": {
     "access": "public"
