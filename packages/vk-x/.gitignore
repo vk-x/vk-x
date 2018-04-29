@@ -1,4 +1,0 @@
-*.map
-node_modules/
-extension/content-script.js
-extension/injected.js
