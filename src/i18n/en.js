@@ -12,7 +12,6 @@ const messages = {
 
   'settings.sideMenu': 'Side menu',
   'settings.sideMenu.fixPosition': "Fix menu on the page so it doesn't scroll out of view",
-  'settings.sideMenu.showTime': 'Show current time under the menu',
 
   'settings.friends': 'Friends',
   'settings.friends.noPeopleYouMightKnow': 'Hide "People you might know"',

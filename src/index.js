@@ -6,7 +6,6 @@ import collapseConversationList from './collapse-conversation-list'
 import fixedLeftMenu from './fixed-left-menu'
 import hidePeopleYouMightKnow from './hide-people-you-might-know'
 import mediaPreview from './media-preview'
-import menuClock from './menu-clock'
 import messageBackground from './message-background'
 import messageTimestamps from './message-timestamps'
 import myVideosByDefault from './my-videos-by-default'
@@ -27,7 +26,6 @@ const modules = [
   fixedLeftMenu,
   hidePeopleYouMightKnow,
   mediaPreview,
-  menuClock,
   messageBackground,
   messageTimestamps,
   myVideosByDefault,

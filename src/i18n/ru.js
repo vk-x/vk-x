@@ -12,7 +12,6 @@ const messages = {
 
   'settings.sideMenu': 'Боковое меню',
   'settings.sideMenu.fixPosition': 'Закрепить положение меню, не прокручивать из вида',
-  'settings.sideMenu.showTime': 'Показывать текущее время под меню',
 
   'settings.friends': 'Друзья',
   'settings.friends.noPeopleYouMightKnow': 'Скрывать блок "Возможные друзья"',

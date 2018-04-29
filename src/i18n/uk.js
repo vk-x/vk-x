@@ -12,7 +12,6 @@ const messages = {
 
   'settings.sideMenu': 'Бічне меню',
   'settings.sideMenu.fixPosition': 'Закріпити положення меню, не прокручувати з поля зору',
-  'settings.sideMenu.showTime': 'Показувати поточний час під меню',
 
   'settings.friends': 'Друзі',
   'settings.friends.noPeopleYouMightKnow': 'Приховувати блок "Можливі друзі"',

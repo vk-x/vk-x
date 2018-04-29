@@ -1,9 +1,12 @@
-import moment from 'moment'
+import tinytime from 'tinytime'
 import 'arrive'
 
 import utils from '../module-utils'
 import i18n from '../i18n'
 import styles from './styles'
+
+const format12h = tinytime('{h}:{mm} {a}')
+const format24h = tinytime('{H}:{mm}')
 
 export default {
   defineSettings: () => ({
@@ -20,9 +23,9 @@ export default {
       if (el.querySelector('.vkx-message-time')) return // Fixes #47
 
       const rawTimestamp = el.getAttribute('data-ts')
-      const parsedTime = moment.unix(rawTimestamp)
-      const timeFormat = i18n.getCurrentLocale() === 'en' ? 'h:mm a' : 'HH:mm'
-      const formattedTime = parsedTime.format(timeFormat)
+      const parsedTime = new Date(rawTimestamp * 1000)
+      const format = i18n.getCurrentLocale() === 'en' ? format12h : format24h
+      const formattedTime = format.render(parsedTime).toLowerCase()
 
       el.insertAdjacentHTML('afterbegin', `<span class='vkx-message-time'>${formattedTime}</span>`)
     }
