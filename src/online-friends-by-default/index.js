@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import utils from '../module-utils'
 
 export default {
@@ -9,7 +8,7 @@ export default {
   }),
 
   run () {
-    const friendsLink = $('#l_fr > a')[0]
+    const friendsLink = document.querySelector('#l_fr > a')
     utils.setConditional('friends.onlineByDefault', friendsLink, 'href', {
       true: '/friends?section=online'
     })

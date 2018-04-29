@@ -14,23 +14,26 @@ module.exports = {
   },
 
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader'
+      use: 'babel-loader'
     }, {
       test: /\.html$/,
-      loader: 'underscore-template-loader',
-      query: {
-        attributes: [],
-        interpolate: '\\{\\{(.+?)\\}\\}'
-      }
+      use: [{
+        loader: 'underscore-template-loader',
+        query: {
+          attributes: [],
+          interpolate: '\\{\\{(.+?)\\}\\}'
+        }
+      }]
     }, {
       test: /\.styl$/,
-      loader: 'style-loader/useable!raw-loader!stylus-loader'
-    }, {
-      test: /\.json$/,
-      loader: 'json-loader'
+      use: [
+        'style-loader/useable',
+        'raw-loader',
+        'stylus-loader'
+      ]
     }]
   },
 
@@ -42,30 +45,32 @@ module.exports = {
     ]
   },
 
-  devtool: process.argv.includes('--watch') ? undefined : 'source-map',
+  mode: process.argv.includes('--watch') ? 'development' : 'production',
+  devtool: process.argv.includes('--watch') ? 'eval-source-map' : 'source-map',
+  optimization: {
+    minimizer: [
+      new UglifyPlugin({
+        cache: true,
+        sourceMap: true,
+        uglifyOptions: {
+          compress: {
+            ecma: 8,
+            passes: 2,
+            pure_getters: 'strict',
+            unsafe: true,
+            unsafe_comps: true,
+            unsafe_math: true,
+            unsafe_methods: true,
+            unsafe_proto: true,
+            unsafe_regexp: true
+          }
+        }
+      })
+    ]
+  },
 
-  plugins: process.argv.includes('--watch') ? [
+  plugins: [
     new webpack.BannerPlugin(`vk-x v${packageInfo.version} (c) vk-x contributors, https://git.io/vwRaE`),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
-  ] : [
-    new webpack.BannerPlugin(`vk-x v${packageInfo.version} (c) vk-x contributors, https://git.io/vwRaE`),
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new UglifyPlugin({
-      cache: true,
-      sourceMap: true,
-      uglifyOptions: {
-        compress: {
-          ecma: 8,
-          passes: 2,
-          pure_getters: 'strict',
-          unsafe: true,
-          unsafe_comps: true,
-          unsafe_math: true,
-          unsafe_methods: true,
-          unsafe_proto: true,
-          unsafe_regexp: true
-        }
-      }
-    })
   ]
 }

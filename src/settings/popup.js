@@ -1,4 +1,4 @@
-import $ from 'jquery'
+import { on } from 'delegated-events'
 import settings from './index'
 import packageInfo from '../../package.json'
 import popupTemplate from './popup-template'
@@ -18,27 +18,27 @@ export default {
       }
     })
 
-    $(document).on('click', '.vkx-popup-link', function () {
+    on('click', '.vkx-popup-link', () => {
       window.TopMenu.toggle(false)
       window.stManager.add('settings.css', () => box.show())
     })
 
-    $(box.bodyNode).html(popupTemplate())
+    box.bodyNode.innerHTML = popupTemplate()
 
-    $('[setting-id]', box.bodyNode).each(function () {
-      $(this).toggleClass('on', settings.get($(this).attr('setting-id')))
+    box.bodyNode.querySelectorAll('[vkx-setting]').forEach(el => {
+      el.classList.toggle('on', settings.get(el.getAttribute('setting-id')))
     })
 
-    $(box.bodyNode).addClass('vkx-popup')
+    box.bodyNode.classList.add('vkx-popup')
     popupStyles.use()
 
-    $(box.bodyNode).on('click', '.checkbox', function () {
-      const key = $(this).attr('setting-id')
+    on('click', '[vkx-setting]', function () {
+      const key = this.getAttribute('setting-id')
       settings.set(key, !settings.get(key))
     })
 
-    $(box.bodyNode).on('mouseover', '.checkbox', function () {
-      const key = $(this).attr('setting-id')
+    on('mouseover', '[vkx-setting]', function () {
+      const key = this.getAttribute('setting-id')
       const tooltipMessage = i18n.t(`settings.${key}.tooltip`)
       if (tooltipMessage) {
         window.showTooltip(this, {
@@ -52,12 +52,15 @@ export default {
       }
     })
 
-    $('#vkx-reset-settings').on('click', () =>
+    on('click', '#vkx-reset-settings', () =>
       settings.reset().then(() => window.document.location.reload())
     )
 
     settings.on('set', ({ key, value }) => {
-      $(`[setting-id='${key}']`, box.bodyNode).toggleClass('on', value)
+      const settingEl = box.bodyNode.querySelector(`[vkx-setting][setting-id="${key}"]`)
+      if (settingEl) {
+        settingEl.classList.toggle('on', value)
+      }
     })
   }
 }

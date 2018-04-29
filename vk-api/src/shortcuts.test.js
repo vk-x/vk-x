@@ -21,11 +21,11 @@ describe('shortcuts', () => {
   it('should add shortcuts for methods in the list', () => {
     shortcuts(base, 'baseMethod', fakeApiMethodList)
 
-    base.should.have.deep.property('foo0.bar0')
-    base.should.have.deep.property('foo0.qux0')
-    base.should.have.deep.property('foo1.bar1')
-    base.should.have.deep.property('foo1.qux1')
-    base.should.have.deep.property('exec')
+    base.should.have.nested.property('foo0.bar0')
+    base.should.have.nested.property('foo0.qux0')
+    base.should.have.nested.property('foo1.bar1')
+    base.should.have.nested.property('foo1.qux1')
+    base.should.have.nested.property('exec')
   })
 
   it('should delegate to the base method', () => {

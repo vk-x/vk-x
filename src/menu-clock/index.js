@@ -1,8 +1,9 @@
 // Show digital clock in the left menu, see #22.
 
-import $ from 'jquery'
+import moment from 'moment'
 import utils from '../module-utils'
 import styles from './styles'
+import clockTemplate from './clock-template'
 
 export default {
   defineSettings: () => ({
@@ -20,14 +21,11 @@ export default {
 
     utils.runConditional('sideMenu.showTime', {
       true () {
-        const moment = require('moment')
-        const clockTemplate = require('./clock-template')
-
-        $('#side_bar_inner').append(clockTemplate())
+        document.querySelector('#side_bar_inner').insertAdjacentHTML('beforeend', clockTemplate())
 
         const updateClock = () => {
-          $('.vkx-time').html(moment().format('HH:mm:ss'))
-          $('.vkx-date').html(moment().format('DD.MM.YYYY'))
+          document.querySelector('.vkx-time').innerHTML = moment().format('HH:mm:ss')
+          document.querySelector('.vkx-date').innerHTML = moment().format('DD.MM.YYYY')
         }
 
         updateClock()
@@ -35,7 +33,7 @@ export default {
       },
 
       false () {
-        $('.vkx-clock').remove()
+        document.querySelector('.vkx-clock').remove()
         clearInterval(intervalHandler)
       }
     })

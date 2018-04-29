@@ -13,23 +13,26 @@ module.exports = config => {
 
     webpack: {
       module: {
-        loaders: [{
+        rules: [{
           test: /\.js$/,
           exclude: /node_modules/,
-          loader: 'babel-loader'
+          use: 'babel-loader'
         }, {
           test: /\.html$/,
-          loader: 'underscore-template-loader',
-          query: {
-            attributes: [],
-            interpolate: '\\{\\{(.+?)\\}\\}'
-          }
+          use: [{
+            loader: 'underscore-template-loader',
+            query: {
+              attributes: [],
+              interpolate: '\\{\\{(.+?)\\}\\}'
+            }
+          }]
         }, {
           test: /\.styl$/,
-          loader: 'style-loader/useable!raw-loader!stylus-loader'
-        }, {
-          test: /\.json$/,
-          loader: 'json-loader'
+          use: [
+            'style-loader/useable',
+            'raw-loader',
+            'stylus-loader'
+          ]
         }]
       },
 
@@ -39,7 +42,9 @@ module.exports = config => {
           '.styl',
           '.js'
         ]
-      }
+      },
+
+      mode: 'none'
     },
 
     browsers: [ 'Chrome_headless' ],

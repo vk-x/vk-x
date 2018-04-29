@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import settings from './settings'
 import i18n from './i18n'
 
@@ -58,7 +57,7 @@ const i18nReady = new Promise(resolve => {
 })
 
 const domReady = new Promise(resolve => {
-  $(resolve)
+  document.addEventListener('DOMContentLoaded', resolve)
 })
 
 // Local settings are fetched faster than the DOM with a high level of certainty,

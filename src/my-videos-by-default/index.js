@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import utils from '../module-utils'
 
 export default {
@@ -9,7 +8,7 @@ export default {
   }),
 
   run () {
-    const videosLink = $('#l_vid > a')[ 0 ]
+    const videosLink = document.querySelector('#l_vid > a')
     utils.setConditional('videos.myVideosByDefault', videosLink, 'href', {
       true: `/videos${window.vk.id}`
     })

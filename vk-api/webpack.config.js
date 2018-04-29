@@ -16,10 +16,10 @@ module.exports = {
   },
 
   module: {
-    loaders: [{
+    rules: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel-loader'
+      use: 'babel-loader'
     }]
   },
 
@@ -29,10 +29,12 @@ module.exports = {
     ]
   },
 
+  mode: 'none',
+
   plugins: [
     new webpack.BannerPlugin(`vk-api v${packageInfo.version} (c) vk-x contributors, https://git.io/vpBko`),
     new UglifyPlugin({
-      test: /\.min\.js/,
+      test: /\.min\.js$/i,
       uglifyOptions: {
         compress: {
           ecma: 5,

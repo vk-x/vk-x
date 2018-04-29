@@ -1,49 +1,53 @@
-import $ from 'jquery'
+import { on, off } from 'delegated-events'
 import utils from '../module-utils'
+import { htmlToElement } from '../helpers/htmlToElement'
 import styles from './styles'
 
 const mediaLinksSelector =
   'a[href$=".webm"], a[href^="/away.php"][href*=".webm&"], ' +
   'a[href$=".mp4"], a[href^="/away.php"][href*=".mp4&"]'
 
-const scrollMediaIntoView = (mediaEl) => {
+const scrollMediaIntoView = mediaEl => {
   if (!document.querySelector('.im-page--chat-body').contains(mediaEl)) {
     return
   }
 
-  const scrollContainer = $('.im-page--chat-body .ui_scroll_outer')
-  const scrollContainerBottom = scrollContainer.offset().top + scrollContainer.innerHeight()
-  const mediaBottom = mediaEl.offset().top + mediaEl.outerHeight(true)
+  const scrollContainer = document.querySelector('.im-page--chat-body .ui_scroll_outer')
+  const scrollContainerBottom = scrollContainer.getBoundingClientRect().bottom
+  const mediaBottom = mediaEl.getBoundingClientRect().bottom
 
   if (mediaBottom > scrollContainerBottom) {
-    scrollContainer.scrollTop(scrollContainer.scrollTop() + (mediaBottom - scrollContainerBottom) + 20)
+    scrollContainer.scrollTop += mediaBottom - scrollContainerBottom + 20
   }
 }
 
 const mediaLinkMouseDownHandler = function (event) {
-  $(this).attr('vkx-visited-media-link', '')
+  this.setAttribute('vkx-visited-media-link', '')
 
   // Preserve normal behavior with right click or Ctrl/Alt.
   if (event.ctrlKey || event.altKey || event.which !== 1) {
-    $(this).removeAttr('onclick')
+    this.removeAttribute('onclick')
     return
   }
 
   // Prevent default behavior otherwise.
-  $(this).attr('onclick', 'return false')
+  this.setAttribute('onclick', 'return false')
 
-  if ($('[vkx-media-expanded]', this).length === 0) {
-    const media = $(`<video vkx-media-expanded loading src="${this.href}" autoplay loop />`)
+  if (!this.querySelector('[vkx-media-expanded]')) {
+    const media = htmlToElement(`<video vkx-media-expanded loading src="${this.href}" autoplay loop />`)
 
-    media.one('play', () => {
-      media.removeAttr('loading')
-      scrollMediaIntoView(media)
+    media.addEventListener('play', () => {
+      if (media.hasAttribute('loading')) {
+        scrollMediaIntoView(media)
+        media.removeAttribute('loading')
+      }
     })
 
-    $(this).append(media).addClass('vkx-expanded')
+    this.appendChild(media)
+    this.classList.add('vkx-expanded')
   } else {
-    $('[vkx-media-expanded]', this).remove()
-    $(this).removeClass('vkx-expanded')
+    this.querySelector('[vkx-media-expanded]').remove()
+    this.classList.remove('vkx-expanded')
   }
 }
 
@@ -61,18 +65,19 @@ export default {
   run () {
     utils.runConditional('common.previewMediaLinks', {
       true: () => {
-        $(document).on('mousedown', mediaLinksSelector, mediaLinkMouseDownHandler)
+        on('mousedown', mediaLinksSelector, mediaLinkMouseDownHandler)
       },
 
       false: () => {
-        $(document).off('mousedown', mediaLinksSelector, mediaLinkMouseDownHandler)
+        off('mousedown', mediaLinksSelector, mediaLinkMouseDownHandler)
 
-        $('[vkx-visited-media-link]')
-          .removeAttr('onclick')
-          .removeClass('vkx-expanded')
-          .removeAttr('vkx-visited-media-link')
+        document.querySelectorAll('[vkx-visited-media-link]').forEach(el => {
+          el.removeAttr('onclick')
+          el.removeClass('vkx-expanded')
+          el.removeAttr('vkx-visited-media-link')
+        })
 
-        $('[vkx-media-expanded]').remove()
+        document.querySelectorAll('[vkx-media-expanded]').forEach(el => el.remove())
       }
     })
   }

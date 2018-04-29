@@ -1,6 +1,6 @@
 /* eslint-env mocha */
+/* global expect */
 
-import { expect } from 'chai'
 import { decode } from './cp1251'
 
 const cases = [

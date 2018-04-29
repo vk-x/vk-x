@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import IntlMessageFormat from 'intl-messageformat'
 
 const cache = {}
@@ -33,7 +32,7 @@ export default {
 
   getCurrentLocale () {
     const currentLocale = cache[currentLanguageId] && cache[currentLanguageId].locale
-    return currentLocale != null ? currentLocale : $('html').attr('lang')
+    return currentLocale != null ? currentLocale : document.documentElement.getAttribute('lang')
   },
 
   t (key, data) {

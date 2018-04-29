@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import moment from 'moment'
 import 'arrive'
 
@@ -16,26 +15,26 @@ export default {
   run () {
     utils.styleConditional('messages.showTimestamps', styles)
 
-    const onNewMessage = function () {
-      if ($(this).is(':first-child')) return
-      if ($(this).find('.vkx-message-time').length) return // Fixes #47
+    const onNewMessage = el => {
+      if (el.matches(':first-child')) return
+      if (el.querySelector('.vkx-message-time')) return // Fixes #47
 
-      const rawTimestamp = $(this).data('ts')
+      const rawTimestamp = el.getAttribute('data-ts')
       const parsedTime = moment.unix(rawTimestamp)
       const timeFormat = i18n.getCurrentLocale() === 'en' ? 'h:mm a' : 'HH:mm'
       const formattedTime = parsedTime.format(timeFormat)
 
-      $(this).prepend(`<span class='vkx-message-time'>${formattedTime}</span>`)
+      el.insertAdjacentHTML('afterbegin', `<span class='vkx-message-time'>${formattedTime}</span>`)
     }
 
     utils.runConditional('messages.showTimestamps', {
       true () {
         document.arrive('.im-mess', onNewMessage)
-        $('.im-mess').each(onNewMessage)
+        document.querySelectorAll('.im-mess').forEach(onNewMessage)
       },
       false () {
         document.unbindArrive(onNewMessage)
-        $('.vkx-message-time').remove()
+        document.querySelector('.vkx-message-time').remove()
       }
     })
   }
