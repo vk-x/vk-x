@@ -1,17 +1,16 @@
 const webpack = require('webpack')
-const path = require('path')
 const UglifyPlugin = require('uglifyjs-webpack-plugin')
 const packageInfo = require('./package.json')
 
 module.exports = {
   entry: {
-    'content-script': './src/content-script.js',
-    'injected': './src/index.js'
+    'extension/content-script.js': './src/content-script.js',
+    'extension/injected.js': './src/index.js'
   },
 
   output: {
-    path: path.resolve(__dirname, 'extension'),
-    filename: '[name].js'
+    path: __dirname,
+    filename: '[name]'
   },
 
   module: {
@@ -36,18 +35,6 @@ module.exports = {
   },
 
   resolve: {
-    modules: [
-      path.resolve(__dirname),
-      'node_modules'
-    ],
-
-    alias: {
-      'i18n': 'src/i18n',
-      'settings': 'src/settings',
-      'utils': 'src/module-utils',
-      'package.json': 'package.json'
-    },
-
     extensions: [
       '.html',
       '.styl',
@@ -58,9 +45,10 @@ module.exports = {
   devtool: process.argv.includes('--watch') ? undefined : 'source-map',
 
   plugins: process.argv.includes('--watch') ? [
-    new webpack.BannerPlugin(`vk-x v${packageInfo.version} (c) vk-x contributors, git.io/vwRaE`)
+    new webpack.BannerPlugin(`vk-x v${packageInfo.version} (c) vk-x contributors, https://git.io/vwRaE`),
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ] : [
-    new webpack.BannerPlugin(`vk-x v${packageInfo.version} (c) vk-x contributors, git.io/vwRaE`),
+    new webpack.BannerPlugin(`vk-x v${packageInfo.version} (c) vk-x contributors, https://git.io/vwRaE`),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new UglifyPlugin({
       cache: true,

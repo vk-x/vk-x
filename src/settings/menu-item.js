@@ -1,6 +1,6 @@
 import $ from 'jquery'
-import settings from 'settings'
-import utils from 'utils'
+import settings from './index'
+import utils from '../module-utils'
 import justInstalledStyles from './just-installed'
 
 export default {

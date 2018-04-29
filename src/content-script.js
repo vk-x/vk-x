@@ -1,5 +1,5 @@
 import postRobot from 'post-robot'
-import vk from '@vk-x/vk-api'
+import vk from '../vk-api/src/index'
 import { inject } from './helpers/inject'
 
 // Compiled from src/index.js, see webpack.config.js

@@ -1,8 +1,8 @@
 // Bypass away.php, see #3.
 
 import $ from 'jquery'
-import utils from 'utils'
-import settings from 'settings'
+import utils from '../module-utils'
+import settings from '../settings'
 import { decode } from '../helpers/cp1251'
 
 export default {

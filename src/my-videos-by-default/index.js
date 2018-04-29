@@ -1,5 +1,5 @@
 import $ from 'jquery'
-import utils from 'utils'
+import utils from '../module-utils'
 
 export default {
   defineSettings: () => ({

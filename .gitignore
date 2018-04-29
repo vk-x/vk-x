@@ -1,4 +1,6 @@
 *.map
 node_modules/
+vk-api/dist/
+package-lock.json
 extension/content-script.js
 extension/injected.js

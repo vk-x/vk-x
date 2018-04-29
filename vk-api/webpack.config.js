@@ -1,16 +1,25 @@
-const path = require('path')
 const webpack = require('webpack')
+const UglifyPlugin = require('uglifyjs-webpack-plugin')
 const packageInfo = require('./package.json')
 
-// Used here and in Karma config file.
-const commonConfig = {
+module.exports = {
+  entry: {
+    'dist/vk-api.js': './src/index.js',
+    'dist/vk-api.min.js': './src/index.js'
+  },
+
+  output: {
+    path: __dirname,
+    filename: '[name]',
+    library: 'vk',
+    libraryTarget: 'umd'
+  },
+
   module: {
-    rules: [{
+    loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader'
-      }
+      loader: 'babel-loader'
     }]
   },
 
@@ -18,34 +27,25 @@ const commonConfig = {
     extensions: [
       '.js'
     ]
-  }
-}
-
-module.exports = {
-  ...commonConfig,
-
-  entry: {
-    'vk-api': './src/index.js',
-    'vk-api.min': './src/index.js'
-  },
-
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
-    library: 'vk',
-    libraryTarget: 'umd'
   },
 
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({test: /\.min\.js($|\?)/i}),
-    new webpack.BannerPlugin(`vk-api v${packageInfo.version} (c) vk-x contributors, git.io/vwqn6`)
+    new webpack.BannerPlugin(`vk-api v${packageInfo.version} (c) vk-x contributors, https://git.io/vpBko`),
+    new UglifyPlugin({
+      test: /\.min\.js/,
+      uglifyOptions: {
+        compress: {
+          ecma: 5,
+          passes: 2,
+          pure_getters: 'strict',
+          unsafe: true,
+          unsafe_comps: true,
+          unsafe_math: true,
+          unsafe_methods: true,
+          unsafe_proto: true,
+          unsafe_regexp: true
+        }
+      }
+    })
   ]
 }
-
-// Adding exports.commonConfig for use in Karma config as non-enumerable,
-// otherwise Webpack complains about an unknown key.
-Object.defineProperty(module.exports, 'commonConfig', {
-  enumerable: false,
-  configurable: true,
-  get: () => commonConfig
-})

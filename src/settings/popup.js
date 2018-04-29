@@ -1,9 +1,9 @@
 import $ from 'jquery'
-import settings from 'settings'
-import packageInfo from 'package.json'
+import settings from './index'
+import packageInfo from '../../package.json'
 import popupTemplate from './popup-template'
 import popupStyles from './styles'
-import i18n from 'i18n'
+import i18n from '../i18n'
 
 export default {
   run () {

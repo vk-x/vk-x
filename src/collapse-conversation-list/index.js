@@ -1,6 +1,6 @@
 // Collapse the list of conversations to widen the chat area. See #13.
 
-import utils from 'utils'
+import utils from '../module-utils'
 import styles from './styles'
 import compatFix from './compat-fix'
 

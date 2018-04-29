@@ -1,6 +1,6 @@
 // Don't add previews for links when sending, see #5.
 
-import settings from 'settings'
+import settings from '../settings'
 
 export default {
   defineSettings: () => ({

@@ -2,7 +2,7 @@ import $ from 'jquery'
 import moment from 'moment'
 import 'arrive'
 
-import utils from 'utils'
+import utils from '../module-utils'
 import i18n from '../i18n'
 import styles from './styles'
 

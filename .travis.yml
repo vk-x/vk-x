@@ -4,5 +4,3 @@ sudo: false
 cache:
   directories:
     node_modules
-after_script:
-- npm run travis-greenkeeper

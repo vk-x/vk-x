@@ -1,6 +1,6 @@
 import $ from 'jquery'
-import settings from 'settings'
-import i18n from 'i18n'
+import settings from './settings'
+import i18n from './i18n'
 
 import awayPhp from './away-php'
 import collapseConversationList from './collapse-conversation-list'

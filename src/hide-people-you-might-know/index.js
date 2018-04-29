@@ -1,4 +1,4 @@
-import utils from 'utils'
+import utils from '../module-utils'
 import styles from './styles'
 
 export default {

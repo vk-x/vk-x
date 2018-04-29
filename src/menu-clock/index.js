@@ -1,7 +1,7 @@
 // Show digital clock in the left menu, see #22.
 
 import $ from 'jquery'
-import utils from 'utils'
+import utils from '../module-utils'
 import styles from './styles'
 
 export default {
