@@ -1,7 +1,7 @@
 // Bypass away.php, see #3.
 
 import { on } from 'delegated-events'
-import utils from '../module-utils'
+import { setPropertyOnSettingChange } from '../module-utils'
 import settings from '../settings'
 import { decode } from '../helpers/cp1251'
 
@@ -17,8 +17,9 @@ export default {
     // `return goAway('url', {}, event);`
     // These elements also have the href set as below, so let's ignore this case
     // and fall through to the next case below.
-    utils.setConditional('common.awayPhp', window, 'goAway', {
-      true: () => {}
+    setPropertyOnSettingChange('common.awayPhp', window, 'goAway', {
+      true: () => {},
+      false: window.goAway
     })
 
     // <a> elements returned from server just have href: "away.php?to=url",

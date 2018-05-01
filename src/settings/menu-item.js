@@ -1,5 +1,5 @@
 import settings from './index'
-import utils from '../module-utils'
+import { onSettingChange, applyStyleWhenSettingIsTrue } from '../module-utils'
 import justInstalledStyles from './just-installed'
 
 export default {
@@ -14,11 +14,11 @@ export default {
 
     // Wait for sync down. Otherwise isNew will be true on a new machine when it shouldn't be.
     settings.on('fetch.remote', () => {
-      utils.runConditional('internal.isNew', {
+      onSettingChange('internal.isNew', {
         true () { window.TopMenu.show() }
       })
 
-      utils.styleConditional('internal.isNew', justInstalledStyles)
+      applyStyleWhenSettingIsTrue('internal.isNew', justInstalledStyles)
 
       document.querySelector('.vkx-popup-link').addEventListener('click', () => {
         settings.set('internal.isNew', false)

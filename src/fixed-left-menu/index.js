@@ -1,6 +1,6 @@
 // Fix menu on the page so it doesn't scroll out of view, see #6.
 
-import utils from '../module-utils'
+import { applyStyleWhenSettingIsTrue } from '../module-utils'
 import styles from './styles'
 
 export default {
@@ -11,6 +11,6 @@ export default {
   }),
 
   runBeforeDom () {
-    utils.styleConditional('sideMenu.fixPosition', styles)
+    applyStyleWhenSettingIsTrue('sideMenu.fixPosition', styles)
   }
 }

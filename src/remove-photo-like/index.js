@@ -1,4 +1,4 @@
-import utils from '../module-utils'
+import { applyStyleWhenSettingIsTrue } from '../module-utils'
 import styles from './styles'
 
 export default {
@@ -9,6 +9,6 @@ export default {
   }),
 
   runBeforeDom () {
-    utils.styleConditional('photos.noLikeOverlay', styles)
+    applyStyleWhenSettingIsTrue('photos.noLikeOverlay', styles)
   }
 }

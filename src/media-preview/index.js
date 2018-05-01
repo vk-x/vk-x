@@ -1,5 +1,5 @@
 import { on, off } from 'delegated-events'
-import utils from '../module-utils'
+import { onSettingChange, applyStyleWhenSettingIsTrue } from '../module-utils'
 import { htmlToElement } from '../helpers/htmlToElement'
 import styles from './styles'
 
@@ -59,11 +59,11 @@ export default {
   }),
 
   runBeforeDom: () => {
-    utils.styleConditional('common.previewMediaLinks', styles)
+    applyStyleWhenSettingIsTrue('common.previewMediaLinks', styles)
   },
 
   run () {
-    utils.runConditional('common.previewMediaLinks', {
+    onSettingChange('common.previewMediaLinks', {
       true: () => {
         on('mousedown', mediaLinksSelector, mediaLinkMouseDownHandler)
       },

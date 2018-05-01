@@ -1,4 +1,4 @@
-import utils from '../module-utils'
+import { setPropertyOnSettingChange } from '../module-utils'
 
 export default {
   defineSettings: () => ({
@@ -9,8 +9,9 @@ export default {
 
   run () {
     const videosLink = document.querySelector('#l_vid > a')
-    utils.setConditional('videos.myVideosByDefault', videosLink, 'href', {
-      true: `/videos${window.vk.id}`
+    setPropertyOnSettingChange('videos.myVideosByDefault', videosLink, 'href', {
+      true: `/videos${window.vk.id}`,
+      false: videosLink.href
     })
   }
 }

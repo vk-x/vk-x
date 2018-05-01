@@ -1,4 +1,4 @@
-import utils from '../module-utils'
+import { setPropertyOnSettingChange } from '../module-utils'
 
 export default {
   defineSettings: () => ({
@@ -9,8 +9,9 @@ export default {
 
   run () {
     const friendsLink = document.querySelector('#l_fr > a')
-    utils.setConditional('friends.onlineByDefault', friendsLink, 'href', {
-      true: '/friends?section=online'
+    setPropertyOnSettingChange('friends.onlineByDefault', friendsLink, 'href', {
+      true: '/friends?section=online',
+      false: friendsLink.href
     })
   }
 }

@@ -1,7 +1,7 @@
 import tinytime from 'tinytime'
 import 'arrive'
 
-import utils from '../module-utils'
+import { onSettingChange, applyStyleWhenSettingIsTrue } from '../module-utils'
 import i18n from '../i18n'
 import styles from './styles'
 
@@ -16,7 +16,7 @@ export default {
   }),
 
   run () {
-    utils.styleConditional('messages.showTimestamps', styles)
+    applyStyleWhenSettingIsTrue('messages.showTimestamps', styles)
 
     const onNewMessage = el => {
       if (el.matches(':first-child')) return
@@ -30,7 +30,7 @@ export default {
       el.insertAdjacentHTML('afterbegin', `<span class='vkx-message-time'>${formattedTime}</span>`)
     }
 
-    utils.runConditional('messages.showTimestamps', {
+    onSettingChange('messages.showTimestamps', {
       true () {
         document.arrive('.im-mess', onNewMessage)
         document.querySelectorAll('.im-mess').forEach(onNewMessage)
