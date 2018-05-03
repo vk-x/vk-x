@@ -17,9 +17,6 @@ const messages = {
   'settings.friends.noPeopleYouMightKnow': 'Hide "People you might know"',
   'settings.friends.onlineByDefault': 'Open "Friends online" by default',
 
-  'settings.photos': 'Photos',
-  'settings.photos.noLikeOverlay': 'Remove the huge Like button on photos',
-
   'settings.videos': 'Videos',
   'settings.videos.myVideosByDefault': 'Open "My videos" by default',
 

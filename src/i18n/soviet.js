@@ -17,9 +17,6 @@ const messages = {
   'settings.friends.noPeopleYouMightKnow': 'Скрывать блок "Возможные друзья"',
   'settings.friends.onlineByDefault': 'Показывать только товарищей на связи по умолчанию',
 
-  'settings.photos': 'Фотокарточки',
-  'settings.photos.noLikeOverlay': 'Убрать большую кнопку "Одобряю" поверх фотокарточек',
-
   'settings.videos': 'Видеокаталог',
   'settings.videos.myVideosByDefault': 'Показывать только мои киноленты по умолчанию',
 

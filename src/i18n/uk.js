@@ -17,9 +17,6 @@ const messages = {
   'settings.friends.noPeopleYouMightKnow': 'Приховувати блок "Можливі друзі"',
   'settings.friends.onlineByDefault': 'Відкривати "Друзі онлайн" за замовчуваннямя',
 
-  'settings.photos': 'Фотографії',
-  'settings.photos.noLikeOverlay': 'Прибрати велику кнопку "Мені подобається" поверх фотографій',
-
   'settings.videos': 'Відеозаписи',
   'settings.videos.myVideosByDefault': 'Відкривати "Мої відеозаписи" за замовчуванням',
 
