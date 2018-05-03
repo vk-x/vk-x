@@ -6,7 +6,7 @@ import styles from './styles'
 export default {
   defineSettings: () => ({
     'sideMenu.fixPosition': {
-      defaultValue: true
+      defaultValue: false
     }
   }),
 

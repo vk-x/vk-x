@@ -4,7 +4,7 @@ import styles from './styles'
 export default {
   defineSettings: () => ({
     'friends.noPeopleYouMightKnow': {
-      defaultValue: true
+      defaultValue: false
     }
   }),
 
