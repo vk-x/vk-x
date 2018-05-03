@@ -77,6 +77,11 @@ const settings = {
     }
   },
 
+  getAll () {
+    // Clone the object to prevent accidental modification.
+    return { ...cache }
+  },
+
   async set (key, value) {
     cache[key] = value
     settings.trigger(`set.${key}`, { key, value })

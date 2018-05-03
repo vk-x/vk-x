@@ -1,86 +1,74 @@
-<% const t = require('../i18n').default.t %>
+<%
+  const t = require('../i18n').default.t
+
+  const checkbox = (id, isAdvanced) =>
+    '<div class="settings_narrow_row' + (isAdvanced ? ' advanced' : '') + '">' +
+      '<div class="checkbox' + (settings[id] ? ' on' : '') + '" vkx-setting setting-id="' + id + '">' +
+        t('settings.' + id) +
+      '</div>' +
+    '</div>'
+%>
 
 <div class="settings_panel">
   <div class="settings_line">
-    <div class="settings_label">{{t("settings.common")}}</div>
+    <div class="settings_label">{{t('settings.common')}}</div>
     <div class="settings_labeled_text">
-      <div class="settings_narrow_row">
-        <div class="checkbox" vkx-setting setting-id="common.awayPhp">{{t("settings.common.awayPhp")}}</div>
-      </div>
-      <div class="settings_narrow_row">
-        <div class="checkbox" vkx-setting setting-id="common.previewMediaLinks">{{t("settings.common.previewMediaLinks")}}</div>
-      </div>
+      {{ checkbox('common.awayPhp', true) }}
+      {{ checkbox('common.previewMediaLinks') }}
     </div>
   </div>
   <div class="settings_line">
-    <div class="settings_label">{{t("settings.messages")}}</div>
+    <div class="settings_label">{{t('settings.messages')}}</div>
     <div class="settings_labeled_text">
-      <div class="settings_narrow_row">
-        <div class="checkbox" vkx-setting setting-id="messages.darkerUnread">{{t("settings.messages.darkerUnread")}}</div>
-      </div>
-      <div class="settings_narrow_row">
-        <div class="checkbox" vkx-setting setting-id="messages.collapseList">{{t("settings.messages.collapseList")}}</div>
-      </div>
-      <div class="settings_narrow_row">
-        <div class="checkbox" vkx-setting setting-id="messages.noPagePreviews">{{t("settings.messages.noPagePreviews")}}</div>
-      </div>
-      <div class="settings_narrow_row">
-        <div class="checkbox" vkx-setting setting-id="messages.showTimestamps">{{t("settings.messages.showTimestamps")}}</div>
-      </div>
+      {{ checkbox('messages.darkerUnread') }}
+      {{ checkbox('messages.collapseList') }}
+      {{ checkbox('messages.noPagePreviews', true) }}
+      {{ checkbox('messages.showTimestamps') }}
+    </div>
+  </div>
+  <div class="settings_line advanced">
+    <div class="settings_label">{{t('settings.sideMenu')}}</div>
+    <div class="settings_labeled_text">
+      {{ checkbox('sideMenu.fixPosition') }}
+    </div>
+  </div>
+  <div class="settings_line advanced">
+    <div class="settings_label">{{t('settings.friends')}}</div>
+    <div class="settings_labeled_text">
+      {{ checkbox('friends.noPeopleYouMightKnow') }}
+      {{ checkbox('friends.onlineByDefault') }}
     </div>
   </div>
   <div class="settings_line">
-    <div class="settings_label">{{t("settings.sideMenu")}}</div>
+    <div class="settings_label">{{t('settings.photos')}}</div>
     <div class="settings_labeled_text">
-      <div class="settings_narrow_row">
-        <div class="checkbox" vkx-setting setting-id="sideMenu.fixPosition">{{t("settings.sideMenu.fixPosition")}}</div>
-      </div>
+      {{ checkbox('photos.noLikeOverlay') }}
     </div>
   </div>
-  <div class="settings_line">
-    <div class="settings_label">{{t("settings.friends")}}</div>
+  <div class="settings_line advanced">
+    <div class="settings_label">{{t('settings.videos')}}</div>
     <div class="settings_labeled_text">
-      <div class="settings_narrow_row">
-        <div class="checkbox" vkx-setting setting-id="friends.noPeopleYouMightKnow">{{t("settings.friends.noPeopleYouMightKnow")}}</div>
-      </div>
-      <div class="settings_narrow_row">
-        <div class="checkbox" vkx-setting setting-id="friends.onlineByDefault">{{t("settings.friends.onlineByDefault")}}</div>
-      </div>
+      {{ checkbox('videos.myVideosByDefault') }}
     </div>
   </div>
-  <div class="settings_line">
-    <div class="settings_label">{{t("settings.photos")}}</div>
-    <div class="settings_labeled_text">
-      <div class="settings_narrow_row">
-        <div class="checkbox" vkx-setting setting-id="photos.noLikeOverlay">{{t("settings.photos.noLikeOverlay")}}</div>
-      </div>
-    </div>
-  </div>
-  <div class="settings_line">
-    <div class="settings_label">{{t("settings.videos")}}</div>
-    <div class="settings_labeled_text">
-      <div class="settings_narrow_row">
-        <div class="checkbox" vkx-setting setting-id="videos.myVideosByDefault">{{t("settings.videos.myVideosByDefault")}}</div>
-      </div>
-    </div>
-  </div>
-  <div class="settings_line">
-    <div class="settings_label">{{t("settings.help")}}</div>
+  <div class="settings_line advanced">
+    <div class="settings_label">{{t('settings.help')}}</div>
     <div class="settings_labeled_text">
       <div class="settings_narrow_row">
         <a
           href="/vkx_community"
           target="_blank"
           class="flat_button secondary"
-        >{{t("settings.help.community")}}</a><a
+        >{{t('settings.help.community')}}</a><a
           href="https://github.com/vk-x/vk-x/issues"
           target="_blank"
           class="flat_button secondary"
-        >{{t("settings.help.reportBug")}}</a><button
-          id="vkx-reset-settings"
+        >{{t('settings.help.reportBug')}}</a><button
           class="flat_button secondary"
-        >{{t("settings.help.resetSettings")}}</button>
+          vkx-reset-settings
+        >{{t('settings.help.resetSettings')}}</button>
       </div>
     </div>
   </div>
+  <div class="wr_header" vkx-expand-settings>{{t(expanded ? 'settings.showLess' : 'settings.showMore')}}</div>
 </div>

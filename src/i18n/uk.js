@@ -26,7 +26,10 @@ const messages = {
   'settings.help': 'Допомога',
   'settings.help.community': 'Спільнота vk-x',
   'settings.help.reportBug': 'Повідомити про проблему',
-  'settings.help.resetSettings': 'Скинути налаштування'
+  'settings.help.resetSettings': 'Скинути налаштування',
+
+  'settings.showMore': 'Більше',
+  'settings.showLess': 'Згорнути'
 }
 
 export default {

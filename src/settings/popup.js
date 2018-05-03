@@ -23,11 +23,15 @@ export default {
       window.stManager.add('settings.css', () => box.show())
     })
 
-    box.bodyNode.innerHTML = popupTemplate()
+    const renderBoxBody = () => {
+      box.bodyNode.innerHTML = popupTemplate({
+        settings: settings.getAll(),
+        expanded: box.bodyNode.classList.contains('expanded-settings')
+      })
+      box.updateBoxCoords()
+    }
 
-    box.bodyNode.querySelectorAll('[vkx-setting]').forEach(el => {
-      el.classList.toggle('on', settings.get(el.getAttribute('setting-id')))
-    })
+    renderBoxBody()
 
     box.bodyNode.classList.add('vkx-popup')
     popupStyles.use()
@@ -52,15 +56,16 @@ export default {
       }
     })
 
-    on('click', '#vkx-reset-settings', () =>
-      settings.reset().then(() => window.document.location.reload())
-    )
-
-    settings.on('set', ({ key, value }) => {
-      const settingEl = box.bodyNode.querySelector(`[vkx-setting][setting-id="${key}"]`)
-      if (settingEl) {
-        settingEl.classList.toggle('on', value)
-      }
+    on('click', '[vkx-expand-settings]', () => {
+      box.bodyNode.classList.toggle('expanded-settings')
+      renderBoxBody()
     })
+
+    on('click', '[vkx-reset-settings]', async () => {
+      await settings.reset()
+      window.document.location.reload()
+    })
+
+    settings.on('set', renderBoxBody)
   }
 }

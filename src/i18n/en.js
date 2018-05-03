@@ -26,7 +26,10 @@ const messages = {
   'settings.help': 'Help',
   'settings.help.community': 'Join vk-x community',
   'settings.help.reportBug': 'Report a bug',
-  'settings.help.resetSettings': 'Reset settings'
+  'settings.help.resetSettings': 'Reset settings',
+
+  'settings.showMore': 'Show more',
+  'settings.showLess': 'Show less'
 }
 
 export default {

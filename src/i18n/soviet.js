@@ -26,7 +26,10 @@ const messages = {
   'settings.help': 'Справочная',
   'settings.help.community': 'Клуб ВК-Х',
   'settings.help.reportBug': 'Жалобная книга',
-  'settings.help.resetSettings': 'Сбросить настройки'
+  'settings.help.resetSettings': 'Сбросить настройки',
+
+  'settings.showMore': 'Ещё',
+  'settings.showLess': 'Свернуть'
 }
 
 export default {
