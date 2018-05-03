@@ -1,8 +1,8 @@
 <%
   const t = require('../i18n').default.t
 
-  const checkbox = (id, isAdvanced) =>
-    '<div class="settings_narrow_row' + (isAdvanced ? ' advanced' : '') + '">' +
+  const checkbox = id =>
+    '<div class="settings_narrow_row">' +
       '<div class="checkbox' + (settings[id] ? ' on' : '') + '" vkx-setting setting-id="' + id + '">' +
         t('settings.' + id) +
       '</div>' +
@@ -10,59 +10,73 @@
 %>
 
 <div class="settings_panel">
-  <div class="settings_line">
-    <div class="settings_label">{{t('settings.common')}}</div>
-    <div class="settings_labeled_text">
-      {{ checkbox('common.awayPhp', true) }}
-      {{ checkbox('common.previewMediaLinks') }}
+  <div>
+    <div class="settings_line">
+      <div class="settings_label">{{t('settings.common')}}</div>
+      <div class="settings_labeled_text">
+        {{ checkbox('common.previewMediaLinks') }}
+      </div>
     </div>
-  </div>
-  <div class="settings_line">
-    <div class="settings_label">{{t('settings.messages')}}</div>
-    <div class="settings_labeled_text">
-      {{ checkbox('messages.darkerUnread') }}
-      {{ checkbox('messages.collapseList') }}
-      {{ checkbox('messages.noPagePreviews', true) }}
-      {{ checkbox('messages.showTimestamps') }}
-    </div>
-  </div>
-  <div class="settings_line advanced">
-    <div class="settings_label">{{t('settings.sideMenu')}}</div>
-    <div class="settings_labeled_text">
-      {{ checkbox('sideMenu.fixPosition') }}
-    </div>
-  </div>
-  <div class="settings_line advanced">
-    <div class="settings_label">{{t('settings.friends')}}</div>
-    <div class="settings_labeled_text">
-      {{ checkbox('friends.noPeopleYouMightKnow') }}
-      {{ checkbox('friends.onlineByDefault') }}
-    </div>
-  </div>
-  <div class="settings_line advanced">
-    <div class="settings_label">{{t('settings.videos')}}</div>
-    <div class="settings_labeled_text">
-      {{ checkbox('videos.myVideosByDefault') }}
-    </div>
-  </div>
-  <div class="settings_line advanced">
-    <div class="settings_label">{{t('settings.help')}}</div>
-    <div class="settings_labeled_text">
-      <div class="settings_narrow_row">
-        <a
-          href="/vkx_community"
-          target="_blank"
-          class="flat_button secondary"
-        >{{t('settings.help.community')}}</a><a
-          href="https://github.com/vk-x/vk-x/issues"
-          target="_blank"
-          class="flat_button secondary"
-        >{{t('settings.help.reportBug')}}</a><button
-          class="flat_button secondary"
-          vkx-reset-settings
-        >{{t('settings.help.resetSettings')}}</button>
+    <div class="settings_line">
+      <div class="settings_label">{{t('settings.messages')}}</div>
+      <div class="settings_labeled_text">
+        {{ checkbox('messages.darkerUnread') }}
+        {{ checkbox('messages.collapseList') }}
+        {{ checkbox('messages.showTimestamps') }}
       </div>
     </div>
   </div>
   <div class="wr_header" vkx-expand-settings>{{t(expanded ? 'settings.showLess' : 'settings.showMore')}}</div>
+  <div>
+    <div class="settings_line advanced">
+      <div class="settings_label">{{t('settings.common')}}</div>
+      <div class="settings_labeled_text">
+        {{ checkbox('common.awayPhp') }}
+      </div>
+    </div>
+    <div class="settings_line advanced">
+      <div class="settings_label">{{t('settings.messages')}}</div>
+      <div class="settings_labeled_text">
+        {{ checkbox('messages.noPagePreviews') }}
+      </div>
+    </div>
+    <div class="settings_line advanced">
+      <div class="settings_label">{{t('settings.sideMenu')}}</div>
+      <div class="settings_labeled_text">
+        {{ checkbox('sideMenu.fixPosition') }}
+      </div>
+    </div>
+    <div class="settings_line advanced">
+      <div class="settings_label">{{t('settings.friends')}}</div>
+      <div class="settings_labeled_text">
+        {{ checkbox('friends.noPeopleYouMightKnow') }}
+        {{ checkbox('friends.onlineByDefault') }}
+      </div>
+    </div>
+    <div class="settings_line advanced">
+      <div class="settings_label">{{t('settings.videos')}}</div>
+      <div class="settings_labeled_text">
+        {{ checkbox('videos.myVideosByDefault') }}
+      </div>
+    </div>
+    <div class="settings_line advanced">
+      <div class="settings_label">{{t('settings.help')}}</div>
+      <div class="settings_labeled_text">
+        <div class="settings_narrow_row">
+          <a
+            href="/vkx_community"
+            target="_blank"
+            class="flat_button secondary"
+          >{{t('settings.help.community')}}</a><a
+            href="https://github.com/vk-x/vk-x/issues"
+            target="_blank"
+            class="flat_button secondary"
+          >{{t('settings.help.reportBug')}}</a><button
+            class="flat_button secondary"
+            vkx-reset-settings
+          >{{t('settings.help.resetSettings')}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
