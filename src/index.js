@@ -1,3 +1,4 @@
+import domReady from 'when-dom-ready'
 import settings from './settings'
 import i18n from './i18n'
 
@@ -54,15 +55,11 @@ const i18nReady = new Promise(resolve => {
   })
 })
 
-const domReady = new Promise(resolve => {
-  document.addEventListener('DOMContentLoaded', resolve)
-})
-
 // Local settings are fetched faster than the DOM with a high level of certainty,
 // but it's still not guaranteed that they'll be ready before the DOM.
 // So we need to wait for both here to be sure, not only for DOM.
 // i18n messages are generally ready long before DOM, but not always. See #32.
-Promise.all([ settingsReady, domReady, i18nReady ]).then(() => {
+Promise.all([ domReady(), settingsReady, i18nReady ]).then(() => {
   i18n.setLanguage(window.vk.lang)
 
   modules.forEach(m => {
