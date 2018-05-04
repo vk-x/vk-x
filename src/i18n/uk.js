@@ -14,12 +14,16 @@ const messages = {
   'settings.sideMenu': 'Бічне меню',
   'settings.sideMenu.fixPosition': 'Закріпити положення меню, не прокручувати з поля зору',
 
-  'settings.friends': 'Друзі',
-  'settings.friends.noPeopleYouMightKnow': 'Приховувати блок "Можливі друзі"',
-  'settings.friends.onlineByDefault': 'Відкривати "Друзі онлайн" за замовчуваннямя',
+  'settings.photos': 'Фотографії та альбоми',
+  'settings.photos.scrollThumbnails': 'Показувати приховану частину мініатюр неквадратних зображень при наведенні',
+  'settings.photos.scrollThumbnails.tooltip': 'В альбомі наведіть курсор на превью фотографії, щоб побачити останню частину',
 
   'settings.videos': 'Відеозаписи',
   'settings.videos.myVideosByDefault': 'Відкривати "Мої відеозаписи" за замовчуванням',
+
+  'settings.friends': 'Друзі',
+  'settings.friends.noPeopleYouMightKnow': 'Приховувати блок "Можливі друзі"',
+  'settings.friends.onlineByDefault': 'Відкривати "Друзі онлайн" за замовчуваннямя',
 
   'settings.help': 'Допомога',
   'settings.help.community': 'Спільнота vk-x',

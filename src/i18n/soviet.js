@@ -14,12 +14,16 @@ const messages = {
   'settings.sideMenu': 'Боковое меню',
   'settings.sideMenu.fixPosition': 'Закрепить положение меню, не прокручивать из вида',
 
-  'settings.friends': 'Товарищи',
-  'settings.friends.noPeopleYouMightKnow': 'Скрывать блок "Возможные друзья"',
-  'settings.friends.onlineByDefault': 'Показывать только товарищей на связи по умолчанию',
+  'settings.photos': 'Фотокарточки и альбомы',
+  'settings.photos.scrollThumbnails': 'Показывать скрытую часть миниатюр неквадратных изображений при наведении',
+  'settings.photos.scrollThumbnails.tooltip': 'В альбоме наведите курсор на превью фотокарточки, чтобы увидеть остальную часть',
 
   'settings.videos': 'Видеокаталог',
   'settings.videos.myVideosByDefault': 'Показывать только мои киноленты по умолчанию',
+
+  'settings.friends': 'Товарищи',
+  'settings.friends.noPeopleYouMightKnow': 'Скрывать блок "Возможные друзья"',
+  'settings.friends.onlineByDefault': 'Показывать только товарищей на связи по умолчанию',
 
   'settings.help': 'Справочная',
   'settings.help.community': 'Клуб ВК-Х',

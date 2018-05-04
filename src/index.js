@@ -12,6 +12,7 @@ import messageTimestamps from './message-timestamps'
 import myVideosByDefault from './my-videos-by-default'
 import noLinkPreviews from './no-link-previews'
 import onlineFriendsByDefault from './online-friends-by-default'
+import scrollThumbnails from './scroll-thumbnails'
 import settingsMenuItem from './settings/menu-item'
 import settingsPopup from './settings/popup'
 
@@ -31,6 +32,7 @@ const modules = [
   myVideosByDefault,
   noLinkPreviews,
   onlineFriendsByDefault,
+  scrollThumbnails,
   settingsMenuItem,
   settingsPopup
 ]

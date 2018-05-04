@@ -14,12 +14,16 @@ const messages = {
   'settings.sideMenu': 'Side menu',
   'settings.sideMenu.fixPosition': "Fix menu on the page so it doesn't scroll out of view",
 
-  'settings.friends': 'Friends',
-  'settings.friends.noPeopleYouMightKnow': 'Hide "People you might know"',
-  'settings.friends.onlineByDefault': 'Open "Friends online" by default',
+  'settings.photos': 'Photos and albums',
+  'settings.photos.scrollThumbnails': 'Reveal thumbnails of non-square photos on mouse hover',
+  'settings.photos.scrollThumbnails.tooltip': 'When in an album, move the cursor over a thumbnail to see the rest of it',
 
   'settings.videos': 'Videos',
   'settings.videos.myVideosByDefault': 'Open "My videos" by default',
+
+  'settings.friends': 'Friends',
+  'settings.friends.noPeopleYouMightKnow': 'Hide "People you might know"',
+  'settings.friends.onlineByDefault': 'Open "Friends online" by default',
 
   'settings.help': 'Help',
   'settings.help.community': 'Join vk-x community',
