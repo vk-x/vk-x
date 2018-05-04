@@ -1,5 +1,5 @@
-import api from '../api'
 import pubsub from 'pubsub-js'
+import api from '../api'
 
 const cache = {}
 

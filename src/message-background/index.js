@@ -4,7 +4,7 @@ import styles from './styles'
 export default {
   defineSettings: () => ({
     'messages.darkerUnread': {
-      defaultValue: true
+      defaultValue: false
     }
   }),
 
