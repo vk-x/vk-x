@@ -7,6 +7,7 @@ const messages = {
   'settings.messages': 'Сообщения и записи',
   'settings.messages.darkerUnread': 'Более тёмный фон у непрочитанных и выбранных сообщений',
   'settings.messages.collapseList': 'Свернуть список диалогов, чтобы увеличить область переписки',
+  'settings.messages.collapseList.tooltip': 'Только в новом интерфейсе переписок, не в классическом',
   'settings.messages.noPagePreviews': 'Не прикреплять превью для ссылок на веб-страницы',
   'settings.messages.showTimestamps': 'Показывать время отправки каждого сообщения',
 

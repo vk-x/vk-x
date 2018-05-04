@@ -7,6 +7,7 @@ const messages = {
   'settings.messages': 'Messages and posts',
   'settings.messages.darkerUnread': 'Darker background color of unread and selected messages',
   'settings.messages.collapseList': 'Collapse conversation list to widen the chat area',
+  'settings.messages.collapseList.tooltip': 'Only in the new IM interface, not in the classic one',
   'settings.messages.noPagePreviews': "Don't add previews for links to webpages",
   'settings.messages.showTimestamps': 'Show sent time of each individual message',
 

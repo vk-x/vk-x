@@ -1,8 +1,7 @@
 // Collapse the list of conversations to widen the chat area. See #13.
 
-import { applyStyleWhenSettingIsTrue, wrapStyle } from '../module-utils'
+import { applyStyleWhenSettingIsTrue } from '../module-utils'
 import styles from './styles'
-import compatFix from './compat-fix'
 
 export default {
   defineSettings: () => ({
@@ -13,6 +12,5 @@ export default {
 
   runBeforeDom () {
     applyStyleWhenSettingIsTrue('messages.collapseList', styles)
-    wrapStyle(compatFix).use()
   }
 }
