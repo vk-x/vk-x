@@ -53,7 +53,7 @@ module.exports = {
             ecma: 8,
             passes: 2,
             pure_getters: 'strict',
-            unsafe: true,
+            unsafe: false,
             unsafe_comps: true,
             unsafe_math: true,
             unsafe_methods: true,
