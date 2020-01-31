@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const UglifyPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const packageInfo = require('./package.json')
 
 module.exports = {
@@ -18,7 +18,6 @@ module.exports = {
   module: {
     rules: [{
       test: /\.js$/,
-      exclude: /node_modules/,
       use: 'babel-loader'
     }]
   },
@@ -32,10 +31,9 @@ module.exports = {
   mode: 'none',
 
   plugins: [
-    new webpack.BannerPlugin(`vk-api v${packageInfo.version} (c) vk-x contributors, https://git.io/vpBko`),
-    new UglifyPlugin({
+    new TerserPlugin({
       test: /\.min\.js$/i,
-      uglifyOptions: {
+      terserOptions: {
         compress: {
           ecma: 5,
           passes: 2,
@@ -46,6 +44,10 @@ module.exports = {
           unsafe_methods: true,
           unsafe_proto: true,
           unsafe_regexp: true
+        },
+        output: {
+          comments: false,
+          preamble: `/*! vk-api v${packageInfo.version} (c) vk-x contributors, https://git.io/vpBko */`
         }
       }
     })

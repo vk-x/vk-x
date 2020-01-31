@@ -27,11 +27,7 @@
   },
   "homepage": "https://github.com/vk-x/vk-x/tree/master/vk-api#readme",
   "babel": {
-    "presets": [
-      "env"
-    ],
-    "plugins": [
-      "babel-plugin-transform-object-rest-spread"
-    ]
+    "presets": ["@babel/preset-env"],
+    "plugins": ["@babel/plugin-proposal-object-rest-spread"]
   }
 }
