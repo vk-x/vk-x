@@ -79,7 +79,7 @@ describe('vk', () => {
     })
 
     it('vk.version should be initially set to default', () => {
-      expect(vk.version).to.equal('5.74')
+      expect(vk.version).to.equal('5.124')
     })
   })
 
@@ -255,7 +255,7 @@ describe('vk', () => {
     it('should use VK.init', done => {
       window.VK = {
         init (onSuccess, onFail, version) {
-          version.should.equal('5.74')
+          version.should.equal('5.124')
           onSuccess()
         }
       }
@@ -269,7 +269,7 @@ describe('vk', () => {
     it('should pass error to callback when onFail is called', done => {
       window.VK = {
         init (onSuccess, onFail, version) {
-          version.should.equal('5.74')
+          version.should.equal('5.124')
           onFail()
         }
       }
@@ -283,7 +283,7 @@ describe('vk', () => {
     it('should support promises', done => {
       window.VK = {
         init (onSuccess, onFail, version) {
-          version.should.equal('5.74')
+          version.should.equal('5.124')
           onSuccess()
         }
       }
