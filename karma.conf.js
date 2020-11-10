@@ -15,8 +15,15 @@ module.exports = config => {
       module: {
         rules: [{
           test: /\.js$/,
-          exclude: /node_modules/,
-          use: 'babel-loader'
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env'],
+                plugins: ['@babel/plugin-proposal-object-rest-spread']
+              }
+            }
+          ]
         }, {
           test: /\.html$/,
           use: [{
@@ -29,7 +36,7 @@ module.exports = config => {
         }, {
           test: /\.styl$/,
           use: [
-            'style-loader/useable',
+            { loader: 'style-loader', options: { injectType: 'lazyStyleTag' } },
             'raw-loader',
             'stylus-loader'
           ]
@@ -44,7 +51,8 @@ module.exports = config => {
         ]
       },
 
-      mode: 'none'
+      mode: 'development',
+      devtool: 'inline-source-map'
     },
 
     browsers: ['Chrome_headless'],
