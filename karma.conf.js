@@ -2,7 +2,7 @@ process.env.CHROME_BIN = require('puppeteer').executablePath()
 
 module.exports = config => {
   config.set({
-    frameworks: [ 'mocha', 'sinon-chai' ],
+    frameworks: ['mocha', 'sinon-chai'],
 
     files: [
       '{src,vk-api}/**/*.test.js'
@@ -47,11 +47,11 @@ module.exports = config => {
       mode: 'none'
     },
 
-    browsers: [ 'Chrome_headless' ],
+    browsers: ['Chrome_headless'],
     customLaunchers: {
       Chrome_headless: {
         base: 'ChromeHeadless',
-        flags: [ '--no-sandbox' ] // Hack for Linux on Windows
+        flags: ['--no-sandbox'] // Hack for Linux on Windows
       }
     }
   })

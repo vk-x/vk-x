@@ -63,7 +63,7 @@ module.exports = {
           output: {
             ecma: 8,
             comments: false,
-            preamble: `/*! vk-x v${packageInfo.version} (c) vk-x contributors, https://git.io/vwRaE */`,
+            preamble: `/*! vk-x v${packageInfo.version} (c) vk-x contributors, https://git.io/vwRaE */`
           }
         }
       })

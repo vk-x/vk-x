@@ -13,7 +13,7 @@ describe('vk', () => {
 
   describe('getAuthUrl', () => {
     it('should use passed app id, permissions and options', () => {
-      const url = vk.getAuthUrl('12345', [ 'audio', 'photos' ], {
+      const url = vk.getAuthUrl('12345', ['audio', 'photos'], {
         version: '5.10',
         windowStyle: 'popup',
         redirectUrl: 'close.html'
@@ -26,7 +26,7 @@ describe('vk', () => {
     })
 
     it('should use correct redirect url for standalone apps', () => {
-      const url = vk.getAuthUrl('12345', [ 'audio', 'photos' ], {
+      const url = vk.getAuthUrl('12345', ['audio', 'photos'], {
         version: '5.10',
         windowStyle: 'popup',
         redirectUrl: 'https://oauth.vk.com/blank.html'
@@ -47,8 +47,8 @@ describe('vk', () => {
     })
 
     it('should set vk.version', () => {
-      vk.getAuthUrl('12345', [ 'audio', 'photos' ],
-        {version: '4.4'})
+      vk.getAuthUrl('12345', ['audio', 'photos'],
+        { version: '4.4' })
 
       expect(vk.version).to.equal('4.4')
     })
@@ -122,7 +122,7 @@ describe('vk', () => {
     })
 
     it('should return null if app is not authenticated', done => {
-      const fakeData = {auth: false}
+      const fakeData = { auth: false }
       vk.request = ({ method, url, params, callback }) => callback(fakeData)
 
       vk.getAccessToken('12345', () => {
@@ -173,7 +173,7 @@ describe('vk', () => {
     it('should open a popup, wait for it to close, get access token', done => {
       vk.getAuthUrl = (appId, permissions, options) => {
         appId.should.equal('12345')
-        permissions.should.deep.equal([ 'foo', 'bar' ])
+        permissions.should.deep.equal(['foo', 'bar'])
         options.should.deep.equal({
           windowStyle: 'popup',
           redirectUrl: 'close.html'
@@ -185,7 +185,7 @@ describe('vk', () => {
       sinon.stub(window, 'open').callsFake(url => {
         url.should.equal('fake-url')
 
-        const fakeWindow = {closed: false}
+        const fakeWindow = { closed: false }
 
         setTimeout(() => {
           fakeWindow.closed = true
@@ -196,7 +196,7 @@ describe('vk', () => {
 
       vk.getAccessToken = () => Promise.resolve('fake-token')
 
-      vk.authWebsite('12345', [ 'foo', 'bar' ], null, accessToken => {
+      vk.authWebsite('12345', ['foo', 'bar'], null, accessToken => {
         accessToken.should.equal('fake-token')
         done()
       })
@@ -212,11 +212,11 @@ describe('vk', () => {
         return 'fake-url'
       }
 
-      sinon.stub(window, 'open').callsFake(() => ({closed: true}))
+      sinon.stub(window, 'open').callsFake(() => ({ closed: true }))
 
       vk.getAccessToken = () => Promise.resolve('fake-token')
 
-      vk.authWebsite('12345', [ 'foo', 'bar' ], 'page', accessToken => {
+      vk.authWebsite('12345', ['foo', 'bar'], 'page', accessToken => {
         accessToken.should.equal('fake-token')
         done()
       })
@@ -225,7 +225,7 @@ describe('vk', () => {
     it('should support promises', done => {
       vk.getAuthUrl = () => 'fake-url'
 
-      sinon.stub(window, 'open').callsFake(() => ({closed: true}))
+      sinon.stub(window, 'open').callsFake(() => ({ closed: true }))
 
       vk.getAccessToken = () => Promise.resolve('fake-token')
 
@@ -331,7 +331,7 @@ describe('vk', () => {
         callback(fakeData)
       }
 
-      vk.method(fakeMethod, {foo: 'bar'}, (error, response) => {
+      vk.method(fakeMethod, { foo: 'bar' }, (error, response) => {
         expect(error).to.equal(fakeData.error)
         response.should.equal(fakeData.response)
 
@@ -340,17 +340,17 @@ describe('vk', () => {
     })
 
     it('should support promises', done => {
-      const fakeResponse = {response: 'foo'}
+      const fakeResponse = { response: 'foo' }
       vk.request = ({ method, url, params, callback }) => callback(fakeResponse)
 
-      vk.method(fakeMethod, {foo: 'bar'}).then(response => {
+      vk.method(fakeMethod, { foo: 'bar' }).then(response => {
         response.should.equal('foo')
         done()
       }, error => done(new Error('rejected!', error)))
     })
 
     it('should default to {} when no params specified', done => {
-      const fakeResponse = {response: 'foo'}
+      const fakeResponse = { response: 'foo' }
 
       vk.request = function ({ method, url, params, callback }) {
         params.should.deep.equal({
@@ -368,10 +368,10 @@ describe('vk', () => {
     })
 
     it('should reject promise when data.error exists', done => {
-      const fakeResponse = {response: 'foo', error: 'exists'}
+      const fakeResponse = { response: 'foo', error: 'exists' }
       vk.request = ({ method, url, params, callback }) => callback(fakeResponse)
 
-      vk.method(fakeMethod, {foo: 'bar'}).then(
+      vk.method(fakeMethod, { foo: 'bar' }).then(
         response => done(new Error('resolved!')),
         error => {
           expect(error).to.equal('exists')
@@ -383,8 +383,8 @@ describe('vk', () => {
     it("should auto-retry on 'too many requests' error", done => {
       const ERROR_TOO_MANY_REQUESTS = 6
       const clock = sinon.useFakeTimers()
-      const fakeError = {error: {error_code: ERROR_TOO_MANY_REQUESTS}}
-      const fakeSuccess = {response: 'success'}
+      const fakeError = { error: { error_code: ERROR_TOO_MANY_REQUESTS } }
+      const fakeSuccess = { response: 'success' }
 
       let calls = 0
       vk.request = function ({ method, url, params, callback }) {
@@ -397,7 +397,7 @@ describe('vk', () => {
         }
       }
 
-      vk.method(fakeMethod, {foo: 'bar'}).then(response => {
+      vk.method(fakeMethod, { foo: 'bar' }).then(response => {
         clock.restore()
         response.should.equal('success')
         done()
@@ -418,14 +418,14 @@ describe('vk', () => {
       window.VK = {
         api (method, params, callback) {
           method.should.equal(fakeMethod)
-          params.should.deep.equal({foo: 'bar'})
+          params.should.deep.equal({ foo: 'bar' })
           callback(fakeData)
         }
       }
 
       vk.request = () => done(new Error('called vk.request!'))
 
-      vk.method(fakeMethod, {foo: 'bar'}, (error, response) => {
+      vk.method(fakeMethod, { foo: 'bar' }, (error, response) => {
         expect(error).to.equal(fakeData.error)
         response.should.equal(fakeData.response)
         done()
@@ -474,11 +474,11 @@ describe('vk', () => {
       })
 
       fakeXhr.requests.length.should.equal(1)
-      expect(fakeXhr.requests[ 0 ].method).to.equal('GET')
-      expect(fakeXhr.requests[ 0 ].withCredentials).to.equal(false)
-      expect(fakeXhr.requests[ 0 ].url).to.equal(fakeUrl + '?foo=foo%202&bar=bar%2F2')
+      expect(fakeXhr.requests[0].method).to.equal('GET')
+      expect(fakeXhr.requests[0].withCredentials).to.equal(false)
+      expect(fakeXhr.requests[0].url).to.equal(fakeUrl + '?foo=foo%202&bar=bar%2F2')
 
-      fakeXhr.requests[ 0 ].respond(200, {}, JSON.stringify(fakeData))
+      fakeXhr.requests[0].respond(200, {}, JSON.stringify(fakeData))
     })
 
     it('should make a post xhr and call back with parsed json', done => {
@@ -493,14 +493,14 @@ describe('vk', () => {
       })
 
       fakeXhr.requests.length.should.equal(1)
-      expect(fakeXhr.requests[ 0 ].method).to.equal('POST')
-      expect(fakeXhr.requests[ 0 ].withCredentials).to.equal(false)
-      expect(fakeXhr.requests[ 0 ].url).to.equal(fakeUrl)
-      expect(fakeXhr.requests[ 0 ].requestHeaders).to.have.property('Content-Type')
-      expect(fakeXhr.requests[ 0 ].requestHeaders[ 'Content-Type' ]).to.contain('application/x-www-form-urlencoded')
-      expect(fakeXhr.requests[ 0 ].requestBody).to.equal('foo=foo%202&bar=bar%2F2')
+      expect(fakeXhr.requests[0].method).to.equal('POST')
+      expect(fakeXhr.requests[0].withCredentials).to.equal(false)
+      expect(fakeXhr.requests[0].url).to.equal(fakeUrl)
+      expect(fakeXhr.requests[0].requestHeaders).to.have.property('Content-Type')
+      expect(fakeXhr.requests[0].requestHeaders['Content-Type']).to.contain('application/x-www-form-urlencoded')
+      expect(fakeXhr.requests[0].requestBody).to.equal('foo=foo%202&bar=bar%2F2')
 
-      fakeXhr.requests[ 0 ].respond(200, {}, JSON.stringify(fakeData))
+      fakeXhr.requests[0].respond(200, {}, JSON.stringify(fakeData))
     })
 
     it('should use credentials when specified', done => {
@@ -516,11 +516,11 @@ describe('vk', () => {
       })
 
       fakeXhr.requests.length.should.equal(1)
-      expect(fakeXhr.requests[ 0 ].method).to.equal('GET')
-      expect(fakeXhr.requests[ 0 ].withCredentials).to.equal(true)
-      expect(fakeXhr.requests[ 0 ].url).to.equal(fakeUrl + '?foo=foo%202&bar=bar%2F2')
+      expect(fakeXhr.requests[0].method).to.equal('GET')
+      expect(fakeXhr.requests[0].withCredentials).to.equal(true)
+      expect(fakeXhr.requests[0].url).to.equal(fakeUrl + '?foo=foo%202&bar=bar%2F2')
 
-      fakeXhr.requests[ 0 ].respond(200, {}, JSON.stringify(fakeData))
+      fakeXhr.requests[0].respond(200, {}, JSON.stringify(fakeData))
     })
   })
 

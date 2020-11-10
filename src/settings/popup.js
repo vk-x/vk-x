@@ -47,7 +47,7 @@ export default {
       if (tooltipMessage) {
         window.showTooltip(this, {
           text: tooltipMessage,
-          shift: [ -20, 8, 8 ],
+          shift: [-20, 8, 8],
           dir: 'auto',
           slide: 15,
           hasover: 1
