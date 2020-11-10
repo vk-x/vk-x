@@ -15,6 +15,9 @@ module.exports = {
 
   module: {
     rules: [{
+      test: /\.js$/,
+      use: ['babel-loader']
+    }, {
       test: /\.html$/,
       use: [{
         loader: 'underscore-template-loader',
