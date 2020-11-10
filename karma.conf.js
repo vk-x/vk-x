@@ -8,7 +8,7 @@ module.exports = config => {
       '{src,vk-api}/**/*.test.js'
     ],
     preprocessors: {
-      '{src,vk-api}/**/*.test.js': [ 'webpack' ]
+      '{src,vk-api}/**/*.test.js': ['webpack', 'sourcemap']
     },
 
     webpack: {
