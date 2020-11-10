@@ -29,6 +29,11 @@
     "when-dom-ready": "1.2.12"
   },
   "devDependencies": {
+    "@babel/core": "7.7.5",
+    "@babel/node": "7.12.6",
+    "@babel/plugin-proposal-object-rest-spread": "7.7.4",
+    "@babel/preset-env": "7.7.6",
+    "babel-loader": "8.0.6",
     "chai": "4.2.0",
     "inject-loader": "4.0.1",
     "karma": "4.4.1",
@@ -51,5 +56,13 @@
     "underscore-template-loader": "1.0.0",
     "webpack": "4.41.2",
     "webpack-cli": "3.3.10"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-object-rest-spread"
+    ]
   }
 }
