@@ -53,7 +53,7 @@ module.exports = {
         sourceMap: true,
         terserOptions: {
           compress: {
-            ecma: 8,
+            ecma: 6,
             passes: 2,
             pure_getters: 'strict',
             unsafe: false,
@@ -64,7 +64,6 @@ module.exports = {
             unsafe_regexp: true
           },
           output: {
-            ecma: 8,
             comments: false,
             preamble: `/*! vk-x v${packageInfo.version} (c) vk-x contributors, https://git.io/vwRaE */`
           }
