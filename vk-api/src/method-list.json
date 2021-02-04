@@ -1,6 +1,6 @@
 {
   "account": [
-    "banUser",
+    "ban",
     "changePassword",
     "getActiveOffers",
     "getAppPermissions",
@@ -17,7 +17,7 @@
     "setOnline",
     "setPushSettings",
     "setSilenceMode",
-    "unbanUser",
+    "unban",
     "unregisterDevice"
   ],
   "ads": [
@@ -45,6 +45,7 @@
     "getDemographics",
     "getFloodStats",
     "getLookalikeRequests",
+    "getMusicians",
     "getOfficeUsers",
     "getPostsReach",
     "getRejectionReason",
@@ -57,11 +58,13 @@
     "getVideoUploadURL",
     "importTargetContacts",
     "removeOfficeUsers",
+    "removeTargetContacts",
     "saveLookalikeRequestResult",
     "shareTargetGroup",
     "updateAds",
     "updateCampaigns",
     "updateClients",
+    "updateOfficeUsers",
     "updateTargetGroup",
     "updateTargetPixel"
   ],
@@ -81,14 +84,15 @@
     "getCatalog",
     "getFriendsList",
     "getLeaderboard",
+    "getScopes",
     "getScore",
+    "promoHasActiveGift",
+    "promoUseGift",
     "sendRequest"
   ],
   "auth": [
     "checkPhone",
-    "confirm",
-    "restore",
-    "signup"
+    "restore"
   ],
   "board": [
     "addTopic",
@@ -112,10 +116,11 @@
     "getCountries",
     "getCountriesById",
     "getFaculties",
+    "getMetroStations",
+    "getMetroStationsById",
     "getRegions",
     "getSchoolClasses",
     "getSchools",
-    "getStreetsById",
     "getUniversities"
   ],
   "docs": [
@@ -131,19 +136,39 @@
     "save",
     "search"
   ],
+  "donut": [
+    "getFriends",
+    "getSubscription",
+    "getSubscriptions",
+    "isDon"
+  ],
+  "downloadedGames": [
+    "getPaidStatus"
+  ],
   "fave": [
-    "addGroup",
+    "addArticle",
     "addLink",
-    "addUser",
-    "getLinks",
-    "getMarketItems",
-    "getPhotos",
-    "getPosts",
-    "getUsers",
-    "getVideos",
-    "removeGroup",
+    "addPage",
+    "addPost",
+    "addProduct",
+    "addTag",
+    "addVideo",
+    "editTag",
+    "get",
+    "getPages",
+    "getTags",
+    "markSeen",
+    "removeArticle",
     "removeLink",
-    "removeUser"
+    "removePage",
+    "removePost",
+    "removeProduct",
+    "removeTag",
+    "removeVideo",
+    "reorderTags",
+    "setPageTags",
+    "setTags",
+    "trackPageInteraction"
   ],
   "friends": [
     "add",
@@ -169,21 +194,24 @@
     "get"
   ],
   "groups": [
+    "addAddress",
     "addCallbackServer",
     "addLink",
     "approveRequest",
     "ban",
     "create",
+    "deleteAddress",
     "deleteCallbackServer",
     "deleteLink",
     "disableOnline",
     "edit",
+    "editAddress",
     "editCallbackServer",
     "editLink",
     "editManager",
-    "editPlace",
     "enableOnline",
     "get",
+    "getAddresses",
     "getBanned",
     "getById",
     "getCallbackConfirmationCode",
@@ -199,6 +227,7 @@
     "getOnlineStatus",
     "getRequests",
     "getSettings",
+    "getTagList",
     "getTokenPermissions",
     "invite",
     "isMember",
@@ -209,15 +238,23 @@
     "search",
     "setCallbackSettings",
     "setLongPollSettings",
+    "setSettings",
+    "setUserNote",
+    "tagAdd",
+    "tagBind",
+    "tagDelete",
+    "tagUpdate",
+    "toggleMarket",
     "unban"
   ],
-  "leads": [
-    "checkUser",
-    "complete",
-    "getStats",
-    "getUsers",
-    "metricHit",
-    "start"
+  "leadForms": [
+    "create",
+    "delete",
+    "get",
+    "getLeads",
+    "getUploadURL",
+    "list",
+    "update"
   ],
   "likes": [
     "add",
@@ -236,12 +273,17 @@
     "edit",
     "editAlbum",
     "editComment",
+    "editOrder",
     "get",
     "getAlbumById",
     "getAlbums",
     "getById",
     "getCategories",
     "getComments",
+    "getGroupOrders",
+    "getOrderById",
+    "getOrderItems",
+    "getOrders",
     "removeFromAlbum",
     "reorderAlbums",
     "reorderItems",
@@ -257,35 +299,40 @@
     "createChat",
     "delete",
     "deleteChatPhoto",
-    "deleteDialog",
+    "deleteConversation",
     "denyMessagesFromGroup",
     "edit",
     "editChat",
-    "get",
+    "getByConversationMessageId",
     "getById",
     "getChat",
     "getChatPreview",
-    "getChatUsers",
-    "getDialogs",
+    "getConversationMembers",
+    "getConversations",
+    "getConversationsById",
     "getHistory",
     "getHistoryAttachments",
+    "getImportantMessages",
     "getInviteLink",
     "getLastActivity",
     "getLongPollHistory",
     "getLongPollServer",
     "isMessagesFromGroupAllowed",
     "joinChatByInviteLink",
-    "markAsAnsweredDialog",
+    "markAsAnsweredConversation",
     "markAsImportant",
-    "markAsImportantDialog",
+    "markAsImportantConversation",
     "markAsRead",
+    "pin",
     "removeChatUser",
     "restore",
     "search",
-    "searchDialogs",
+    "searchConversations",
     "send",
+    "sendMessageEventAnswer",
     "setActivity",
-    "setChatPhoto"
+    "setChatPhoto",
+    "unpin"
   ],
   "newsfeed": [
     "addBan",
@@ -318,7 +365,8 @@
   ],
   "notifications": [
     "get",
-    "markAsViewed"
+    "markAsViewed",
+    "sendMessage"
   ],
   "orders": [
     "cancelSubscription",
@@ -388,21 +436,24 @@
     "saveWallPhoto",
     "search"
   ],
-  "places": [
-    "add",
-    "checkin",
-    "getById",
-    "getCheckins",
-    "getTypes",
-    "search"
-  ],
   "polls": [
     "addVote",
     "create",
     "deleteVote",
     "edit",
+    "getBackgrounds",
     "getById",
-    "getVoters"
+    "getPhotoUploadServer",
+    "getVoters",
+    "savePhoto"
+  ],
+  "prettyCards": [
+    "create",
+    "delete",
+    "edit",
+    "get",
+    "getById",
+    "getUploadURL"
   ],
   "search": [
     "getHints"
@@ -414,10 +465,10 @@
     "getSMSHistory",
     "getTransactionsHistory",
     "getUserLevel",
+    "giveEventSticker",
     "sendNotification",
     "sendSMSNotification",
-    "setCounter",
-    "setUserLevel"
+    "setCounter"
   ],
   "stats": [
     "get",
@@ -446,20 +497,22 @@
     "getViewers",
     "hideAllReplies",
     "hideReply",
+    "save",
+    "search",
+    "sendInteraction",
     "unbanOwner"
   ],
   "streaming": [
     "getServerUrl",
     "getSettings",
     "getStats",
+    "getStem",
     "setSettings"
   ],
   "users": [
     "get",
     "getFollowers",
-    "getNearby",
     "getSubscriptions",
-    "isAppUser",
     "report",
     "search"
   ],
@@ -487,10 +540,7 @@
     "getAlbumById",
     "getAlbums",
     "getAlbumsByVideo",
-    "getCatalog",
-    "getCatalogSection",
     "getComments",
-    "hideCatalogSection",
     "removeFromAlbum",
     "reorderAlbums",
     "reorderVideos",
@@ -502,6 +552,8 @@
     "search"
   ],
   "wall": [
+    "checkCopyrightLink",
+    "closeComments",
     "createComment",
     "delete",
     "deleteComment",
@@ -510,8 +562,10 @@
     "editComment",
     "get",
     "getById",
+    "getComment",
     "getComments",
     "getReposts",
+    "openComments",
     "pin",
     "post",
     "postAdsStealth",

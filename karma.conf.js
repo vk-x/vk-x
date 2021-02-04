@@ -2,21 +2,28 @@ process.env.CHROME_BIN = require('puppeteer').executablePath()
 
 module.exports = config => {
   config.set({
-    frameworks: [ 'mocha', 'sinon-chai' ],
+    frameworks: ['mocha', 'sinon-chai'],
 
     files: [
       '{src,vk-api}/**/*.test.js'
     ],
     preprocessors: {
-      '{src,vk-api}/**/*.test.js': [ 'webpack' ]
+      '{src,vk-api}/**/*.test.js': ['webpack', 'sourcemap']
     },
 
     webpack: {
       module: {
         rules: [{
           test: /\.js$/,
-          exclude: /node_modules/,
-          use: 'babel-loader'
+          use: [
+            {
+              loader: 'babel-loader',
+              options: {
+                presets: ['@babel/preset-env'],
+                plugins: ['@babel/plugin-proposal-object-rest-spread']
+              }
+            }
+          ]
         }, {
           test: /\.html$/,
           use: [{
@@ -29,7 +36,7 @@ module.exports = config => {
         }, {
           test: /\.styl$/,
           use: [
-            'style-loader/useable',
+            { loader: 'style-loader', options: { injectType: 'lazyStyleTag' } },
             'raw-loader',
             'stylus-loader'
           ]
@@ -44,14 +51,15 @@ module.exports = config => {
         ]
       },
 
-      mode: 'none'
+      mode: 'development',
+      devtool: 'inline-source-map'
     },
 
-    browsers: [ 'Chrome_headless' ],
+    browsers: ['Chrome_headless'],
     customLaunchers: {
       Chrome_headless: {
         base: 'ChromeHeadless',
-        flags: [ '--no-sandbox' ] // Hack for Linux on Windows
+        flags: ['--no-sandbox'] // Hack for Linux on Windows
       }
     }
   })

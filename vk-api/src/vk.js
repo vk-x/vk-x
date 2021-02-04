@@ -1,7 +1,7 @@
 const ERROR_TOO_MANY_REQUESTS = 6
 
 export default {
-  version: '5.74',
+  version: '5.124',
 
   getAuthUrl (appId, permissions = [], options = {}) {
     this.appId = appId || this.appId

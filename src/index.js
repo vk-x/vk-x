@@ -59,7 +59,7 @@ const i18nReady = new Promise(resolve => {
 // but it's still not guaranteed that they'll be ready before the DOM.
 // So we need to wait for both here to be sure, not only for DOM.
 // i18n messages are generally ready long before DOM, but not always. See #32.
-Promise.all([ domReady(), settingsReady, i18nReady ]).then(() => {
+Promise.all([domReady(), settingsReady, i18nReady]).then(() => {
   i18n.setLanguage(window.vk.lang)
 
   modules.forEach(m => {

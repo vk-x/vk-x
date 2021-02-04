@@ -4,8 +4,8 @@ const cache = {}
 let currentLanguageId = 3
 
 export default {
-  add ({messages, languageId, locale, aliases = []}) {
-    if (cache[ languageId ] == null) {
+  add ({ messages, languageId, locale, aliases = [] }) {
+    if (cache[languageId] == null) {
       cache[languageId] = {
         languageId,
         locale,

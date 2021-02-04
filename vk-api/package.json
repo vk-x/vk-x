@@ -1,13 +1,13 @@
 {
   "name": "@vk-x/vk-api",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "description": "JavaScript Driver for vk.com API",
   "main": "dist/vk-api.js",
   "scripts": {
     "build": "../node_modules/.bin/webpack",
     "test": "cd .. && npm test",
     "gen-methods": "../node_modules/.bin/babel-node gen-method-list.js",
-    "prepublish": "npm test && npm run build"
+    "prepublishOnly": "npm test && npm run build"
   },
   "repository": {
     "type": "git",
@@ -27,11 +27,7 @@
   },
   "homepage": "https://github.com/vk-x/vk-x/tree/master/vk-api#readme",
   "babel": {
-    "presets": [
-      "env"
-    ],
-    "plugins": [
-      "babel-plugin-transform-object-rest-spread"
-    ]
+    "presets": ["@babel/preset-env"],
+    "plugins": ["@babel/plugin-proposal-object-rest-spread"]
   }
 }

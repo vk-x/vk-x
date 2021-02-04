@@ -8,14 +8,14 @@ describe('shortcuts', () => {
   let shortcuts = null
 
   const fakeApiMethodList = {
-    foo0: [ 'bar0', 'qux0' ],
-    foo1: [ 'bar1', 'qux1' ],
+    foo0: ['bar0', 'qux0'],
+    foo1: ['bar1', 'qux1'],
     exec: true
   }
 
   beforeEach(() => {
     shortcuts = cleanShortcuts({}).default
-    base = {baseMethod: sinon.spy()}
+    base = { baseMethod: sinon.spy() }
   })
 
   it('should add shortcuts for methods in the list', () => {
@@ -31,7 +31,7 @@ describe('shortcuts', () => {
   it('should delegate to the base method', () => {
     shortcuts(base, 'baseMethod', fakeApiMethodList)
 
-    const params = {foo: 'bar'}
+    const params = { foo: 'bar' }
     const callback = () => {}
 
     base.foo0.qux0(params, callback)

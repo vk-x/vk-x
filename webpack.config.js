@@ -1,5 +1,5 @@
 const webpack = require('webpack')
-const UglifyPlugin = require('uglifyjs-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 const packageInfo = require('./package.json')
 
 module.exports = {
@@ -16,8 +16,7 @@ module.exports = {
   module: {
     rules: [{
       test: /\.js$/,
-      exclude: /node_modules/,
-      use: 'babel-loader'
+      use: ['babel-loader']
     }, {
       test: /\.html$/,
       use: [{
@@ -30,7 +29,7 @@ module.exports = {
     }, {
       test: /\.styl$/,
       use: [
-        'style-loader/useable',
+        { loader: 'style-loader', options: { injectType: 'lazyStyleTag' } },
         'raw-loader',
         'stylus-loader'
       ]
@@ -49,20 +48,24 @@ module.exports = {
   devtool: process.argv.includes('--watch') ? 'eval-source-map' : 'source-map',
   optimization: {
     minimizer: [
-      new UglifyPlugin({
+      new TerserPlugin({
         cache: true,
         sourceMap: true,
-        uglifyOptions: {
+        terserOptions: {
           compress: {
-            ecma: 8,
+            ecma: 6,
             passes: 2,
             pure_getters: 'strict',
-            unsafe: true,
+            unsafe: false,
             unsafe_comps: true,
             unsafe_math: true,
             unsafe_methods: true,
             unsafe_proto: true,
             unsafe_regexp: true
+          },
+          output: {
+            comments: false,
+            preamble: `/*! vk-x v${packageInfo.version} (c) vk-x contributors, https://git.io/vwRaE */`
           }
         }
       })
@@ -70,7 +73,6 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.BannerPlugin(`vk-x v${packageInfo.version} (c) vk-x contributors, https://git.io/vwRaE`),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
   ]
 }
